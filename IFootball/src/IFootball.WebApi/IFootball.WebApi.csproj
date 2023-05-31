@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IFootball.Application\IFootball.Application.csproj" />
+    <ProjectReference Include="..\IFootball.Infrastructure\IFootball.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
