@@ -2,16 +2,23 @@
 
 namespace IFootball.Domain.Models
 {
-    public class User
+    public class User : BaseEntity
     {
-        public User() { }
-
-        public Guid Id { get; set; }
         public Guid IdClass { get; set; }
-        public Class Class { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public UserRole Role { get; set; }
+        public Class? Class { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+
+        public UserRole Role = UserRole.User;
+
+        public User() { }
+        public User(string name, string email, string password, Guid idClass) 
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            IdClass = idClass;
+        }
     }
 }

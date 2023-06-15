@@ -9,12 +9,12 @@ namespace IFootball.WebApi.Controllers
 {
     [ApiController]
     [Route("/users")]
-    public class UsuarioController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
 
-        public UsuarioController(IUserService userService, ITokenService tokenService)
+        public UserController(IUserService userService, ITokenService tokenService)
         {
             _userService = userService;
             _tokenService = tokenService;
@@ -24,14 +24,21 @@ namespace IFootball.WebApi.Controllers
         [Route("login")]
         public async Task<ActionResult<LoginUserResponse>> Authenticate([FromBody] LoginUserRequest userRequest)
         {
-            var user = await _userService.AuthenticateAsync(userRequest);
+            var response = await _userService.AuthenticateAsync(userRequest);
 
-            if (user is null)
-                return NotFound();
+            if (response is null)
+                return response;
 
-            user.Token = _tokenService.GenerateToken(user);
+            response.Token = _tokenService.GenerateToken(response);
 
-            return Ok(user);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
+        {
+            //var response = await _userService.AuthenticateAsync()
+            return Ok();
         }
     }
 }

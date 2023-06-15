@@ -10,6 +10,7 @@ namespace IFootball.Application.Contracts.Services
 {
     public interface IUserService
     {
+        Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest registerUserRequest);
         Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest loginUserRequest);
     }
 }

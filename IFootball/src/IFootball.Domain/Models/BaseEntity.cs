@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace IFootball.Domain.Models
 {
-    public class Class : BaseEntity
+    public class BaseEntity
     {
-        public Class() { }
-        public List<User> ClassUsers { get; set; }
+        public Guid Id { get; set; }
     }
 }

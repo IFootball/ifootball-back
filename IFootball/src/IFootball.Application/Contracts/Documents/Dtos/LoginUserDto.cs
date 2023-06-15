@@ -9,6 +9,5 @@ namespace IFootball.Application.Contracts.Documents.Dtos
     public class LoginUserDto
     {
         public Guid Id { get; set; }
-        public string Role { get; set; }
     }
 }
