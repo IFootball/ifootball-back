@@ -15,7 +15,7 @@ namespace IFootball.Infrastructure.Data
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite("DataSource=../IFootball.Infrastructure/database.db");
+            => options.UseSqlite("DataSource=../IFootball.Infrastructure/database.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
