@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IFootball.WebApi.Controllers
 {
     [ApiController]
-    [Route("/user")]
+    [Route("/users")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUserService _userService;

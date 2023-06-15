@@ -30,6 +30,7 @@ namespace IFootball.Application.Implementations.Services
             {
                 return response;
             }
+            
             response.User = new LoginUserDto { Id = user.Id };
             return response;
 
