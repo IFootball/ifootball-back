@@ -14,6 +14,12 @@ namespace IFootball.Infrastructure.Data.Mappings
 
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
+
+            builder.HasOne(x => x.Class)
+                .WithMany(x => x.ClassUsers)
+                .HasForeignKey(x => x.IdClass)
+                .HasConstraintName("FK_ClassUser");
+                //.OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
