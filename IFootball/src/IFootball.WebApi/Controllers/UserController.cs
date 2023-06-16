@@ -1,9 +1,9 @@
 ﻿using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
-using IFootball.Domain.Models;
 using IFootball.WebApi.Security;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace IFootball.WebApi.Controllers
 {
@@ -26,8 +26,8 @@ namespace IFootball.WebApi.Controllers
         {
             var response = await _userService.AuthenticateAsync(userRequest);
 
-            if (response is null)
-                return response;
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
             response.Token = _tokenService.GenerateToken(response);
 
@@ -38,6 +38,7 @@ namespace IFootball.WebApi.Controllers
         public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
         {
             //var response = await _userService.AuthenticateAsync()
+
             return Ok();
         }
     }
