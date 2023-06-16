@@ -21,6 +21,11 @@ namespace IFootball.Infrastructure.Data.Mappings
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
 
+            builder.Property(x => x.Name)
+                .IsRequired()
+                .HasColumnName("name")
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(128);
         }
     }
 }

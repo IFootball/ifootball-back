@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IFootball.Domain.Models
+﻿namespace IFootball.Domain.Models
 {
     public class BaseEntity
     {
