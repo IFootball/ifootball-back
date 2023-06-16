@@ -7,25 +7,30 @@ using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly DataContext _context;
-        private readonly IConfiguration _config;
 
-        public UserRepository(DataContext context, IConfiguration config)
+        public UserRepository(DataContext context, IConfiguration config) : base(config)
         {
             _context = context;
-            _config = config;
+        }
 
+        public async Task CreateUserAsync(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<User?> GetUserAuthenticateAsync(string email, string password)
         {
-            using var conn = new SqliteConnection(_config.GetConnectionString("DefaultConnection"));
+            var connection = GetConnection();
 
             var query = @"";
 
-            return new User{ Email = email, Password = password };
+
+            return new User { Email = email, Password = password };
         }
+
     }
 }

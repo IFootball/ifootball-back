@@ -5,5 +5,6 @@ namespace IFootball.Domain.Contracts.Repositories
     public interface IUserRepository
     {
         Task<User?> GetUserAuthenticateAsync(string email, string password);
+        Task CreateUserAsync(User user);
     }
 }
