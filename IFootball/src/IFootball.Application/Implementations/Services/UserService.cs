@@ -1,11 +1,9 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos;
-using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
+using IFootball.Application.Implementations.Mappers;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
-
-using IFootball.Application.Implementations.Mappers;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -30,10 +28,14 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest registerUserRequest)
         {
-            
-            // implement
 
-            return new RegisterUserResponse(new UserDto { });
+            // validacao dados
+
+
+            var user = registerUserRequest.toUser();
+            await _userRepository.CreateUserAsync(user);
+
+            return new RegisterUserResponse(user.toUserDto());
         }
     }
 }

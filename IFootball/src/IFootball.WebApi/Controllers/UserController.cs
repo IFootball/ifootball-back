@@ -21,6 +21,17 @@ namespace IFootball.WebApi.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
+        {
+            var response = await _userService.RegisterAsync(userRequest);
+
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
         [Route("login")]
         public async Task<ActionResult<LoginUserResponse>> Authenticate([FromBody] LoginUserRequest userRequest)
         {
@@ -34,12 +45,5 @@ namespace IFootball.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
-        {
-            //var response = await _userService.AuthenticateAsync()
-
-            return Ok();
-        }
     }
 }

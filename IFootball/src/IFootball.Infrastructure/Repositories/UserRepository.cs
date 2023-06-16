@@ -9,7 +9,7 @@ namespace IFootball.Infrastructure.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly DataContext _context;
+        private DataContext _context;
 
         public UserRepository(DataContext context, IConfiguration config) : base(config)
         {

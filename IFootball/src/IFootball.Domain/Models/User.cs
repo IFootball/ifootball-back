@@ -5,7 +5,7 @@ namespace IFootball.Domain.Models
     public class User : BaseEntity
     {
         public Guid IdClass { get; set; }
-        public Class? Class { get; set; }
+        public Class Class { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }

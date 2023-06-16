@@ -38,13 +38,12 @@ namespace IFootball.Infrastructure.Data.Mappings
                 .IsRequired()
                 .HasColumnType("role")
                 .HasColumnType("INT");
-            
+
             builder
                 .HasOne(x => x.Class)
                 .WithMany(x => x.ClassUsers)
                 .HasForeignKey(x => x.IdClass)
-                .HasConstraintName("FK_class_user")
-                .IsRequired();
+                .HasConstraintName("FK_class_user");
                 //.OnDelete(DeleteBehavior.Cascade);
         }
     }
