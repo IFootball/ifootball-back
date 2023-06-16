@@ -11,7 +11,7 @@ namespace IFootball.Application.Contracts.Documents.Dtos
     public class UserDto
     {
         public Guid IdClass { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
     }
 }

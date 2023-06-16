@@ -1,4 +1,5 @@
-﻿using IFootball.Domain.Models;
+﻿using System.Collections.Immutable;
+using IFootball.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,10 +16,35 @@ namespace IFootball.Infrastructure.Data.Mappings
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.HasOne(x => x.Class)
+            builder.Property(x => x.Name)
+                .IsRequired()
+                .HasColumnName("name")
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(128);
+
+            builder.Property(x=> x.Email)
+                .IsRequired()
+                .HasColumnName("email")
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(255);
+            
+            builder.Property(x => x.Password)
+                .IsRequired()
+                .HasColumnName("password")
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(128);
+
+            builder.Property(x => x.Role)
+                .IsRequired()
+                .HasColumnType("role")
+                .HasColumnType("INT");
+            
+            builder
+                .HasOne(x => x.Class)
                 .WithMany(x => x.ClassUsers)
                 .HasForeignKey(x => x.IdClass)
-                .HasConstraintName("FK_ClassUser");
+                .HasConstraintName("FK_class_user")
+                .IsRequired();
                 //.OnDelete(DeleteBehavior.Cascade);
         }
     }
