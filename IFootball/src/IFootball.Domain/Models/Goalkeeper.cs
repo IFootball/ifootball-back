@@ -27,4 +27,6 @@ public class Goalkeeper : BaseEntity
     
     public List<TeamUser> TeamUsers { get; set; }
 
+    public Goalkeeper() { }
+
 }

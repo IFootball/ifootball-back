@@ -25,4 +25,5 @@ public class LinePlayer : BaseEntity
     public List<TeamUser> TeamUsersFrontRight { get; set; }
     public List<TeamUser> TeamUsersFrontLeft { get; set; }
 
+    public LinePlayer() { }
 }

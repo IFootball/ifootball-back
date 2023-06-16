@@ -16,4 +16,5 @@ public class Coach : BaseEntity
     
     public List<TeamUser> TeamUsers { get; set; }
 
+    public Coach() { }
 }
