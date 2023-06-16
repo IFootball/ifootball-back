@@ -12,7 +12,7 @@ namespace IFootball.Domain.Models
 
         public UserRole Role = UserRole.User;
 
-        public TeamUser UserTeamUser { get; set; }
+        public List<TeamUser> UserTeamsUser { get; set; }
         
         public User() { }
         public User(string name, string email, string password, Guid idClass) 

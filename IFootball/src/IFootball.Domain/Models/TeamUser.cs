@@ -25,4 +25,6 @@ public class TeamUser : BaseEntity
 
     public Guid IdLinePlayerBackLeft { get; set; }
     public LinePlayer LinePlayerBackLeft { get; set; }
+
+    public TeamUser() { }
 }
