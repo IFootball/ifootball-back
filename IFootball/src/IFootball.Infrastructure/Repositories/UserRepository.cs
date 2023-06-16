@@ -28,6 +28,8 @@ namespace IFootball.Infrastructure.Repositories
 
             var query = @"";
 
+            if (string.IsNullOrEmpty(email))
+                return null;
 
             return new User { Email = email, Password = password };
         }
