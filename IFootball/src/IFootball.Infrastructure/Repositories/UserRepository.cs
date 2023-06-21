@@ -7,10 +7,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository :BaseRepository, IUserRepository
     {
-        private DataContext _context;
-
+        private readonly DataContext _context;
+        
         public UserRepository(DataContext context, IConfiguration config) : base(config)
         {
             _context = context;

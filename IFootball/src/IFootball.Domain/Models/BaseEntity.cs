@@ -7,7 +7,7 @@
         public BaseEntity()
         {
             // Retirar - Banco ja faz auto, só por fim de testes
-            //Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
     }
 }
