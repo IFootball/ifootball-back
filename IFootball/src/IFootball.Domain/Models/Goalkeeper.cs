@@ -3,13 +3,13 @@
 public class Goalkeeper : BaseEntity
 {
     public Gender Gender { get; set; }
-    public Guid IdGender { get; set; }
+    public long IdGender { get; set; }
 
     public Class Class { get; set; }
-    public Guid IdClass { get; set; }
+    public long IdClass { get; set; }
 
     public TeamClass TeamClass { get; set; }
-    public Guid IdTeamClass { get; set; }
+    public long IdTeamClass { get; set; }
 
     
     public int TakenGols  { get; set; }

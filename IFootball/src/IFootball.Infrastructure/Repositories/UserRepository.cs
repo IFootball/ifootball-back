@@ -7,10 +7,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories
 {
-    public class UserRepository :BaseRepository, IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly DataContext _context;
-        
+
         public UserRepository(DataContext context, IConfiguration config) : base(config)
         {
             _context = context;
@@ -33,6 +33,8 @@ namespace IFootball.Infrastructure.Repositories
 
             return new User { Email = email, Password = password };
         }
+
+        public async Task<bool> UserExists(long id) => await _context.Users.FirstOrDefaultAsync(x => x.Id.Equals(id)) is not null;
 
     }
 }

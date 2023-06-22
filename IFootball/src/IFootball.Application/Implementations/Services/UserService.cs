@@ -34,7 +34,6 @@ namespace IFootball.Application.Implementations.Services
 
             var user = registerUserRequest.toUser();
             await _userRepository.CreateUserAsync(user);
-
             return new RegisterUserResponse(user.toUserDto());
         }
     }

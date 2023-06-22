@@ -13,6 +13,7 @@ namespace IFootball.Infrastructure.Data.Mappings
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
+                .IsRequired()
                 .ValueGeneratedOnAdd();
 
             builder.Property(x => x.Name)

@@ -11,5 +11,9 @@ namespace IFootball.Domain.Models
         public List<LinePlayer>? ClassLinePlayer { get; set; }
 
         public Class() { }
+        public Class(string name) 
+        {
+            Name = name;
+        }
     }
 }

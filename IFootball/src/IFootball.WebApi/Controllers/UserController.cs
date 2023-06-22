@@ -3,12 +3,11 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.WebApi.Security;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace IFootball.WebApi.Controllers
 {
     [ApiController]
-    [Route("/users")]
+    [Route("api/users")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

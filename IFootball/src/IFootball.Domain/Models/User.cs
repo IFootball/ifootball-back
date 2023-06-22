@@ -4,7 +4,7 @@ namespace IFootball.Domain.Models
 {
     public class User : BaseEntity
     {
-        public Guid IdClass { get; set; }
+        public long IdClass { get; set; }
         public Class Class { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
@@ -15,7 +15,7 @@ namespace IFootball.Domain.Models
         public List<TeamUser> UserTeamsUser { get; set; }
         
         public User() { }
-        public User(string name, string email, string password, Guid idClass) 
+        public User(string name, string email, string password, long idClass) 
         {
             Name = name;
             Email = email;

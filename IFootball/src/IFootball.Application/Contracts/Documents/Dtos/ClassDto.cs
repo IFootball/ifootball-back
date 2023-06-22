@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace IFootball.Application.Contracts.Documents.Dtos
 {
-    public class LoginUserDto
+    public class ClassDto
     {
         public long Id { get; set; }
+        public string? Name { get; set; }
     }
 }

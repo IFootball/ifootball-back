@@ -1,57 +1,19 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace IFootball.Infrastructure.Migrations
 {
-    public partial class mapDB : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "IdClass",
-                table: "user",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AddColumn<int>(
-                name: "Role",
-                table: "user",
-                type: "INT",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<string>(
-                name: "email",
-                table: "user",
-                type: "NVARCHAR",
-                maxLength: 255,
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "name",
-                table: "user",
-                type: "NVARCHAR",
-                maxLength: 128,
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "password",
-                table: "user",
-                type: "NVARCHAR",
-                maxLength: 128,
-                nullable: false,
-                defaultValue: "");
-
             migrationBuilder.CreateTable(
                 name: "class",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
@@ -63,7 +25,8 @@ namespace IFootball.Infrastructure.Migrations
                 name: "gender",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     name = table.Column<int>(type: "INT", nullable: false)
                 },
                 constraints: table =>
@@ -72,11 +35,35 @@ namespace IFootball.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdClass = table.Column<long>(type: "INTEGER", nullable: false),
+                    name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
+                    email = table.Column<string>(type: "NVARCHAR", maxLength: 255, nullable: false),
+                    password = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
+                    Role = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_class_user",
+                        column: x => x.IdClass,
+                        principalTable: "class",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "team_class",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGender = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdGender = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,10 +80,11 @@ namespace IFootball.Infrastructure.Migrations
                 name: "coche",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdClass = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGender = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdTeamClass = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdClass = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdGender = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdTeamClass = table.Column<long>(type: "INTEGER", nullable: false),
                     name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
                     image = table.Column<string>(type: "NVARCHAR", maxLength: 512, nullable: false)
                 },
@@ -127,10 +115,11 @@ namespace IFootball.Infrastructure.Migrations
                 name: "goalkeeper",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGender = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdClass = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdTeamClass = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdGender = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdClass = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdTeamClass = table.Column<long>(type: "INTEGER", nullable: false),
                     taken_gols = table.Column<int>(type: "INT", nullable: false),
                     penalty_saves = table.Column<int>(type: "INT", nullable: false),
                     saves = table.Column<int>(type: "INT", nullable: false),
@@ -170,10 +159,11 @@ namespace IFootball.Infrastructure.Migrations
                 name: "line_player",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGender = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdClass = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdTeamClass = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdGender = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdClass = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdTeamClass = table.Column<long>(type: "INTEGER", nullable: false),
                     name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
                     image = table.Column<string>(type: "NVARCHAR", maxLength: 512, nullable: false),
                     goals = table.Column<int>(type: "INT", nullable: false),
@@ -210,15 +200,16 @@ namespace IFootball.Infrastructure.Migrations
                 name: "team_user",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdUser = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGender = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdCoach = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdGoalkeeper = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdLinePlayerFrontLeft = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdLinePlayerFrontRight = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdLinePlayerBackRight = table.Column<Guid>(type: "TEXT", nullable: false),
-                    IdLinePlayerBackLeft = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdUser = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdGender = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdCoach = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdGoalkeeper = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerFrontLeft = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerFrontRight = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerBackRight = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerBackLeft = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -272,11 +263,6 @@ namespace IFootball.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_user_IdClass",
-                table: "user",
-                column: "IdClass");
 
             migrationBuilder.CreateIndex(
                 name: "IX_coche_IdClass",
@@ -367,24 +353,16 @@ namespace IFootball.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_team_user_IdUser",
                 table: "team_user",
-                column: "IdUser",
-                unique: true);
+                column: "IdUser");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_class_user",
+            migrationBuilder.CreateIndex(
+                name: "IX_user_IdClass",
                 table: "user",
-                column: "IdClass",
-                principalTable: "class",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                column: "IdClass");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_class_user",
-                table: "user");
-
             migrationBuilder.DropTable(
                 name: "team_user");
 
@@ -398,37 +376,16 @@ namespace IFootball.Infrastructure.Migrations
                 name: "line_player");
 
             migrationBuilder.DropTable(
-                name: "class");
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "team_class");
 
             migrationBuilder.DropTable(
+                name: "class");
+
+            migrationBuilder.DropTable(
                 name: "gender");
-
-            migrationBuilder.DropIndex(
-                name: "IX_user_IdClass",
-                table: "user");
-
-            migrationBuilder.DropColumn(
-                name: "IdClass",
-                table: "user");
-
-            migrationBuilder.DropColumn(
-                name: "Role",
-                table: "user");
-
-            migrationBuilder.DropColumn(
-                name: "email",
-                table: "user");
-
-            migrationBuilder.DropColumn(
-                name: "name",
-                table: "user");
-
-            migrationBuilder.DropColumn(
-                name: "password",
-                table: "user");
         }
     }
 }
