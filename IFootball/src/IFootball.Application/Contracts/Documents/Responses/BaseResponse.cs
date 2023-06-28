@@ -10,7 +10,6 @@
             Error = error;
         }
         public bool IsErrorStatusCode() => Error is not null;
-
     }
 
 }

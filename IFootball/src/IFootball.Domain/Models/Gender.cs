@@ -12,4 +12,5 @@ public class Gender : BaseEntity
     public List<TeamClass> GenderTeamClasses { get; set; }
     public List<TeamUser> GenderTeamUsers { get; set; }
 
+    public Gender() { }
 }

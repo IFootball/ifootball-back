@@ -14,6 +14,7 @@ namespace IFootball.Infrastructure.Data.Mappings
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
+                .IsRequired()
                 .ValueGeneratedOnAdd();
 
             builder.Property(x => x.Name)
@@ -38,14 +39,14 @@ namespace IFootball.Infrastructure.Data.Mappings
                 .IsRequired()
                 .HasColumnType("role")
                 .HasColumnType("INT");
-            
+
             builder
                 .HasOne(x => x.Class)
                 .WithMany(x => x.ClassUsers)
                 .HasForeignKey(x => x.IdClass)
                 .HasConstraintName("FK_class_user")
-                .IsRequired();
-                //.OnDelete(DeleteBehavior.Cascade);
+                .HasPrincipalKey(x => x.Id)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

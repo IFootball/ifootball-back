@@ -1,7 +1,10 @@
-﻿namespace IFootball.Domain.Models
+﻿
+namespace IFootball.Domain.Models
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
+
+        public BaseEntity() { }
     }
 }

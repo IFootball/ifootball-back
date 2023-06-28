@@ -53,8 +53,8 @@ public class TeamUserMap : IEntityTypeConfiguration<TeamUser>
         
         builder
             .HasOne(x => x.User)
-            .WithOne(x => x.UserTeamUser)
-            .HasForeignKey<TeamUser>(x => x.IdUser)
+            .WithMany(x => x.UserTeamsUser)
+            .HasForeignKey(x => x.IdUser)
             .HasConstraintName("FK_user_teamuser");
         
         builder
