@@ -10,6 +10,8 @@ namespace IFootball.Domain.Contracts.Repositories
     public interface IClassRepository
     {
         Task CreateClassAsync(Class newClass);
+        Task<IEnumerable<Class>> GetAllAsync();
         Task<bool> ClassExists(string name);
+
     }
 }

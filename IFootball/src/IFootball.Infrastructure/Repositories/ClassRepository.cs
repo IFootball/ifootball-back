@@ -19,6 +19,9 @@ namespace IFootball.Infrastructure.Repositories
             _context.Classes.Add(newClass);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Class>> GetAllAsync() => await _context.Classes.ToListAsync();
+
         public async Task<bool> ClassExists(string name) => await _context.Classes.FirstOrDefaultAsync(x => x.Name.ToLower().Equals(name.ToLower())) is not null;
     }
 }

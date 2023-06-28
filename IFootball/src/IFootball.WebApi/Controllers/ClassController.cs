@@ -1,6 +1,7 @@
 ﻿using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +27,20 @@ namespace IFootball.WebApi.Controllers
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
-            return Ok(response); return Ok();
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("all")]
+        public async Task<ActionResult<ListClassesResponse>> List()
+        {
+            var response = await _classService.ListAsync();
+
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return Ok(response);
         }
     }
 }

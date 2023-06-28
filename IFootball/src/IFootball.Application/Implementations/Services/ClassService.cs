@@ -15,7 +15,7 @@ namespace IFootball.Application.Implementations.Services
         {
             _classRepository = classRepository;
         }
-        //[Authorize]
+
         public async Task<RegisterClassResponse> RegisterAsync(RegisterClassRequest resgiterClassRequest)
         {
             if (string.IsNullOrEmpty(resgiterClassRequest.Name))
@@ -31,5 +31,14 @@ namespace IFootball.Application.Implementations.Services
             return new RegisterClassResponse(newClass.toClassDto());
         }
 
+        public async Task<ListClassesResponse> ListAsync()
+        {
+            var classes = await _classRepository.GetAllAsync();
+
+            if (classes.Count() == 0)
+                return new ListClassesResponse(HttpStatusCode.NotFound, "Nenhuma turma cadastrada!");
+
+            return new ListClassesResponse(classes);
+        }
     }
 }
