@@ -21,7 +21,7 @@ namespace IFootball.Application.Implementations.Services
             if (string.IsNullOrEmpty(resgiterClassRequest.Name))
                 return new RegisterClassResponse(HttpStatusCode.BadRequest, "O nome da turma deve ser preenchido!");
 
-            var found = await _classRepository.ClassExists(resgiterClassRequest.Name);
+            var found = await _classRepository.ClassExistsByName(resgiterClassRequest.Name);
 
             if (found)
                 return new RegisterClassResponse(HttpStatusCode.Conflict, "Já existe uma turma com este nome!");
