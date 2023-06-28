@@ -1,5 +1,5 @@
 ﻿using IFootball.Domain.Models.enums;
-
+using IFootball.Core;
 namespace IFootball.Domain.Models
 {
     public class User : BaseEntity
@@ -19,7 +19,7 @@ namespace IFootball.Domain.Models
         {
             Name = name;
             Email = email;
-            Password = password;
+            Password = PasswordHasher.HashPassword(password);
             IdClass = idClass;
         }
     }

@@ -1,4 +1,5 @@
-﻿using IFootball.Domain.Contracts.Repositories;
+﻿using IFootball.Core;
+using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
 using Microsoft.Data.Sqlite;
@@ -24,14 +25,12 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task<User?> GetUserAuthenticateAsync(string email, string password)
         {
-            var connection = GetConnection();
+            
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email));
 
-            var query = @"";
+            if (user is not null && PasswordHasher.VerifyPassword(password, user.Password)) return user;
 
-            if (string.IsNullOrEmpty(email))
-                return null;
-
-            return new User { Email = email, Password = password };
+            return null;
         }
 
         public async Task<bool> UserExists(long id) => await _context.Users.FirstOrDefaultAsync(x => x.Id.Equals(id)) is not null;

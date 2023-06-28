@@ -4,6 +4,7 @@ using IFootball.Application.Implementations.Mappers;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
+using IFootball.Core;
 
 namespace IFootball.Application.Implementations.Services
 {
