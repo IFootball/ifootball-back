@@ -9,28 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/Coach.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/Gender.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/Goalkeeper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/LinePlayer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamClass.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamUser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/enums/GenderName.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/CoachMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/GenderMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/GoalkeeperMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/LinePlayerMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/TeamClassMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/TeamUserMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/Class.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/Class.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/enums/UserRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/enums/UserRole.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/ClassMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/ClassMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/UserMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/UserMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Migrations/DataContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +19,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e4e88da3426749f3a3c12b2f2e1ce0dc344b0/b8/74f2a2b3/HttpStatusCode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1f68ef86315497c7b39ddb155d5cf3ace964abca69857f9943cd58479799/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e329bd4f14a42c5f6951d92d29ba7796e511d77e6a35ab20a5a38f50ba6fd74/HttpResponseMessage.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2RFeWshvkLI5F9fWjf9pavYZ57q" />
@@ -49,27 +30,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Murilo Moutinho\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Murilo Moutinho\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Murilo Moutinho\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Murilo Moutinho\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Murilo Moutinho\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Murilo Moutinho\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.IFootball.WebApi">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.IFootball.WebApi: IIS Express">
     <configuration name="IFootball.WebApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/IFootball.WebApi/IFootball.WebApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -110,6 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686850292662</updated>
       <workItem from="1686850293792" duration="17428000" />
+      <workItem from="1687982037470" duration="367000" />
     </task>
     <servers />
   </component>
@@ -118,5 +100,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs</url>
+          <line>35</line>
+          <properties documentPath="C:\Users\Murilo Moutinho\Documents\GitHub\ifootball-back\IFootball\src\IFootball.Application\Implementations\Services\UserService.cs" initialLine="35" containingFunctionPresentation="Method 'RegisterAsync'">
+            <startOffsets>
+              <option value="1435" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1501" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

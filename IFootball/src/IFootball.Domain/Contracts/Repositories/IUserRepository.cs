@@ -6,6 +6,7 @@ namespace IFootball.Domain.Contracts.Repositories
     {
         Task<User?> GetUserAuthenticateAsync(string email, string password);
         Task CreateUserAsync(User user);
-        Task<bool> UserExists(long id);
+        Task<bool> UserExistsById(long id);
+        Task<bool> UserExistsByEmail(string email);
     }
 }

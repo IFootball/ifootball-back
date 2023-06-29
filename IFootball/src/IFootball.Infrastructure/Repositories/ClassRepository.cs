@@ -22,6 +22,7 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task<IEnumerable<Class>> GetAllAsync() => await _context.Classes.ToListAsync();
 
-        public async Task<bool> ClassExists(string name) => await _context.Classes.FirstOrDefaultAsync(x => x.Name.ToLower().Equals(name.ToLower())) is not null;
+        public async Task<bool> ClassExistsByName(string name) => await _context.Classes.FirstOrDefaultAsync(x => x.Name.ToLower().Equals(name.ToLower())) is not null;
+        public async Task<bool> ClassExistsById(long id) => await _context.Classes.FindAsync(id) is not null;
     }
 }

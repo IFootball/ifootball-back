@@ -11,7 +11,7 @@ namespace IFootball.Domain.Contracts.Repositories
     {
         Task CreateClassAsync(Class newClass);
         Task<IEnumerable<Class>> GetAllAsync();
-        Task<bool> ClassExists(string name);
-
+        Task<bool> ClassExistsByName(string name);
+        Task<bool> ClassExistsById(long id);
     }
 }
