@@ -18,7 +18,7 @@ namespace IFootball.WebApi.Security
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("Id", user.User.Id.ToString()),
-                    //new Claim(ClaimTypes.Role, user.User.Role)
+                    new Claim(ClaimTypes.Role, user.User.Role.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(TokenSettings.ExpiresInHours),
                 SigningCredentials = new SigningCredentials( 

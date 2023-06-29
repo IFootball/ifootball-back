@@ -15,7 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(opt =>
+builder.Services.AddControllers()
+// JsonOptions
+.AddJsonOptions(opt =>
 {
     opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 });
@@ -50,9 +52,7 @@ builder.Services.AddSwaggerGen(opt =>
 });
 builder.Services.AddCors();
 
-//////////////////////////
-///Dependency injection///
-//////////////////////////
+////Dependency injection////
 
 //Services
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -71,14 +71,15 @@ builder.Services.AddAuthentication(opt =>
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(opt =>
 {
-    opt.RequireHttpsMetadata = false;
     opt.SaveToken = true;
+    opt.RequireHttpsMetadata = false;
     opt.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(TokenSettings.SecretKey)),
         ValidateIssuer = false,
         ValidateAudience = false,
+        ClockSkew = TimeSpan.Zero,
     };
 });
 

@@ -11,6 +11,7 @@ namespace IFootball.Application.Implementations.Mappers
             return new LoginUserDto
             {
                 Id = user.Id,
+                Role = user.Role,
             };
         }
     }
