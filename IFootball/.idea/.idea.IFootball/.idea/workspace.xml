@@ -11,6 +11,7 @@
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +93,7 @@
       <updated>1686850292662</updated>
       <workItem from="1686850293792" duration="17428000" />
       <workItem from="1687982037470" duration="367000" />
+      <workItem from="1688077590018" duration="294000" />
     </task>
     <servers />
   </component>
@@ -100,24 +102,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs</url>
-          <line>35</line>
-          <properties documentPath="C:\Users\Murilo Moutinho\Documents\GitHub\ifootball-back\IFootball\src\IFootball.Application\Implementations\Services\UserService.cs" initialLine="35" containingFunctionPresentation="Method 'RegisterAsync'">
-            <startOffsets>
-              <option value="1435" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1501" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

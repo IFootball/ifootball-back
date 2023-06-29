@@ -13,7 +13,9 @@ namespace IFootball.Application.Implementations.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IClassRepository _classRepository;
-        private const string PATTERN_EMAIL_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@aluno\\.feliz\\.ifrs\\.edu\\.br)$";
+        private const string PATTERN_EMAIL_STUDENT_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@aluno\\.feliz\\.ifrs\\.edu\\.br)$";
+        private const string PATTERN_EMAIL_TECHER_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@feliz\\.ifrs\\.edu\\.br)$";
+
         public UserService(IUserRepository userRepository, IClassRepository classRepository)
         {
             _userRepository = userRepository;
@@ -32,8 +34,9 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest registerUserRequest)
         {
-            var emailIsValid = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_DOMAIN).Success;
-            if (!emailIsValid)
+            var emailIsTeacher = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
+            var emailIsStudent = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
+            if (!(emailIsTeacher || emailIsStudent))
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "O email deve ser dominio do IFRS!");
 
             var userExists = await _userRepository.UserExistsByEmail(registerUserRequest.Email);
