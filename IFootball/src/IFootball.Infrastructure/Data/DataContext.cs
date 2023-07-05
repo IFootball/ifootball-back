@@ -1,8 +1,6 @@
 ﻿using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace IFootball.Infrastructure.Data
 {
@@ -18,7 +16,6 @@ namespace IFootball.Infrastructure.Data
         public DbSet<TeamUser> TeamUsers { get; set; }
         public DbSet<TeamClass> TeamClasses { get; set; }
         public DbSet<Goalkeeper> Goalkeepers { get; set; }
-        public DbSet<Coach> Coches { get; set; }
         public DbSet<LinePlayer> LinePlayers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -32,7 +29,6 @@ namespace IFootball.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TeamUserMap());
             modelBuilder.ApplyConfiguration(new TeamClassMap());
             modelBuilder.ApplyConfiguration(new GoalkeeperMap());
-            modelBuilder.ApplyConfiguration(new CoachMap());
             modelBuilder.ApplyConfiguration(new LinePlayerMap());
         }
     }

@@ -8,7 +8,6 @@ public class TeamUser : BaseEntity
     public Gender Gender { get; set; }
     public long IdGender { get; set; }
 
-    public Coach Coach { get; set; }
     public long IdCoach { get; set; }
     
     public Goalkeeper Goalkeeper { get; set; }
