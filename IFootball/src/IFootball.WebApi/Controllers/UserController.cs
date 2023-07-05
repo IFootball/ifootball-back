@@ -3,7 +3,9 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.WebApi.Security;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace IFootball.WebApi.Controllers
 {
@@ -45,6 +47,21 @@ namespace IFootball.WebApi.Controllers
             response.Token = _tokenService.GenerateToken(response);
 
             return Ok(response);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("delete")]
+        public async Task<ActionResult<LoginUserResponse>> DeleteAsync()
+        {
+            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
+
+            var response = await _userService.DeleteAsync(idUserLogged);
+
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return NoContent();
         }
 
     }

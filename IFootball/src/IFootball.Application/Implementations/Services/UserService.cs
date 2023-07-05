@@ -51,5 +51,16 @@ namespace IFootball.Application.Implementations.Services
             await _userRepository.CreateUserAsync(user);
             return new RegisterUserResponse(user.toUserDto());
         }
+
+        public async Task<DeleteUserResponse> DeleteAsync(long idUser)
+        {
+            var user = await _userRepository.FindUserById(idUser);
+            if (user is null)
+                return new DeleteUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
+
+            await _userRepository.DeleteUserAsync(user);
+
+            return new DeleteUserResponse();
+        }
     }
 }
