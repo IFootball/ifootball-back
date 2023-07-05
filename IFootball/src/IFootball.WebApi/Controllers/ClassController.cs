@@ -2,6 +2,7 @@
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Models;
+using IFootball.Domain.Models.enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace IFootball.WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<RegisterClassResponse>> Register([FromBody] RegisterClassRequest classRequest)
         {
             var response = await _classService.RegisterAsync(classRequest);

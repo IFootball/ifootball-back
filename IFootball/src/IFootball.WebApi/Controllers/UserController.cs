@@ -21,6 +21,7 @@ namespace IFootball.WebApi.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
         {
             var response = await _userService.RegisterAsync(userRequest);
