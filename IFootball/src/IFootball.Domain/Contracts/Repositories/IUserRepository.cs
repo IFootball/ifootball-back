@@ -10,5 +10,6 @@ namespace IFootball.Domain.Contracts.Repositories
         Task<User> FindUserById(long id);
         Task<bool> UserExistsByEmail(string email);
         Task DeleteUserAsync(User user);
+        Task EditUserAsync(User user);
     }
 }

@@ -8,6 +8,6 @@ namespace IFootball.Application.Contracts.Services
         Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest resgiterUserRequest);
         Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest loginUserRequest);
         Task<DeleteUserResponse> DeleteAsync(long idUser);
-
+        Task<EditUserResponse> EditAsync(long idUser, EditUserRequest editUserRequest);
     }
 }

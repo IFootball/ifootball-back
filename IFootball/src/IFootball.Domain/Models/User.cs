@@ -15,12 +15,31 @@ namespace IFootball.Domain.Models
         public List<TeamUser> UserTeamsUser { get; set; }
         
         public User() { }
+        public User(string name, string email, long idClass) 
+        {
+            Name = name;
+            Email = email;
+            IdClass = idClass;
+        }
         public User(string name, string email, string password, long idClass) 
         {
             Name = name;
             Email = email;
             Password = PasswordHasher.HashPassword(password);
             IdClass = idClass;
+        }
+
+        public void EditIdClass(long idClass)
+        {
+            IdClass = idClass;
+        }
+        public void EditName(string? name)
+        {
+            Name = name;
+        }
+        public void EditEmail(string email)
+        {
+            Email = email;
         }
     }
 }

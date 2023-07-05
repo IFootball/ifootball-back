@@ -9,9 +9,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/EditUserRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditUserResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterUserMapper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/LoginUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/LoginUserRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterClassRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterClassRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterUserRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/UserMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/UserMapper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/UserController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +107,7 @@
       <workItem from="1686850293792" duration="17428000" />
       <workItem from="1687982037470" duration="367000" />
       <workItem from="1688077590018" duration="294000" />
+      <workItem from="1688579243964" duration="2625000" />
     </task>
     <servers />
   </component>

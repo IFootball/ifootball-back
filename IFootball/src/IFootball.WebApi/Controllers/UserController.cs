@@ -49,7 +49,7 @@ namespace IFootball.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Authorize]
         [Route("delete")]
         public async Task<ActionResult<LoginUserResponse>> DeleteAsync()
@@ -62,6 +62,21 @@ namespace IFootball.WebApi.Controllers
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
             return NoContent();
+        }
+
+        [HttpPut]
+        [Authorize]
+        [Route("edit")]
+        public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest editUserRequest)
+        {
+            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
+
+            var response = await _userService.EditAsync(idUserLogged, editUserRequest);
+
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return Ok();
         }
 
     }
