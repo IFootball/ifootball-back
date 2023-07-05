@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using IFootball.Domain.Models;
+﻿using IFootball.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

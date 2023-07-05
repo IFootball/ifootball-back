@@ -7,7 +7,6 @@ public class TeamClass : BaseEntity
 
     
     public List<Goalkeeper> TeamClassGoalkeepers { get; set; }
-    public Coach TeamClassCoach { get; set; }
     public List<LinePlayer> TeamClassLinePlayers { get; set; }
 
     public TeamClass() { }
