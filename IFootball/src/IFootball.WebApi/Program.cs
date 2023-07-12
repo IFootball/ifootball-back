@@ -50,7 +50,19 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-builder.Services.AddCors();
+
+// CORS
+builder.Services.AddCors(
+    opt =>
+    {
+        opt.AddPolicy("AllowAllHeaders", builder =>
+        {
+            builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+        });
+    }
+);
 
 ////Dependency injection////
 
@@ -103,6 +115,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.UseCors("AllowAllHeaders");
 
 app.MapControllers();
 
