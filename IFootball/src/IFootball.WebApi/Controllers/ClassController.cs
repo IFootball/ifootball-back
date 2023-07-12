@@ -32,7 +32,7 @@ namespace IFootball.WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         [Route("all")]
         public async Task<ActionResult<ListClassesResponse>> List()
         {
