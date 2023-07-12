@@ -22,12 +22,6 @@ public class TeamUserMap : IEntityTypeConfiguration<TeamUser>
             .HasConstraintName("FK_goalkeeper_teamuser");
         
         builder
-            .HasOne(x => x.Coach)
-            .WithMany(x => x.TeamUsers)
-            .HasForeignKey(x => x.IdCoach)
-            .HasConstraintName("FK_coach_teamuser");
-        
-        builder
             .HasOne(x => x.LinePlayerBackLeft)
             .WithMany(x => x.TeamUsersBackLeft)
             .HasForeignKey(x => x.IdLinePlayerBackLeft)

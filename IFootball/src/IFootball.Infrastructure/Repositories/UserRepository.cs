@@ -34,5 +34,22 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task<bool> UserExistsById(long id) => await _context.Users.FindAsync(id) is not null;
         public async Task<bool> UserExistsByEmail(string email) => await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower().Equals(email.ToLower())) is not null;
+
+        public async Task<User?> FindUserById(long id)
+        {
+           return await _context.Users.FindAsync(id);
+        }
+
+        public async Task DeleteUserAsync(User user)
+        {
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditUserAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
     } 
 }   
