@@ -6,16 +6,6 @@ namespace IFootball.Application.Implementations.Mappers
 {
     public static class UserMapper
     {
-        public static User toUser(this RegisterUserRequest request)
-        {
-            return new User(
-                request.Name,
-                request.Email,
-                request.Password,
-                request.IdClass
-                );
-        }
-
         public static UserDto toUserDto(this User user) 
         {
             return new UserDto 

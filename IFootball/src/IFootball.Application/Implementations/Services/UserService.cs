@@ -4,7 +4,6 @@ using IFootball.Application.Implementations.Mappers;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
-using IFootball.Core;
 using System.Text.RegularExpressions;
 
 namespace IFootball.Application.Implementations.Services
@@ -50,6 +49,47 @@ namespace IFootball.Application.Implementations.Services
             var user = registerUserRequest.toUser();
             await _userRepository.CreateUserAsync(user);
             return new RegisterUserResponse(user.toUserDto());
+        }
+
+        public async Task<DeleteUserResponse> DeleteAsync(long idUser)
+        {
+            var user = await _userRepository.FindUserById(idUser);
+            if (user is null)
+                return new DeleteUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
+
+            await _userRepository.DeleteUserAsync(user);
+
+            return new DeleteUserResponse();
+        }
+
+        public async Task<EditUserResponse> EditAsync(long idUser, EditUserRequest editUserRequest)
+        {
+            var emailIsTeacher = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
+            var emailIsStudent = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
+            if (!(emailIsTeacher || emailIsStudent))
+                return new EditUserResponse(HttpStatusCode.BadRequest, "O email deve ser dominio do IFRS!");
+
+            var classExists = await _classRepository.ClassExistsById(editUserRequest.IdClass);
+            if (!classExists)
+                return new EditUserResponse(HttpStatusCode.BadRequest, "A turma inserida não existe!");
+            
+            var user = await _userRepository.FindUserById(idUser);
+            if (user is null)
+                return new EditUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
+            
+            if (editUserRequest.Email != user.Email)
+            {
+                var userExists = await _userRepository.UserExistsByEmail(editUserRequest.Email);
+                if (userExists)
+                    return new EditUserResponse(HttpStatusCode.BadRequest, "O email já foi cadastrado!");    
+            }
+
+            user.EditIdClass(editUserRequest.IdClass);
+            user.EditName(editUserRequest.Name);
+            user.EditEmail(editUserRequest.Email);
+            
+            await _userRepository.EditUserAsync(user);
+            return new EditUserResponse(user.toUserDto());
         }
     }
 }
