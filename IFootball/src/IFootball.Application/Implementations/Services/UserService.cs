@@ -46,9 +46,9 @@ namespace IFootball.Application.Implementations.Services
             if (!classExists)
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "A turma inserida não existe!");
 
-            var user = registerUserRequest.toUser();
+            var user = registerUserRequest.ToUser();
             await _userRepository.CreateUserAsync(user);
-            return new RegisterUserResponse(user.toUserDto());
+            return new RegisterUserResponse(user.DtoToUserDto());
         }
 
         public async Task<DeleteUserResponse> DeleteAsync(long idUser)
@@ -89,7 +89,7 @@ namespace IFootball.Application.Implementations.Services
             user.EditEmail(editUserRequest.Email);
             
             await _userRepository.EditUserAsync(user);
-            return new EditUserResponse(user.toUserDto());
+            return new EditUserResponse(user.DtoToUserDto());
         }
     }
 }

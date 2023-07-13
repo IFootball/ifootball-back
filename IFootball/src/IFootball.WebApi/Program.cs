@@ -58,11 +58,13 @@ builder.Services.AddCors();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<ITeamUserService, TeamUserService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IClassRepository, ClassRepository>();
-
+builder.Services.AddScoped<ITeamUserRepository, TeamUserRepository>();
+builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 
 // JWT
 builder.Services.AddAuthentication(opt =>

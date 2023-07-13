@@ -9,22 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/EditUserRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditUserResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterUserMapper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/LoginUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/LoginUserRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterClassRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterClassRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterUserRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/UserMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/UserMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-shm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db-wal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditTeamUserResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ITeamUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ITeamUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +25,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e4e88da3426749f3a3c12b2f2e1ce0dc344b0/b8/74f2a2b3/HttpStatusCode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e8feaadf5c3fa14d36ea2a638c432a2e1a47b7837d8b83d88303c5d9c15cf/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d9a41d47547e1fe7fe548b21ab4de12cc2671170a023bc8c629017837eb5f4/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1f68ef86315497c7b39ddb155d5cf3ace964abca69857f9943cd58479799/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e329bd4f14a42c5f6951d92d29ba7796e511d77e6a35ab20a5a38f50ba6fd74/HttpResponseMessage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoClassMapper.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2RFeWshvkLI5F9fWjf9pavYZ57q" />
   <component name="ProjectLevelVcsManager">
@@ -64,7 +59,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.IFootball.WebApi: IIS Express">
+  <component name="RunManager" selected=".NET Launch Settings Profile.IFootball.WebApi">
     <configuration name="IFootball.WebApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/IFootball.WebApi/IFootball.WebApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -108,6 +103,8 @@
       <workItem from="1687982037470" duration="367000" />
       <workItem from="1688077590018" duration="294000" />
       <workItem from="1688579243964" duration="2625000" />
+      <workItem from="1689255568039" duration="8639000" />
+      <workItem from="1689267227662" duration="2561000" />
     </task>
     <servers />
   </component>

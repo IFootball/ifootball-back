@@ -5,7 +5,7 @@ namespace IFootball.Application.Implementations.Mappers;
 
 public static class RegisterUserMapper
 {
-    public static User toUser(this RegisterUserRequest request)
+    public static User ToUser(this RegisterUserRequest request)
     {
         return new User(
             request.Name,
