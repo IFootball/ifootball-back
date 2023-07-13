@@ -65,6 +65,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IClassRepository, ClassRepository>();
 builder.Services.AddScoped<ITeamUserRepository, TeamUserRepository>();
 builder.Services.AddScoped<IGenderRepository, GenderRepository>();
+builder.Services.AddScoped<IGoalkeeperRepository, GoalkeeperRepository>();
+builder.Services.AddScoped<ILinePlayerRepository, LinePlayerRepository>();
 
 // JWT
 builder.Services.AddAuthentication(opt =>
