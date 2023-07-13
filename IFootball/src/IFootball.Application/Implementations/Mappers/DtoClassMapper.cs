@@ -4,15 +4,9 @@ using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers
 {
-    public static class ClassMapper
+    public static class DtoClassMapper
     {
-        public static Class toClass(this RegisterClassRequest request)
-        {
-            return new Class(request.Name);
-
-        }
-
-        public static ClassDto toClassDto(this Class newClass)
+        public static ClassDto ToClassDto(this Class newClass)
         {
             return new ClassDto
             {

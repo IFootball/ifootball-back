@@ -26,9 +26,9 @@ namespace IFootball.Application.Implementations.Services
             if (found)
                 return new RegisterClassResponse(HttpStatusCode.Conflict, "Já existe uma turma com este nome!");
 
-            var newClass = resgiterClassRequest.toClass();
+            var newClass = resgiterClassRequest.ToClass();
             await _classRepository.CreateClassAsync(newClass);
-            return new RegisterClassResponse(newClass.toClassDto());
+            return new RegisterClassResponse(newClass.ToClassDto());
         }
 
         public async Task<ListClassesResponse> ListAsync()

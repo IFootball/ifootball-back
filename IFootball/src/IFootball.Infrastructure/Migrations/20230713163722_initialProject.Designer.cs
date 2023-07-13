@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFootball.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230705110732_initialProject")]
+    [Migration("20230713163722_initialProject")]
     partial class initialProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,9 +206,6 @@ namespace IFootball.Infrastructure.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("IdCoach")
                         .HasColumnType("INTEGER");
 
                     b.Property<long>("IdGender")

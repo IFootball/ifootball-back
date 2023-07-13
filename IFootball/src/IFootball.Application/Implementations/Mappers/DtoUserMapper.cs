@@ -4,9 +4,9 @@ using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers
 {
-    public static class UserMapper
+    public static class DtoUserMapper
     {
-        public static UserDto toUserDto(this User user) 
+        public static UserDto DtoToUserDto(this User user) 
         {
             return new UserDto 
             {

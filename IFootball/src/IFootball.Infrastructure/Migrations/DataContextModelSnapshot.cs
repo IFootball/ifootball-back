@@ -206,9 +206,6 @@ namespace IFootball.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("IdCoach")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long>("IdGender")
                         .HasColumnType("INTEGER");
 
