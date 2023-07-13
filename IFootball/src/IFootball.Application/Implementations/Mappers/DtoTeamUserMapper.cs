@@ -9,13 +9,16 @@ public static class DtoTeamUserMapper
     {
         return new TeamUserDto
         {
+            IdCaptain = teamUser.IdCaptain,
             IdUser = teamUser.IdUser,
             IdGender = teamUser.IdGender,
             IdGoalkeeper = teamUser.IdGoalkeeper,
-            IdLinePlayerFrontLeft = teamUser.IdLinePlayerFrontLeft,
-            IdLinePlayerFrontRight = teamUser.IdLinePlayerFrontRight,
+            IdLinePlayerFront = teamUser.IdLinePlayerMiddle,
+            IdLinePlayerMiddle = teamUser.IdLinePlayerMiddle,
             IdLinePlayerBackRight = teamUser.IdLinePlayerBackRight,
             IdLinePlayerBackLeft = teamUser.IdLinePlayerBackLeft,
+            IdReservePlayerOne = teamUser.IdReservePlayerOne,
+            IdReservePlayerTwo = teamUser.IdReservePlayerTwo,
         };
     }
-}
+}     

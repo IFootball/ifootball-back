@@ -1,0 +1,30 @@
+﻿using IFootball.Domain.Contracts.Repositories;
+using IFootball.Domain.Models;
+using IFootball.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
+namespace IFootball.Infrastructure.Repositories;
+
+public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
+{
+    private readonly DataContext _context;
+    public LinePlayerRepository(DataContext context, IConfiguration config) : base(config)
+    {
+        _context = context;
+    }
+    
+    public async Task<bool> ExistsById(long idLinePlayer)
+    {
+        return await _context.LinePlayers.FindAsync(idLinePlayer) is not null;
+    }
+
+    public async Task<LinePlayer> FindById(long idLinePlayer)
+    {
+        return await _context.LinePlayers
+            .Where(x => x.Id == idLinePlayer)
+            .Include(x => x.Gender)
+            .FirstOrDefaultAsync();
+
+    }
+}
