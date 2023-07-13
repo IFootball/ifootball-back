@@ -20,5 +20,17 @@ namespace IFootball.Infrastructure.Repositories
             _context.TeamUsers.Add(teamUser);
             await _context.SaveChangesAsync();
         }
-    }
+
+        public async Task<TeamUser?> FindTeamUserByIdUserAndIdGender(long idUser, long idGender)
+        {
+            return await _context.TeamUsers.FirstOrDefaultAsync(x => x.IdUser == idUser && x.IdGender == idGender);
+
+        }
+
+        public async Task EditTeamUserAsync(TeamUser teamUser)
+        {
+            _context.TeamUsers.Update(teamUser);
+            await _context.SaveChangesAsync();        
+        }
+     }
 }

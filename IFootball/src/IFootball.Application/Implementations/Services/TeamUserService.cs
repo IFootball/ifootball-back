@@ -4,8 +4,6 @@ using IFootball.Application.Implementations.Mappers;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
-using System.Text.RegularExpressions;
-using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -31,7 +29,7 @@ namespace IFootball.Application.Implementations.Services
             var genderExists = await _genderRepository.ExistsGenderById(teamUserRequest.IdGender);
             if(!genderExists)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O genêro escolhido não existe!");
-            /*
+
             var goalkeeperExists = await _userRepository.UserExistsById(teamUserRequest.IdGoalkeeper);
             if (!goalkeeperExists)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não existe!");
@@ -47,28 +45,28 @@ namespace IFootball.Application.Implementations.Services
             var linePlayerFrontLeftExists = await _userRepository.UserExistsById(teamUserRequest.IdLinePlayerFrontLeft);
             if (!linePlayerFrontLeftExists)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O atacante esquerdo não existe!");
-*/
-            var teamUser = teamUserRequest.ToTeamUser();
-            teamUser.AddUser(idUser);
-            await _teamUserRepository.CreateTeamUserAsync(teamUser);
+
+            var teamUser = await _teamUserRepository.FindTeamUserByIdUserAndIdGender(idUser, teamUserRequest.IdGender);
+            if (teamUser is null)
+            {
+                teamUser = teamUserRequest.ToTeamUser();
+                teamUser.EditUser(idUser);
+                await _teamUserRepository.CreateTeamUserAsync(teamUser);    
+            }
+            else
+            {
+                teamUser.EditTeam(
+                    teamUserRequest.IdGender,
+                    teamUserRequest.IdGoalkeeper,
+                    teamUserRequest.IdLinePlayerFrontLeft,
+                    teamUserRequest.IdLinePlayerFrontRight,
+                    teamUserRequest.IdLinePlayerBackRight,
+                    teamUserRequest.IdLinePlayerBackLeft
+                );
+                await _teamUserRepository.EditTeamUserAsync(teamUser);
+            }
+            
             return new RegisterTeamUserResponse(teamUser.ToTeamUserDto());
         }
-
-        /*
-        public async Task<EditUserResponse> EditAsync(long idUser, EditUserRequest editUserRequest)
-        {
-            var user = await _userRepository.FindUserById(idUser);
-            if (user is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O usuário autenticado não existe!");
-            
-
-            user.EditIdClass(editUserRequest.IdClass);
-            user.EditName(editUserRequest.Name);
-            user.EditEmail(editUserRequest.Email);
-            
-            await _userRepository.EditUserAsync(user);
-            return new EditUserResponse(user.toUserDto());
-        }
-        */
     }
 }

@@ -6,4 +6,5 @@ namespace IFootball.Application.Contracts.Services;
 public interface ITeamUserService
 {
      Task<RegisterTeamUserResponse> RegisterAsync(long idUser, RegisterTeamUserRequest teamUserRequest);
+
 }

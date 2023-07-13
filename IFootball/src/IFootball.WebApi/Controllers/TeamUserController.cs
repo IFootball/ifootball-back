@@ -33,22 +33,5 @@ namespace IFootball.WebApi.Controllers
 
             return Ok(response);
         }
-
-/*
-        [HttpPut]
-        [Authorize]
-        [Route("edit")]
-        public async Task<ActionResult<EditTeamUserResponse>> EditAsync(EditTeamUserRequest editTeamUserRequest)
-        {
-            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
-
-            var response = await _teamUserService.EditAsync(idUserLogged, editTeamUserRequest);
-
-            if (response.IsErrorStatusCode())
-                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
-
-            return Ok();
-        }
-*/
     }
 }

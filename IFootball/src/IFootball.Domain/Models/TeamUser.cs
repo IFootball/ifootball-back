@@ -25,11 +25,21 @@ public class TeamUser : BaseEntity
 
     public TeamUser() { }
 
-    public void AddUser(long idUser)
+    public void EditUser(long idUser)
     {
         IdUser = idUser;
     }
 
+    public void EditTeam(long idGender,  long idGoalkeeper, long idLinePlayerFrontLeft, long idLinePlayerFrontRight, long idLinePlayerBackRight, long idLinePlayerBackLeft)
+    {
+        IdGender = idGender;
+        IdGoalkeeper = idGoalkeeper;
+        IdLinePlayerFrontLeft = idLinePlayerFrontLeft;
+        IdLinePlayerFrontRight = idLinePlayerFrontRight;
+        IdLinePlayerBackRight = idLinePlayerBackRight;
+        IdLinePlayerBackLeft = idLinePlayerBackLeft;
+    }
+    
     public TeamUser(long idGender,  long idGoalkeeper, long idLinePlayerFrontLeft, long idLinePlayerFrontRight, long idLinePlayerBackRight, long idLinePlayerBackLeft)
     {
         IdGender = idGender;
