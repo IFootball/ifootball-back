@@ -34,7 +34,26 @@ public class LinePlayerService : ILinePlayerService
         await _linePlayerRepository.CreateLinePlayer(linePlayer);
         return new RegisterLinePlayerResponse(linePlayer.ToLinePlayerDto());    
     }
-    
+
+    public async Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request)
+    {
+        var linePlayer = await _linePlayerRepository.FindById(idLinePlayer);
+        if(linePlayer is null)
+            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+
+        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
+        if (!teamClassExists)
+            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+
+        var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
+        if(!genderExists)
+            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
+        
+        linePlayer.Edit(request.IdGender, request.IdTeamClass, request.Name, request.Image);
+        await _linePlayerRepository.EditLinePlayer(linePlayer);
+        return new EditLinePlayerResponse(linePlayer.ToLinePlayerDto());      
+    }
+
     public async Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer)
     {
         var linePlayer = await _linePlayerRepository.FindById(idLinePlayer);

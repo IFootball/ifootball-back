@@ -19,6 +19,12 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task EditLinePlayer(LinePlayer linePlayer)
+    {
+        _context.LinePlayers.Update(linePlayer);
+        await _context.SaveChangesAsync();    
+    }
+
     public async Task<LinePlayer?> FindById(long idLinePlayer)
     {
         return await _context.LinePlayers.FindAsync(idLinePlayer);

@@ -23,7 +23,15 @@ public class LinePlayer : BaseEntity
     public List<TeamUser> TeamUsersFrontLeft { get; set; }
 
     public LinePlayer() { }
-
+    
+    public void Edit(long idGender, long idTeamClass, string name, string image)
+    {
+        IdGender = idGender;
+        IdTeamClass = idTeamClass;
+        Name = name;
+        Image = image;
+    }
+    
     public LinePlayer(long idGender, long idTeamClass, string name, string image)
     {
         IdGender = idGender;

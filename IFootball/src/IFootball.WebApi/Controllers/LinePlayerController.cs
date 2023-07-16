@@ -29,7 +29,17 @@ public class LinePlayerController : ControllerBase
 
         return Ok(response);
     }
-    
+    [HttpPut]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<EditLinePlayerResponse>> Edit([FromRoute] long idLinePlayer,[FromBody] EditLinePlayerRequest linePlayerRequest)
+    {
+        var response = await _linePlayerService.EditAsync(idLinePlayer, linePlayerRequest);
+
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
     [HttpDelete]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<DeleteLinePlayerResponse>> Delete([FromRoute] long idLinePlayer)

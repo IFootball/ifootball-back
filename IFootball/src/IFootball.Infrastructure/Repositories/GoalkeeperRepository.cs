@@ -19,6 +19,12 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task EditGoalkeeper(Goalkeeper goalkeeper)
+    {
+        _context.Goalkeepers.Update(goalkeeper);
+        await _context.SaveChangesAsync();    
+    }
+
     public async Task<Goalkeeper?> FindById(long idGoalkeeper)
     {
         return await _context.Goalkeepers.FindAsync(idGoalkeeper);

@@ -30,6 +30,18 @@ public class GoalkeeperController : ControllerBase
         return Ok(response);
     }
 
+    [HttpPut]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<EditGoalkeeperResponse>> Edit([FromRoute] long idGoalkeeper, [FromBody] EditGoalkeeperRequest goalkeeperRequest)
+    {
+        var response = await _goalkeeperService.EditAsync(idGoalkeeper, goalkeeperRequest);
+
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
+    
     [HttpDelete]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<DeleteGoalkeeperResponse>> Delete([FromRoute] long idGoalkeeper)

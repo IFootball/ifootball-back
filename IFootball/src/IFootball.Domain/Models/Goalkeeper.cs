@@ -25,6 +25,14 @@ public class Goalkeeper : BaseEntity
     
     public Goalkeeper() { }
 
+    public void Edit(long idGender, long idTeamClass, string name, string image)
+    {
+        IdGender = idGender;
+        IdTeamClass = idTeamClass;
+        Name = name;
+        Image = image;
+    }
+
     public Goalkeeper(long idGender,long idTeamClass, string name, string image)
     {
         IdGender = idGender;

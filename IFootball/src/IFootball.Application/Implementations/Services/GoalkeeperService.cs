@@ -36,6 +36,26 @@ public class GoalkeeperService : IGoalkeeperService
         return new RegisterGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
     }
 
+    public async Task<EditGoalkeeperResponse> EditAsync(long idGoalkeeper, EditGoalkeeperRequest request)
+    {
+        var goalkeeper = await _goalkeeperRepository.FindById(idGoalkeeper);
+        if(goalkeeper is null)
+            return new EditGoalkeeperResponse(HttpStatusCode.NotFound, "O goleiro inserido não existe");
+        
+        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
+        if (!teamClassExists)
+            return new EditGoalkeeperResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+
+        var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
+        if(!genderExists)
+            return new EditGoalkeeperResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
+
+        goalkeeper.Edit(request.IdGender,request.IdTeamClass,request.Image, request.Image);
+        await _goalkeeperRepository.EditGoalkeeper(goalkeeper);
+        return new EditGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
+    }
+
+
     public async Task<DeleteGoalkeeperResponse> DeleteAsync(long idGoalkeeper)
     {
         var goalkeeper = await _goalkeeperRepository.FindById(idGoalkeeper);
