@@ -36,7 +36,7 @@ namespace IFootball.Application.Implementations.Services
             var emailIsTeacher = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
             var emailIsStudent = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
             if (!(emailIsTeacher || emailIsStudent))
-                return new RegisterUserResponse(HttpStatusCode.UnprocessableEntity, "O email deve ser dominio do IFRS!");
+                return new RegisterUserResponse(HttpStatusCode.BadRequest, "O email deve ser dominio do IFRS!");
 
             var userExists = await _userRepository.UserExistsByEmail(registerUserRequest.Email);
             if (userExists)
