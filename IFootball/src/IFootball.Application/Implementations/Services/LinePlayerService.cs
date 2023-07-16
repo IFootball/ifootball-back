@@ -22,9 +22,12 @@ public class LinePlayerService : ILinePlayerService
 
     public async Task<RegisterLinePlayerResponse> RegisterAsync(RegisterLinePlayerRequest request)
     {
-        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
-        if (!teamClassExists)
+        var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
+        if (teamClass is null)
             return new RegisterLinePlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+
+        if(teamClass.IdGender != request.IdGender)
+            return new RegisterLinePlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
 
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
@@ -41,9 +44,12 @@ public class LinePlayerService : ILinePlayerService
         if(linePlayer is null)
             return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
-        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
-        if (!teamClassExists)
+        var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
+        if (teamClass is null)
             return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+
+        if(teamClass.IdGender != request.IdGender)
+            return new EditLinePlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
 
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)

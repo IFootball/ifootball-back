@@ -4,7 +4,6 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
-using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Services;
 
@@ -23,10 +22,13 @@ public class GoalkeeperService : IGoalkeeperService
 
     public async Task<RegisterGoalkeeperResponse> RegisterAsync(RegisterGoalkeeperRequest request)
     {
-        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
-        if (!teamClassExists)
+        var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
+        if (teamClass is null)
             return new RegisterGoalkeeperResponse(HttpStatusCode.NotFound, "O time inserido não existe");
 
+        if(teamClass.IdGender != request.IdGender)
+            return new RegisterGoalkeeperResponse(HttpStatusCode.UnprocessableEntity, "O goleiro deve ser do genêro do time");
+        
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
             return new RegisterGoalkeeperResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
@@ -42,9 +44,12 @@ public class GoalkeeperService : IGoalkeeperService
         if(goalkeeper is null)
             return new EditGoalkeeperResponse(HttpStatusCode.NotFound, "O goleiro inserido não existe");
         
-        var teamClassExists = await _teamClassRepository.ExistsTeamClassById(request.IdTeamClass);
-        if (!teamClassExists)
+        var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
+        if (teamClass is null)
             return new EditGoalkeeperResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+
+        if(teamClass.IdGender != request.IdGender)
+            return new EditGoalkeeperResponse(HttpStatusCode.UnprocessableEntity, "O goleiro deve ser do genêro do time");
 
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
@@ -63,7 +68,6 @@ public class GoalkeeperService : IGoalkeeperService
         
         return new GetGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
     }
-
 
     public async Task<DeleteGoalkeeperResponse> DeleteAsync(long idGoalkeeper)
     {
