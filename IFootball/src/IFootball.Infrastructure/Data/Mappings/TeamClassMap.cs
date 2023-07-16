@@ -16,6 +16,12 @@ public class TeamClassMap: IEntityTypeConfiguration<TeamClass>
             .ValueGeneratedOnAdd();
 
         builder
+            .HasOne(x => x.Class)
+            .WithMany(x => x.TeamClasses)
+            .HasForeignKey(x => x.IdClass)
+            .HasConstraintName("FK_class_teamclass");
+        
+        builder
             .HasOne(x => x.Gender)
             .WithMany(x => x.GenderTeamClasses)
             .HasForeignKey(x => x.IdGender)

@@ -6,8 +6,23 @@ public class TeamClass : BaseEntity
     public long IdGender { get; set; }
 
     
-    public List<Goalkeeper> TeamClassGoalkeepers { get; set; }
-    public List<LinePlayer> TeamClassLinePlayers { get; set; }
+    public Class Class { get; set; }
+    public long IdClass { get; set; }
+
+    public List<Goalkeeper> TeamClassGoalkeepers { get; set; } = new List<Goalkeeper>();
+    public List<LinePlayer> TeamClassLinePlayers { get; set; } = new List<LinePlayer>();
 
     public TeamClass() { }
+
+    public TeamClass(long idGender, long idClass)
+    {
+        IdGender = idGender;
+        IdClass = idClass;
+    }
+
+    public void Edit(long idGender, long idClass)
+    {
+        IdGender = idGender;
+        IdClass = idClass;    
+    }
 }

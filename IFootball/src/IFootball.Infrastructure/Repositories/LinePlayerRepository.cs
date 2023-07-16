@@ -13,7 +13,25 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
     {
         _context = context;
     }
-    
+
+    public async Task CreateLinePlayer(LinePlayer linePlayer)
+    {
+        _context.LinePlayers.Add(linePlayer);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task EditLinePlayer(LinePlayer linePlayer)
+    {
+        _context.LinePlayers.Update(linePlayer);
+        await _context.SaveChangesAsync();    
+    }
+
+    public async Task DeleteLinePlayer(LinePlayer linePlayer)
+    {
+        _context.LinePlayers.Remove(linePlayer);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<bool> ExistsById(long idLinePlayer)
     {
         return await _context.LinePlayers.FindAsync(idLinePlayer) is not null;

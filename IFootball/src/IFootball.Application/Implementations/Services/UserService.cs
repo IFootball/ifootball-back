@@ -58,7 +58,6 @@ namespace IFootball.Application.Implementations.Services
                 return new DeleteUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
 
             await _userRepository.DeleteUserAsync(user);
-
             return new DeleteUserResponse();
         }
 
@@ -83,11 +82,8 @@ namespace IFootball.Application.Implementations.Services
                 if (userExists)
                     return new EditUserResponse(HttpStatusCode.BadRequest, "O email já foi cadastrado!");    
             }
-
-            user.EditIdClass(editUserRequest.IdClass);
-            user.EditName(editUserRequest.Name);
-            user.EditEmail(editUserRequest.Email);
             
+            user.Edit(editUserRequest.IdClass, editUserRequest.Name, editUserRequest.Email);
             await _userRepository.EditUserAsync(user);
             return new EditUserResponse(user.DtoToUserDto());
         }

@@ -14,6 +14,25 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         _context = context;
     }
 
+    public async Task CreateGoalkeeper(Goalkeeper goalkeeper)
+    {
+        _context.Goalkeepers.Add(goalkeeper);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task EditGoalkeeper(Goalkeeper goalkeeper)
+    {
+        _context.Goalkeepers.Update(goalkeeper);
+        await _context.SaveChangesAsync();    
+    }
+
+    public async Task DeleteGoalkeeper(Goalkeeper goalkeeper)
+    {
+        _context.Goalkeepers.Remove(goalkeeper);
+        await _context.SaveChangesAsync();
+        
+    }
+
     public async Task<bool> ExistsById(long idGoalkeeper)
     {
         return await _context.Goalkeepers.FindAsync(idGoalkeeper) is not null;
@@ -24,5 +43,6 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         return await _context.Goalkeepers
             .Where(x => x.Id == idGoalkeeper)
             .Include(x => x.Gender)
-            .FirstOrDefaultAsync();    }
+            .FirstOrDefaultAsync();
+    }
 }

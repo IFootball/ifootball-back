@@ -28,18 +28,11 @@ namespace IFootball.Domain.Models
             Password = PasswordHasher.HashPassword(password);
             IdClass = idClass;
         }
-
-        public void EditIdClass(long idClass)
-        {
-            IdClass = idClass;
-        }
-        public void EditName(string? name)
+        public void Edit(long idClass, string name, string email) 
         {
             Name = name;
-        }
-        public void EditEmail(string email)
-        {
             Email = email;
+            IdClass = idClass;
         }
     }
 }
