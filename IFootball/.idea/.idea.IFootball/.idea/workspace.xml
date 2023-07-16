@@ -10,6 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/TeamClass/GetTeamClassResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" afterDir="false" />
@@ -24,6 +25,13 @@
       <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GoalkeeperRepository.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/LinePlayerRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IGoalkeeperRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ILinePlayerRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GoalkeeperRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/LinePlayerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+>>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/TeamUserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/TeamUserDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterTeamUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterTeamUserRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" afterDir="false" />
@@ -41,6 +49,9 @@
       <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
+=======
 >>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,9 +142,13 @@
       <workItem from="1689255568039" duration="8639000" />
       <workItem from="1689267227662" duration="2561000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1689444664789" duration="16611000" />
       <workItem from="1689521353438" duration="1826000" />
       <workItem from="1689528046656" duration="1550000" />
+=======
+      <workItem from="1689272449680" duration="7432000" />
+>>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
 =======
       <workItem from="1689272449680" duration="7432000" />
 >>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993

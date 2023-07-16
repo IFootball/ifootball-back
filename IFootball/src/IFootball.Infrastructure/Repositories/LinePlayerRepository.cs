@@ -1,6 +1,7 @@
 ﻿using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories;
@@ -35,7 +36,6 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
         _context.LinePlayers.Remove(linePlayer);
         await _context.SaveChangesAsync();
     }
-
     public async Task<bool> ExistsById(long idLinePlayer)
     {
         return await _context.LinePlayers.FindAsync(idLinePlayer) is not null;

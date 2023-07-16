@@ -284,7 +284,8 @@ namespace IFootball.Infrastructure.Migrations
                         .HasColumnName("password");
 
                     b.Property<int>("Role")
-                        .HasColumnType("INT");
+                        .HasColumnType("INT")
+                        .HasColumnName("role");
 
                     b.HasKey("Id");
 
