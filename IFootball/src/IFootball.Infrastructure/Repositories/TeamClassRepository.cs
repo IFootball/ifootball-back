@@ -1,4 +1,5 @@
 ﻿using IFootball.Domain.Contracts.Repositories;
+using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
 using Microsoft.Extensions.Configuration;
 
@@ -15,5 +16,11 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
     public async Task<bool> ExistsTeamClassById(long id)
     {
         return await _context.TeamClasses.FindAsync(id) is not null;
+    }
+
+    public async Task Register(TeamClass teamClass)
+    {
+        _context.TeamClasses.Add(teamClass);
+        await _context.SaveChangesAsync();
     }
 }

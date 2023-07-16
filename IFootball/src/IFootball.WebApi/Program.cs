@@ -61,6 +61,7 @@ builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<ITeamUserService, TeamUserService>();
 builder.Services.AddScoped<IGoalkeeperService, GoalkeeperService>();
 builder.Services.AddScoped<ILinePlayerService, LinePlayerService>();
+builder.Services.AddScoped<ITeamClassService, TeamClassService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
