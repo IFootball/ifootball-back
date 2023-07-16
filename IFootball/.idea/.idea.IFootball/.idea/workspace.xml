@@ -9,51 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/ClassDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/GoalkeeperDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/LinePlayerDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/LoginUserDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/TeamUserDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/UserDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/EditGoalkeeperRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/EditLinePlayerRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/EditUserRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/LoginUserRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterClassRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterGoalkeeperRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterLinePlayerRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterTeamUserRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterUserRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/DeleteGoalkeeperResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/DeleteLinePlayerResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/DeleteUserResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditGoalkeeperResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditLinePlayerResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/EditUserResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/GetGoalkeeperResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/GetLinePlayerResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/ListClassesResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/LoginUserResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/RegisterClassResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/RegisterGoalkeeperResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/RegisterLinePlayerResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/RegisterTeamUserResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/RegisterUserResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoClassMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoGoalkeeperMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoLinePlayerMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoTeamUserMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoUserMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/LoginUserMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterClassMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterGoalkeeperMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterLinePlayerMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterTeamUserMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterUserMapper.cs" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/TeamClass/DeleteTeamClassResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamClassService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamClassService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ITeamClassRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ITeamClassRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamClass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamClassRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamClassRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/GoalkeeperController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/GoalkeeperController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/LinePlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/LinePlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamClassController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamClassController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +108,8 @@
       <workItem from="1689255568039" duration="8639000" />
       <workItem from="1689267227662" duration="2561000" />
       <workItem from="1689444664789" duration="16611000" />
+      <workItem from="1689521353438" duration="1826000" />
+      <workItem from="1689528046656" duration="648000" />
     </task>
     <servers />
   </component>
@@ -151,5 +118,37 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamClassController.cs</url>
+          <line>37</line>
+          <properties documentPath="C:\Users\Murilo Moutinho\Documents\GitHub\ifootball-back\IFootball\src\IFootball.WebApi\Controllers\TeamClassController.cs" initialLine="37" containingFunctionPresentation="Method 'Delete'">
+            <startOffsets>
+              <option value="1222" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1286" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/IFootball.WebApi/Controllers/GoalkeeperController.cs</url>
+          <line>48</line>
+          <properties documentPath="C:\Users\Murilo Moutinho\Documents\GitHub\ifootball-back\IFootball\src\IFootball.WebApi\Controllers\GoalkeeperController.cs" initialLine="48" containingFunctionPresentation="Method 'Delete'">
+            <startOffsets>
+              <option value="1742" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1808" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

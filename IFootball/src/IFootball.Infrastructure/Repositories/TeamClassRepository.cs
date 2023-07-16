@@ -18,6 +18,17 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
         return await _context.TeamClasses.FindAsync(id) is not null;
     }
 
+    public async Task<TeamClass?> FindById(long id)
+    {
+        return await _context.TeamClasses.FindAsync(id);
+    }
+
+    public async Task Delete(TeamClass teamClass)
+    {
+        _context.TeamClasses.Remove(teamClass);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task Register(TeamClass teamClass)
     {
         _context.TeamClasses.Add(teamClass);

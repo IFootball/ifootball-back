@@ -29,7 +29,7 @@ public class LinePlayerController : ControllerBase
 
         return Ok(response);
     }
-    [HttpPut]
+    [HttpPut("{idLinePlayer}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<EditLinePlayerResponse>> Edit([FromRoute] long idLinePlayer,[FromBody] EditLinePlayerRequest linePlayerRequest)
     {
@@ -40,7 +40,7 @@ public class LinePlayerController : ControllerBase
 
         return Ok(response);
     }
-    [HttpDelete]
+    [HttpDelete("{idLinePlayer}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<DeleteLinePlayerResponse>> Delete([FromRoute] long idLinePlayer)
     {
@@ -52,7 +52,7 @@ public class LinePlayerController : ControllerBase
         return Ok(response);
     }
     
-    [HttpGet]
+    [HttpGet("{idLinePlayer}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<GetLinePlayerResponse>> Get([FromRoute] long idLinePlayer)
     {

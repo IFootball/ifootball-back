@@ -29,4 +29,17 @@ public class TeamClassController : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpDelete("{idTeamClass}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<DeleteTeamClassResponse>> Delete(
+        [FromRoute] long idTeamClass)
+    {
+        var response = await _teamClassService.DeleteAsync(idTeamClass);
+        
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return NoContent();
+    }
 }

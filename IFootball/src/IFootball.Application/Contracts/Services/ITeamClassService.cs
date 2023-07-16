@@ -6,4 +6,5 @@ namespace IFootball.Application.Contracts.Services;
 public interface ITeamClassService
 {
     Task<RegisterTeamClassResponse> RegisterAsync(RegisterTeamClassRequest request);
+    Task<DeleteTeamClassResponse> DeleteAsync(long idTeamClass);
 }

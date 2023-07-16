@@ -35,4 +35,14 @@ public class TeamClassService : ITeamClassService
         await _teamClassRepository.Register(teamClass);
         return new RegisterTeamClassResponse(teamClass.ToTeamClassDto());
     }
+
+    public async Task<DeleteTeamClassResponse> DeleteAsync(long idTeamClass)
+    {
+        var teamClass = await _teamClassRepository.FindById(idTeamClass);
+        if(teamClass is null)
+            return new DeleteTeamClassResponse(HttpStatusCode.NotFound, "O time  inserido não existe");
+
+        await _teamClassRepository.Delete(teamClass);
+        return new DeleteTeamClassResponse();
+    }
 }

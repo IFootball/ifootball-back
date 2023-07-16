@@ -30,7 +30,7 @@ public class GoalkeeperController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPut]
+    [HttpPut("{idGoalkeeper}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<EditGoalkeeperResponse>> Edit([FromRoute] long idGoalkeeper, [FromBody] EditGoalkeeperRequest goalkeeperRequest)
     {
@@ -42,7 +42,7 @@ public class GoalkeeperController : ControllerBase
         return Ok(response);
     }
     
-    [HttpDelete]
+    [HttpDelete("{idGoalkeeper}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<DeleteGoalkeeperResponse>> Delete([FromRoute] long idGoalkeeper)
     {
@@ -54,7 +54,7 @@ public class GoalkeeperController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet]
+    [HttpGet("{idGoalkeeper}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<GetGoalkeeperResponse>> Get([FromRoute] long idGoalkeeper)
     {
