@@ -7,11 +7,11 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class RegisterTeamClassResponse : BaseResponse
 {
-    public TeamClassDto? TeamClass { get; set; }
+    public CompleteTeamClassDto? CompleteTeamClass { get; set; }
     
-    public RegisterTeamClassResponse(TeamClassDto teamClass) 
+    public RegisterTeamClassResponse(CompleteTeamClassDto completeTeamClass) 
     { 
-        TeamClass = teamClass;
+        CompleteTeamClass = completeTeamClass;
     }
     
     public RegisterTeamClassResponse(HttpStatusCode statusCode, string? message) : base(new ErrorResponse(statusCode, message)) { }

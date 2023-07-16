@@ -5,11 +5,11 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class GetTeamClassResponse : BaseResponse
 {
-    public TeamClassDto? TeamClass { get; set; }
+    public CompleteTeamClassDto? CompleteTeamClass { get; set; }
     
-    public GetTeamClassResponse(TeamClassDto teamClass) 
+    public GetTeamClassResponse(CompleteTeamClassDto completeTeamClass) 
     { 
-        TeamClass = teamClass;
+        CompleteTeamClass = completeTeamClass;
     }
     
     public GetTeamClassResponse(HttpStatusCode statusCode, string? message) : base(new ErrorResponse(statusCode, message)) { }

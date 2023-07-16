@@ -5,9 +5,9 @@ namespace IFootball.Application.Implementations.Mappers;
 
 public static class DtoTeamUserMapper
 {
-    public static TeamUserDto ToTeamUserDto(this TeamUser teamUser)
+    public static SimpleTeamUserDto ToTeamUserDto(this TeamUser teamUser)
     {
-        return new TeamUserDto
+        return new SimpleTeamUserDto
         {
             IdCaptain = teamUser.IdCaptain,
             IdUser = teamUser.IdUser,

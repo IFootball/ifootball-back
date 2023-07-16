@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests.TeamClass;
+﻿using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
+using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -68,4 +69,12 @@ public class TeamClassController : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<IEnumerable<SimpleTeamClassDto>>> List() {
+        var response = await _teamClassService.ListAsync();
+        return Ok(response);
+    }
+
 }

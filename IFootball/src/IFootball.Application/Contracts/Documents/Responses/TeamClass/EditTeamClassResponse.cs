@@ -5,11 +5,11 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class EditTeamClassResponse : BaseResponse
 {
-    public TeamClassDto? TeamClass { get; set; }
+    public CompleteTeamClassDto? CompleteTeamClass { get; set; }
     
-    public EditTeamClassResponse(TeamClassDto teamClass) 
+    public EditTeamClassResponse(CompleteTeamClassDto completeTeamClass) 
     { 
-        TeamClass = teamClass;
+        CompleteTeamClass = completeTeamClass;
     }
     
     public EditTeamClassResponse(HttpStatusCode statusCode, string? message) : base(new ErrorResponse(statusCode, message)) { }
