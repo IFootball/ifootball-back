@@ -5,4 +5,6 @@ namespace IFootball.Domain.Contracts.Repositories;
 public interface IGoalkeeperRepository
 {
     Task CreateGoalkeeper(Goalkeeper goalkeeper);
+    Task<Goalkeeper?> FindById(long idGoalkeeper);
+    Task DeleteGoalkeeper(Goalkeeper goalkeeper);
 }

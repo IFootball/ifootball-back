@@ -35,4 +35,14 @@ public class GoalkeeperService : IGoalkeeperService
         await _goalkeeperRepository.CreateGoalkeeper(goalkeeper);
         return new RegisterGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
     }
+
+    public async Task<DeleteGoalkeeperResponse> DeleteAsync(long idGoalkeeper)
+    {
+        var goalkeeper = await _goalkeeperRepository.FindById(idGoalkeeper);
+        if(goalkeeper is null)
+            return new DeleteGoalkeeperResponse(HttpStatusCode.NotFound, "O goleiro inserido não existe");
+
+        await _goalkeeperRepository.DeleteGoalkeeper(goalkeeper);
+        return new DeleteGoalkeeperResponse();
+    }
 }

@@ -58,7 +58,6 @@ namespace IFootball.Application.Implementations.Services
                 return new DeleteUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
 
             await _userRepository.DeleteUserAsync(user);
-
             return new DeleteUserResponse();
         }
 

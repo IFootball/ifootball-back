@@ -28,7 +28,18 @@ public class GoalkeeperController : ControllerBase
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
         return Ok(response);
-        
     }
-    
+
+    [HttpDelete]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<DeleteGoalkeeperResponse>> Delete([FromRoute] long idGoalkeeper)
+    {
+        var response = await _goalkeeperService.DeleteAsync(idGoalkeeper);
+        
+        if(response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+
+    }
 }

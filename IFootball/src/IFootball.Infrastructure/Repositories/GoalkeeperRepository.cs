@@ -18,4 +18,14 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         _context.Goalkeepers.Add(goalkeeper);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Goalkeeper?> FindById(long idGoalkeeper)
+    {
+        return await _context.Goalkeepers.FindAsync(idGoalkeeper);
+    }
+
+    public async Task DeleteGoalkeeper(Goalkeeper goalkeeper)
+    {
+        _context.Goalkeepers.Remove(goalkeeper);
+        await _context.SaveChangesAsync();    }
 }

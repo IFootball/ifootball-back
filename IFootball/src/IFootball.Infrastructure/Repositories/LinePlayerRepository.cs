@@ -18,4 +18,15 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
         _context.LinePlayers.Add(linePlayer);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<LinePlayer?> FindById(long idLinePlayer)
+    {
+        return await _context.LinePlayers.FindAsync(idLinePlayer);
+    }
+
+    public async Task DeleteLinePlayer(LinePlayer linePlayer)
+    {
+        _context.LinePlayers.Remove(linePlayer);
+        await _context.SaveChangesAsync();    
+    }
 }

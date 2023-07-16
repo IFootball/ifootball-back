@@ -34,4 +34,14 @@ public class LinePlayerService : ILinePlayerService
         await _linePlayerRepository.CreateLinePlayer(linePlayer);
         return new RegisterLinePlayerResponse(linePlayer.ToLinePlayerDto());    
     }
+    
+    public async Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer)
+    {
+        var linePlayer = await _linePlayerRepository.FindById(idLinePlayer);
+        if(linePlayer is null)
+            return new DeleteLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+
+        await _linePlayerRepository.DeleteLinePlayer(linePlayer);
+        return new DeleteLinePlayerResponse();
+    }
 }

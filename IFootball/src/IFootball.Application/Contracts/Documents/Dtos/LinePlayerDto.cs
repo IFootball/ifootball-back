@@ -4,7 +4,6 @@ public class LinePlayerDto
 {
     public long IdGender { get; set; }
 
-    public long IdClass { get; set; }
 
     public long IdTeamClass { get; set; }
 
