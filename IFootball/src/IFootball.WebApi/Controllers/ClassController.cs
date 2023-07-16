@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Models;
@@ -33,12 +34,9 @@ namespace IFootball.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<ListClassesResponse>> List()
+        public async Task<ActionResult<IEnumerable<ClassDto>>> List()
         {
             var response = await _classService.ListAsync();
-
-            if (response.IsErrorStatusCode())
-                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
             return Ok(response);
         }

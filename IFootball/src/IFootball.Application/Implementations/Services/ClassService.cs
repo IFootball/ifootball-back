@@ -1,9 +1,9 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
-using Microsoft.AspNetCore.Authorization;
 using System.Net;
 
 namespace IFootball.Application.Implementations.Services
@@ -31,11 +31,11 @@ namespace IFootball.Application.Implementations.Services
             return new RegisterClassResponse(newClass.ToClassDto());
         }
 
-        public async Task<ListClassesResponse> ListAsync()
+        public async Task<IEnumerable<ClassDto>> ListAsync()
         {
             var classes = await _classRepository.GetAllAsync();
 
-            return new ListClassesResponse(classes);
+            return classes.Select(x => x.ToClassDto());
         }
     }
 }
