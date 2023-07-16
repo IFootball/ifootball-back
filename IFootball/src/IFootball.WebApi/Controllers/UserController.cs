@@ -51,7 +51,6 @@ namespace IFootball.WebApi.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("delete")]
         public async Task<ActionResult<LoginUserResponse>> DeleteAsync()
         {
             var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
@@ -66,7 +65,6 @@ namespace IFootball.WebApi.Controllers
 
         [HttpPut]
         [Authorize]
-        [Route("edit")]
         public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest editUserRequest)
         {
             var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);

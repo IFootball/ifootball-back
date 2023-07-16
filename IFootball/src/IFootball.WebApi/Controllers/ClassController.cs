@@ -31,9 +31,8 @@ namespace IFootball.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
-        [Route("all")]
         public async Task<ActionResult<ListClassesResponse>> List()
         {
             var response = await _classService.ListAsync();

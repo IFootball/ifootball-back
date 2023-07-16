@@ -55,6 +55,15 @@ public class GoalkeeperService : IGoalkeeperService
         return new EditGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
     }
 
+    public async Task<GetGoalkeeperResponse> GetAsync(long idGoalkeeper)
+    {
+        var goalkeeper = await _goalkeeperRepository.FindById(idGoalkeeper);
+        if(goalkeeper is null)
+            return new GetGoalkeeperResponse(HttpStatusCode.NotFound, "O goleiro inserido não existe");
+        
+        return new GetGoalkeeperResponse(goalkeeper.ToGoalkeeperDto());
+    }
+
 
     public async Task<DeleteGoalkeeperResponse> DeleteAsync(long idGoalkeeper)
     {

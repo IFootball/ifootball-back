@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,6 @@ public class GoalkeeperController : ControllerBase
     }
 
     [HttpPost]
-    [Route("register")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<RegisterGoalkeeperResponse>> Register([FromBody] RegisterGoalkeeperRequest goalkeeperRequest)
     {
@@ -51,7 +51,18 @@ public class GoalkeeperController : ControllerBase
         if(response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
-        return Ok(response);
+        return NoContent();
+    }
 
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<GetGoalkeeperResponse>> Get([FromRoute] long idGoalkeeper)
+    {
+        var response = await _goalkeeperService.GetAsync(idGoalkeeper);
+        
+        if(response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
     }
 }

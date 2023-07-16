@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,6 @@ public class LinePlayerController : ControllerBase
     }
 
     [HttpPost]
-    [Route("register")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<RegisterLinePlayerResponse>> Register([FromBody] RegisterLinePlayerRequest linePlayerRequest)
     {
@@ -50,6 +50,18 @@ public class LinePlayerController : ControllerBase
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
         return Ok(response);
-
     }
+    
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<GetLinePlayerResponse>> Get([FromRoute] long idLinePlayer)
+    {
+        var response = await _linePlayerService.GetAsync(idLinePlayer);
+        
+        if(response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
+    
 }
