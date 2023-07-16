@@ -18,6 +18,11 @@ public class TeamClass : BaseEntity
     {
         IdGender = idGender;
         IdClass = idClass;
+    }
 
+    public void Edit(long idGender, long idClass)
+    {
+        IdGender = idGender;
+        IdClass = idClass;    
     }
 }

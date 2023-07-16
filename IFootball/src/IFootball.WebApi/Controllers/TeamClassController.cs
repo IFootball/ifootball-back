@@ -30,6 +30,20 @@ public class TeamClassController : ControllerBase
         return Ok(response);
     }
     
+    [HttpPut("{idTeamClass}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<EditTeamClassResponse>> Edit(
+        [FromRoute] long idTeamClass,
+        [FromBody] EditTeamClassRequest requestTeamClass)
+    {
+        var response = await _teamClassService.EditAsync(idTeamClass, requestTeamClass);
+        
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
+    
     [HttpDelete("{idTeamClass}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<DeleteTeamClassResponse>> Delete(

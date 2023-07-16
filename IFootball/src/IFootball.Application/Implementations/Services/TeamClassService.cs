@@ -45,4 +45,23 @@ public class TeamClassService : ITeamClassService
         await _teamClassRepository.Delete(teamClass);
         return new DeleteTeamClassResponse();
     }
+
+    public async Task<EditTeamClassResponse> EditAsync(long idTeamClass, EditTeamClassRequest requestTeamClass)
+    {
+        var teamClass = await _teamClassRepository.FindById(idTeamClass);
+        if(teamClass is null)
+            return new EditTeamClassResponse(HttpStatusCode.NotFound, "O time  inserido não existe");
+        
+        var genderExists = await _genderRepository.ExistsGenderById(requestTeamClass.IdGender);
+        if(!genderExists)
+            return new EditTeamClassResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
+
+        var classExists = await _classRepository.ClassExistsById(requestTeamClass.IdClass);
+        if(!classExists)
+            return new EditTeamClassResponse(HttpStatusCode.NotFound, "A turma inserida não existe");
+
+        teamClass.Edit(requestTeamClass.IdGender, requestTeamClass.IdClass);
+        await _teamClassRepository.Edit(teamClass);
+        return new EditTeamClassResponse(teamClass.ToTeamClassDto());
+    }
 }

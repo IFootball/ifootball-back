@@ -34,4 +34,10 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
         _context.TeamClasses.Add(teamClass);
         await _context.SaveChangesAsync();
     }
+
+    public async Task Edit(TeamClass teamClass)
+    {
+        _context.TeamClasses.Update(teamClass);
+        await _context.SaveChangesAsync();    
+    }
 }

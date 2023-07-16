@@ -8,4 +8,5 @@ public interface ITeamClassRepository
     Task<TeamClass?> FindById(long id);
     Task Delete(TeamClass teamClass);
     Task Register(TeamClass teamClass);
+    Task Edit(TeamClass teamClass);
 }
