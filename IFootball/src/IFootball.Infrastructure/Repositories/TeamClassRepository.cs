@@ -1,6 +1,7 @@
 ﻿using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories;
@@ -39,5 +40,14 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
     {
         _context.TeamClasses.Update(teamClass);
         await _context.SaveChangesAsync();    
+    }
+
+    public async Task<TeamClass?> FindCompleteById(long idTeamClass)
+    {
+        return await _context.TeamClasses
+            .Where(x => x.Id == idTeamClass)
+            .Include(x => x.TeamClassGoalkeepers)
+            .Include(x => x.TeamClassLinePlayers)
+            .FirstOrDefaultAsync();
     }
 }

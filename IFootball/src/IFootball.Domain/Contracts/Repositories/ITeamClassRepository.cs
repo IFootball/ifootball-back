@@ -9,4 +9,5 @@ public interface ITeamClassRepository
     Task Delete(TeamClass teamClass);
     Task Register(TeamClass teamClass);
     Task Edit(TeamClass teamClass);
+    Task<TeamClass?> FindCompleteById(long idTeamClass);
 }

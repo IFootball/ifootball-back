@@ -64,4 +64,13 @@ public class TeamClassService : ITeamClassService
         await _teamClassRepository.Edit(teamClass);
         return new EditTeamClassResponse(teamClass.ToTeamClassDto());
     }
+
+    public async Task<GetTeamClassResponse> GetAsync(long idTeamClass)
+    {
+        var teamClass = await _teamClassRepository.FindCompleteById(idTeamClass);
+        if(teamClass is null)
+            return new GetTeamClassResponse(HttpStatusCode.NotFound, "O time  inserido não existe");
+
+        return new GetTeamClassResponse(teamClass.ToTeamClassDto());
+    }
 }

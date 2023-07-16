@@ -56,4 +56,16 @@ public class TeamClassController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("{idTeamClass}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<GetTeamClassResponse>> Get([FromRoute] long idTeamClass)
+    {
+        var response = await _teamClassService.GetAsync(idTeamClass);
+        
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
 }

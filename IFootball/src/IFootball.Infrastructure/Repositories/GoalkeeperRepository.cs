@@ -33,5 +33,7 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
     public async Task DeleteGoalkeeper(Goalkeeper goalkeeper)
     {
         _context.Goalkeepers.Remove(goalkeeper);
-        await _context.SaveChangesAsync();    }
+        await _context.SaveChangesAsync();
+        
+    }
 }
