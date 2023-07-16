@@ -9,6 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69371642-f398-4b32-9d2b-9a0cd4311129" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Responses/TeamClass/GetTeamClassResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamClassService.cs" afterDir="false" />
@@ -17,6 +18,30 @@
       <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GoalkeeperRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GoalkeeperRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamClassRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/TeamClassRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamClassController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamClassController.cs" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IGoalkeeperRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/ILinePlayerRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GoalkeeperRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/LinePlayerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IFootball/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/TeamUserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Dtos/TeamUserDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterTeamUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Documents/Requests/RegisterTeamUserRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Contracts/Services/ITeamUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoTeamUserMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/DtoTeamUserMapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterTeamUserMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Mappers/RegisterTeamUserMapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Application/Implementations/Services/TeamUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IGenderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Contracts/Repositories/IGenderRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/LinePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/LinePlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Domain/Models/TeamUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/TeamUserMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Data/Mappings/TeamUserMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Migrations/20230713163722_initialProject.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Migrations/20230713163722_initialProject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Migrations/DataContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GenderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.Infrastructure/Repositories/GenderRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.Infrastructure/database.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFootball.WebApi/Program.cs" afterDir="false" />
+>>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,9 +130,13 @@
       <workItem from="1688579243964" duration="2625000" />
       <workItem from="1689255568039" duration="8639000" />
       <workItem from="1689267227662" duration="2561000" />
+<<<<<<< HEAD
       <workItem from="1689444664789" duration="16611000" />
       <workItem from="1689521353438" duration="1826000" />
       <workItem from="1689528046656" duration="1550000" />
+=======
+      <workItem from="1689272449680" duration="7432000" />
+>>>>>>> c982b4787f4627bfd8c1a2715beb609c6c8e3993
     </task>
     <servers />
   </component>
@@ -116,5 +145,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/IFootball.WebApi/Controllers/TeamUserController.cs</url>
+          <line>27</line>
+          <properties documentPath="C:\Users\Murilo Moutinho\Documents\GitHub\ifootball-back\IFootball\src\IFootball.WebApi\Controllers\TeamUserController.cs" initialLine="27" containingFunctionPresentation="Method 'RegisterMale'">
+            <startOffsets>
+              <option value="903" />
+            </startOffsets>
+            <endOffsets>
+              <option value="994" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -8,12 +8,14 @@ public static class RegisterTeamUserMapper
     public static TeamUser ToTeamUser(this RegisterTeamUserRequest request)
     {
         return new TeamUser(
-            request.IdGender,
+            request.IdCaptain,
             request.IdGoalkeeper,
-            request.IdLinePlayerFrontLeft,
-            request.IdLinePlayerFrontRight,
+            request.IdLinePlayerFront,
+            request.IdLinePlayerMiddle,
             request.IdLinePlayerBackRight,
-            request.IdLinePlayerBackLeft
+            request.IdLinePlayerBackLeft,
+            request.IdReservePlayerOne,
+            request.IdReservePlayerTwo
         );
     }
 }

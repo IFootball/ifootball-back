@@ -8,4 +8,6 @@ public interface IGoalkeeperRepository
     Task EditGoalkeeper(Goalkeeper goalkeeper);
     Task<Goalkeeper?> FindById(long idGoalkeeper);
     Task DeleteGoalkeeper(Goalkeeper goalkeeper);
+    Task<bool> ExistsById(long idGoalkeeper);
+
 }

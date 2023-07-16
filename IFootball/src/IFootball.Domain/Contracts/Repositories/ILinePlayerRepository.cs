@@ -8,4 +8,6 @@ public interface ILinePlayerRepository
     Task EditLinePlayer(LinePlayer linePlayer);
     Task<LinePlayer?> FindById(long idLinePlayer);
     Task DeleteLinePlayer(LinePlayer linePlayer);
+    Task<bool> ExistsById(long idLinePlayer);
+
 }

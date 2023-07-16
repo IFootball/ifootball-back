@@ -1,6 +1,7 @@
 ﻿using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Repositories;
@@ -36,4 +37,9 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         await _context.SaveChangesAsync();
         
     }
+    public async Task<bool> ExistsById(long idGoalkeeper)
+    {
+        return await _context.Goalkeepers.FindAsync(idGoalkeeper) is not null;
+    }
+    
 }

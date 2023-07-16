@@ -19,9 +19,11 @@ public class LinePlayer : BaseEntity
     
     public List<TeamUser> TeamUsersBackRight { get; set; }
     public List<TeamUser> TeamUsersBackLeft { get; set; }
-    public List<TeamUser> TeamUsersFrontRight { get; set; }
-    public List<TeamUser> TeamUsersFrontLeft { get; set; }
-
+    public List<TeamUser> TeamUsersMiddle { get; set; }
+    public List<TeamUser> TeamUsersFront { get; set; }
+    public List<TeamUser> TeamUsersReserveOne { get; set; }
+    public List<TeamUser> TeamUsersReserveTwo { get; set; }
+    
     public LinePlayer() { }
     
     public void Edit(long idGender, long idTeamClass, string name, string image)

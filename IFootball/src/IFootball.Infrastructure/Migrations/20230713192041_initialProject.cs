@@ -168,12 +168,15 @@ namespace IFootball.Infrastructure.Migrations
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     IdUser = table.Column<long>(type: "INTEGER", nullable: false),
+                    id_captain = table.Column<long>(type: "INT", nullable: true),
                     IdGender = table.Column<long>(type: "INTEGER", nullable: false),
                     IdGoalkeeper = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerFrontLeft = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerFrontRight = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerFront = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdLinePlayerMiddle = table.Column<long>(type: "INTEGER", nullable: false),
                     IdLinePlayerBackRight = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerBackLeft = table.Column<long>(type: "INTEGER", nullable: false)
+                    IdLinePlayerBackLeft = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdReservePlayerOne = table.Column<long>(type: "INTEGER", nullable: true),
+                    IdReservePlayerTwo = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -203,17 +206,27 @@ namespace IFootball.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayerfrontleft_teamuser",
-                        column: x => x.IdLinePlayerFrontLeft,
+                        name: "FK_lineplayerfront_teamuser",
+                        column: x => x.IdLinePlayerFront,
                         principalTable: "line_player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayerfrontright_teamuser",
-                        column: x => x.IdLinePlayerFrontRight,
+                        name: "FK_lineplayermiddle_teamuser",
+                        column: x => x.IdLinePlayerMiddle,
                         principalTable: "line_player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_reserveplayerone_teamuser",
+                        column: x => x.IdReservePlayerOne,
+                        principalTable: "line_player",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_reserveplayertwo_teamuser",
+                        column: x => x.IdReservePlayerTwo,
+                        principalTable: "line_player",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_user_teamuser",
                         column: x => x.IdUser,
@@ -278,14 +291,24 @@ namespace IFootball.Infrastructure.Migrations
                 column: "IdLinePlayerBackRight");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerFrontLeft",
+                name: "IX_team_user_IdLinePlayerFront",
                 table: "team_user",
-                column: "IdLinePlayerFrontLeft");
+                column: "IdLinePlayerFront");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerFrontRight",
+                name: "IX_team_user_IdLinePlayerMiddle",
                 table: "team_user",
-                column: "IdLinePlayerFrontRight");
+                column: "IdLinePlayerMiddle");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_team_user_IdReservePlayerOne",
+                table: "team_user",
+                column: "IdReservePlayerOne");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_team_user_IdReservePlayerTwo",
+                table: "team_user",
+                column: "IdReservePlayerTwo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_team_user_IdUser",
