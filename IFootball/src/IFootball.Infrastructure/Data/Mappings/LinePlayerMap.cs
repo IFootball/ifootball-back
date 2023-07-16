@@ -57,13 +57,6 @@ public class LinePlayerMap: IEntityTypeConfiguration<LinePlayer>
             .IsRequired()
             .HasColumnName("fouls")
             .HasColumnType("INT");
-        
-        
-        builder
-            .HasOne(x => x.Class)
-            .WithMany(x => x.ClassLinePlayer)
-            .HasForeignKey(x => x.IdClass)
-            .HasConstraintName("FK_class_lineplayer");
 
         builder
             .HasOne(x => x.TeamClass)

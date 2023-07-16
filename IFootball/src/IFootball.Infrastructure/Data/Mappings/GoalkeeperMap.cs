@@ -73,14 +73,7 @@ public class GoalkeeperMap: IEntityTypeConfiguration<Goalkeeper>
             .IsRequired()
             .HasColumnName("fouls")
             .HasColumnType("INT");
-
         
-        builder
-            .HasOne(x => x.Class)
-            .WithMany(x => x.ClassGoalkeepers)
-            .HasForeignKey(x => x.IdClass)
-            .HasConstraintName("FK_class_goalkeeper");
-
         builder
             .HasOne(x => x.TeamClass)
             .WithMany(x => x.TeamClassGoalkeepers)

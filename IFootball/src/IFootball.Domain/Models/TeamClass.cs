@@ -6,6 +6,9 @@ public class TeamClass : BaseEntity
     public long IdGender { get; set; }
 
     
+    public Class Class { get; set; }
+    public long IdClass { get; set; }
+
     public List<Goalkeeper> TeamClassGoalkeepers { get; set; }
     public List<LinePlayer> TeamClassLinePlayers { get; set; }
 

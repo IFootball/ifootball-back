@@ -36,7 +36,7 @@ namespace IFootball.Infrastructure.Data.Mappings
 
             builder.Property(x => x.Role)
                 .IsRequired()
-                .HasColumnType("role")
+                .HasColumnName("role")
                 .HasColumnType("INT");
 
             builder
