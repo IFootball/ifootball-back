@@ -50,4 +50,9 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
             .Include(x => x.TeamClassLinePlayers)
             .FirstOrDefaultAsync();
     }
+
+    public async Task<IEnumerable<TeamClass>> ListAsync()
+    {
+        return await _context.TeamClasses.ToListAsync();
+    }
 }

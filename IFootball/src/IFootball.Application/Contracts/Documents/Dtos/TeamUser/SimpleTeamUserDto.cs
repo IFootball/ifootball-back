@@ -1,6 +1,6 @@
 ﻿namespace IFootball.Application.Contracts.Documents.Dtos;
 
-public class TeamUserDto
+public class SimpleTeamUserDto
 {
     public long IdUser { get; set; }
     public long? IdCaptain { get; set; }

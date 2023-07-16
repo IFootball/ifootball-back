@@ -4,11 +4,11 @@ using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers;
 
-public static class DtoTeamClassMapper
+public static class CompleteDtoTeamClassMapper
 {
-    public static TeamClassDto ToTeamClassDto(this TeamClass teamClass)
+    public static CompleteTeamClassDto ToCompleteTeamClassDto(this TeamClass teamClass)
     {
-        return new TeamClassDto
+        return new CompleteTeamClassDto
         {
             IdGender = teamClass.IdGender,
             IdClass = teamClass.IdClass,

@@ -49,5 +49,20 @@ namespace IFootball.WebApi.Controllers
 
             return Ok(response);
         }
+        
+        /*
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<GetTeamUserResponse>> GetMale() {
+            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
+
+            var response = await _teamUserService.GetMaleAsync(idUserLogged);
+
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return Ok(response);
+        }
+        */
     }
 }

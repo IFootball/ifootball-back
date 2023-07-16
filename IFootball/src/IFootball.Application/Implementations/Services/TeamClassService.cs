@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
@@ -33,7 +34,7 @@ public class TeamClassService : ITeamClassService
 
         var teamClass = request.ToTeamClass();
         await _teamClassRepository.Register(teamClass);
-        return new RegisterTeamClassResponse(teamClass.ToTeamClassDto());
+        return new RegisterTeamClassResponse(teamClass.ToCompleteTeamClassDto());
     }
 
     public async Task<DeleteTeamClassResponse> DeleteAsync(long idTeamClass)
@@ -62,7 +63,7 @@ public class TeamClassService : ITeamClassService
 
         teamClass.Edit(requestTeamClass.IdGender, requestTeamClass.IdClass);
         await _teamClassRepository.Edit(teamClass);
-        return new EditTeamClassResponse(teamClass.ToTeamClassDto());
+        return new EditTeamClassResponse(teamClass.ToCompleteTeamClassDto());
     }
 
     public async Task<GetTeamClassResponse> GetAsync(long idTeamClass)
@@ -71,6 +72,12 @@ public class TeamClassService : ITeamClassService
         if(teamClass is null)
             return new GetTeamClassResponse(HttpStatusCode.NotFound, "O time  inserido não existe");
 
-        return new GetTeamClassResponse(teamClass.ToTeamClassDto());
+        return new GetTeamClassResponse(teamClass.ToCompleteTeamClassDto());
+    }
+
+    public async Task<IEnumerable<SimpleTeamClassDto>> ListAsync()
+    {
+        var teamClasses = await _teamClassRepository.ListAsync();
+        return teamClasses.Select(x => x.ToSimpleTeamClassDto());
     }
 }
