@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IFootball.WebApi.Controllers;
 
 [ApiController]
-[Route("api/line-player")]
+[Route("api/line-players")]
 public class LinePlayerController : ControllerBase
 {
     private readonly ILinePlayerService _linePlayerService;

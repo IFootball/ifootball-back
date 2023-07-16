@@ -35,9 +35,6 @@ namespace IFootball.Application.Implementations.Services
         {
             var classes = await _classRepository.GetAllAsync();
 
-            if (classes.Count() == 0)
-                return new ListClassesResponse(HttpStatusCode.NotFound, "Nenhuma turma cadastrada!");
-
             return new ListClassesResponse(classes);
         }
     }

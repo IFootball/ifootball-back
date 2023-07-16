@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IFootball.WebApi.Controllers;
 
 [ApiController]
-[Route("api/team-class")]
+[Route("api/team-classes")]
 public class TeamClassController : ControllerBase
 {
     private readonly ITeamClassService _teamClassService;

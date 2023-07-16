@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace IFootball.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/team-user")]
+    [Route("api/team-users")]
     public class TeamUserController : ControllerBase
     {
         private readonly ITeamUserService _teamUserService;

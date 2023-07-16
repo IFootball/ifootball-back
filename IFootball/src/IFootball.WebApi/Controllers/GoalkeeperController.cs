@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IFootball.WebApi.Controllers;
 
 [ApiController]
-[Route("api/goalkeeper")]
+[Route("api/goalkeepers")]
 public class GoalkeeperController : ControllerBase
 {
     private readonly IGoalkeeperService _goalkeeperService;
