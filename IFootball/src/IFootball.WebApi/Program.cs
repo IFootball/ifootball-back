@@ -72,7 +72,6 @@ builder.Services.AddScoped<IGoalkeeperRepository, GoalkeeperRepository>();
 builder.Services.AddScoped<ILinePlayerRepository, LinePlayerRepository>();
 builder.Services.AddScoped<ITeamClassRepository, TeamClassRepository>();
 
-
 // JWT
 builder.Services.AddAuthentication(opt =>
 {

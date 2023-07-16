@@ -26,19 +26,23 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
         await _context.SaveChangesAsync();    
     }
 
-    public async Task<LinePlayer?> FindById(long idLinePlayer)
-    {
-        return await _context.LinePlayers.FindAsync(idLinePlayer);
-    }
-
     public async Task DeleteLinePlayer(LinePlayer linePlayer)
     {
         _context.LinePlayers.Remove(linePlayer);
         await _context.SaveChangesAsync();
     }
+
     public async Task<bool> ExistsById(long idLinePlayer)
     {
         return await _context.LinePlayers.FindAsync(idLinePlayer) is not null;
     }
 
+    public async Task<LinePlayer> FindById(long idLinePlayer)
+    {
+        return await _context.LinePlayers
+            .Where(x => x.Id == idLinePlayer)
+            .Include(x => x.Gender)
+            .FirstOrDefaultAsync();
+
+    }
 }
