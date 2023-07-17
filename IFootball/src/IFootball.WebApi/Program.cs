@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using IFootball.Application.Implementations.Services.Core;
+using IFootball.Application.Contracts.Services.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,7 +56,9 @@ builder.Services.AddCors();
 
 ////Dependency injection////
 
+
 //Services
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClassService, ClassService>();
@@ -62,6 +66,7 @@ builder.Services.AddScoped<ITeamUserService, TeamUserService>();
 builder.Services.AddScoped<IGoalkeeperService, GoalkeeperService>();
 builder.Services.AddScoped<ILinePlayerService, LinePlayerService>();
 builder.Services.AddScoped<ITeamClassService, TeamClassService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();

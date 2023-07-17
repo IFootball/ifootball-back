@@ -5,6 +5,8 @@ using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
 using IFootball.Domain.Models.enums;
+using Microsoft.AspNetCore.Http;
+using IFootball.Application.Contracts.Services.Core;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -15,21 +17,25 @@ namespace IFootball.Application.Implementations.Services
         private readonly ILinePlayerRepository _linePlayerRepository;
         private readonly ITeamUserRepository _teamUserRepository;
         private readonly IGenderRepository _genderRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         private static readonly DateTime LIMIT_DATE_EDIT_TEAM = new DateTime(2023, 9, 13, 12, 0, 0);
 
 
-        public TeamUserService(IUserRepository userRepository, IGoalkeeperRepository goalkeeperRepository, ILinePlayerRepository linePlayerRepository, ITeamUserRepository teamUserRepository, IGenderRepository genderRepository)
+        public TeamUserService(IUserRepository userRepository, IGoalkeeperRepository goalkeeperRepository, ILinePlayerRepository linePlayerRepository, ITeamUserRepository teamUserRepository, IGenderRepository genderRepository, ICurrentUserService currentUserService)
         {
             _userRepository = userRepository;
             _goalkeeperRepository = goalkeeperRepository;
             _linePlayerRepository = linePlayerRepository;
             _teamUserRepository = teamUserRepository;
             _genderRepository = genderRepository;
+            _currentUserService = currentUserService; 
         }
 
-        public async Task<RegisterTeamUserResponse> RegisterMaleAsync(long idUser, RegisterTeamUserRequest teamUserRequest)
+        public async Task<RegisterTeamUserResponse> RegisterMaleAsync(RegisterTeamUserRequest teamUserRequest)
         {
+            long idUser = _currentUserService.GetCurrentUserId();
+
             if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
 
@@ -108,9 +114,12 @@ namespace IFootball.Application.Implementations.Services
             return new RegisterTeamUserResponse(teamUser.ToTeamUserDto());
         }
         
-        public async Task<RegisterTeamUserResponse> RegisterFemaleAsync(long idUser, RegisterTeamUserRequest teamUserRequest)
+        public async Task<RegisterTeamUserResponse> RegisterFemaleAsync(RegisterTeamUserRequest teamUserRequest)
         {
-            if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
+
+            long idUser = _currentUserService.GetCurrentUserId();
+
+            if (DateTime.Now > LIMIT_DATE_EDIT_TEAM)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
 
             if(!ValidateTeamPlayer(teamUserRequest))

@@ -25,9 +25,8 @@ namespace IFootball.WebApi.Controllers
         [Route("male")]
         public async Task<ActionResult<RegisterTeamUserResponse>> RegisterMale([FromBody] RegisterTeamUserRequest teamUserRequest)
         {
-            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
 
-            var response = await _teamUserService.RegisterMaleAsync(idUserLogged, teamUserRequest);
+            var response = await _teamUserService.RegisterMaleAsync(teamUserRequest);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -40,9 +39,7 @@ namespace IFootball.WebApi.Controllers
         [Route("famale")]
         public async Task<ActionResult<RegisterTeamUserResponse>> RegisterFamale([FromBody] RegisterTeamUserRequest teamUserRequest)
         {
-            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
-
-            var response = await _teamUserService.RegisterFemaleAsync(idUserLogged, teamUserRequest);
+            var response = await _teamUserService.RegisterFemaleAsync(teamUserRequest);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);

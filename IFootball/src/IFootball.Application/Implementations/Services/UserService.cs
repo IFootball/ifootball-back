@@ -5,6 +5,7 @@ using IFootball.Application.Contracts.Services;
 using IFootball.Domain.Contracts.Repositories;
 using System.Net;
 using System.Text.RegularExpressions;
+using IFootball.Application.Contracts.Services.Core;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -12,13 +13,15 @@ namespace IFootball.Application.Implementations.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IClassRepository _classRepository;
+        private readonly ICurrentUserService _currentUserService;
         private const string PATTERN_EMAIL_STUDENT_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@aluno\\.feliz\\.ifrs\\.edu\\.br)$";
         private const string PATTERN_EMAIL_TECHER_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@feliz\\.ifrs\\.edu\\.br)$";
 
-        public UserService(IUserRepository userRepository, IClassRepository classRepository)
+        public UserService(IUserRepository userRepository, IClassRepository classRepository, ICurrentUserService currentUserService)
         {
             _userRepository = userRepository;
             _classRepository = classRepository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest loginUserRequest)
@@ -51,8 +54,10 @@ namespace IFootball.Application.Implementations.Services
             return new RegisterUserResponse(user.DtoToUserDto());
         }
 
-        public async Task<DeleteUserResponse> DeleteAsync(long idUser)
+        public async Task<DeleteUserResponse> DeleteAsync()
         {
+            long idUser = _currentUserService.GetCurrentUserId();
+
             var user = await _userRepository.FindUserById(idUser);
             if (user is null)
                 return new DeleteUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
@@ -61,8 +66,10 @@ namespace IFootball.Application.Implementations.Services
             return new DeleteUserResponse();
         }
 
-        public async Task<EditUserResponse> EditAsync(long idUser, EditUserRequest editUserRequest)
+        public async Task<EditUserResponse> EditAsync(EditUserRequest editUserRequest)
         {
+            long idUser = _currentUserService.GetCurrentUserId();
+
             var emailIsTeacher = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
             var emailIsStudent = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
             if (!(emailIsTeacher || emailIsStudent))

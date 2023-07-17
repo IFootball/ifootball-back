@@ -1,8 +1,7 @@
-﻿namespace IFootball.Core
-{
-    using System;
-    using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
+namespace IFootball.Core
+{
     public static class PasswordHasher
     {
         private const int SaltSize = 16;

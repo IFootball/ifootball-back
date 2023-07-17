@@ -3,9 +3,7 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.WebApi.Security;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace IFootball.WebApi.Controllers
 {
@@ -53,9 +51,7 @@ namespace IFootball.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<LoginUserResponse>> DeleteAsync()
         {
-            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
-
-            var response = await _userService.DeleteAsync(idUserLogged);
+            var response = await _userService.DeleteAsync();
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -67,9 +63,7 @@ namespace IFootball.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest editUserRequest)
         {
-            var idUserLogged = long.Parse(User.Claims.FirstOrDefault(x => x.Type.Equals("Id"))?.Value);
-
-            var response = await _userService.EditAsync(idUserLogged, editUserRequest);
+            var response = await _userService.EditAsync(editUserRequest);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);

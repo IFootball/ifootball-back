@@ -2,8 +2,10 @@
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Contracts.Services.Core;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
+using Microsoft.AspNetCore.Http;
 using System.Net;
 
 namespace IFootball.Application.Implementations.Services
