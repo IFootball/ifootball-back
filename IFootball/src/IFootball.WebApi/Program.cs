@@ -3,7 +3,7 @@ using IFootball.Application.Implementations.Services;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Infrastructure.Data;
 using IFootball.Infrastructure.Repositories;
-using IFootball.WebApi.Security;
+using IFootball.Core.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

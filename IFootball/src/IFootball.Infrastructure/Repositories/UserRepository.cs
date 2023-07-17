@@ -18,6 +18,7 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task CreateUserAsync(User user)
         {
+            user.Password = PasswordHasher.HashPassword(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }

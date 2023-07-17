@@ -18,9 +18,7 @@ namespace IFootball.Application.Implementations.Services
         private readonly ITeamUserRepository _teamUserRepository;
         private readonly IGenderRepository _genderRepository;
         private readonly ICurrentUserService _currentUserService;
-
         private static readonly DateTime LIMIT_DATE_EDIT_TEAM = new DateTime(2023, 9, 13, 12, 0, 0);
-
 
         public TeamUserService(IUserRepository userRepository, IGoalkeeperRepository goalkeeperRepository, ILinePlayerRepository linePlayerRepository, ITeamUserRepository teamUserRepository, IGenderRepository genderRepository, ICurrentUserService currentUserService)
         {

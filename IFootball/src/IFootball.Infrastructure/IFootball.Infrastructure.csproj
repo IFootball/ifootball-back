@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IFootball.Domain\IFootball.Domain.csproj" />
+    <ProjectReference Include="..\IFootball.Core\IFootball.Core.csproj" />
   </ItemGroup>
 
 </Project>

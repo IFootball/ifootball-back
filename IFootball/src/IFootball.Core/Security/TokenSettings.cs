@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace IFootball.WebApi.Security
+﻿namespace IFootball.Core.Security
 {
     public static class TokenSettings
     {

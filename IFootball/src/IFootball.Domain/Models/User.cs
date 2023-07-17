@@ -1,5 +1,4 @@
 ﻿using IFootball.Domain.Models.enums;
-using IFootball.Core;
 namespace IFootball.Domain.Models
 {
     public class User : BaseEntity
@@ -25,7 +24,7 @@ namespace IFootball.Domain.Models
         {
             Name = name;
             Email = email;
-            Password = PasswordHasher.HashPassword(password);
+            Password = password;
             IdClass = idClass;
         }
         public void Edit(long idClass, string name, string email) 

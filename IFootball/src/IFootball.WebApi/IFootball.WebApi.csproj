@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IFootball.Application\IFootball.Application.csproj" />
+    <ProjectReference Include="..\IFootball.Core\IFootball.Core.csproj" />
     <ProjectReference Include="..\IFootball.Infrastructure\IFootball.Infrastructure.csproj" />
   </ItemGroup>
 

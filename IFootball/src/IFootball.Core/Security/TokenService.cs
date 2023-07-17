@@ -1,11 +1,10 @@
 ﻿using IFootball.Application.Contracts.Documents.Responses;
-using IFootball.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace IFootball.WebApi.Security
+namespace IFootball.Core.Security
 {
     public class TokenService : ITokenService
     {

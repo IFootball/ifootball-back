@@ -1,7 +1,6 @@
 ﻿using IFootball.Application.Contracts.Documents.Responses;
-using IFootball.Domain.Models;
 
-namespace IFootball.WebApi.Security
+namespace IFootball.Core.Security
 {
     public interface ITokenService
     {
