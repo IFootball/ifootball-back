@@ -52,10 +52,21 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-builder.Services.AddCors();
+
+// CORS
+builder.Services.AddCors(
+    opt =>
+    {
+        opt.AddPolicy("AllowAllHeaders", builder =>
+        {
+            builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+        });
+    }
+);
 
 ////Dependency injection////
-
 
 //Services
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -118,5 +129,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAllHeaders");
 
 app.Run();
