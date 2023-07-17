@@ -21,7 +21,7 @@ public static class CompleteDtoTeamClassMapper
     {
         return goalkeepers.Select(x => x.ToGoalkeeperDto());
     }
-    private static IEnumerable<LinePlayerDto> BuilderLinePlayerDto(List<LinePlayer> linePlayers)
+    private static IEnumerable<LinePlayerDto> BuilderLinePlayerDto(List<Player> linePlayers)
     {
         return linePlayers.Select(x => x.ToLinePlayerDto());
     }

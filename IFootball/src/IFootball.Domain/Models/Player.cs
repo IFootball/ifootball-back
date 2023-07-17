@@ -1,6 +1,6 @@
 ﻿namespace IFootball.Domain.Models;
 
-public class LinePlayer : BaseEntity
+public class Player : BaseEntity
 {
     public Gender Gender { get; private set; }
     public long IdGender { get; private set; }
@@ -24,7 +24,7 @@ public class LinePlayer : BaseEntity
     public List<TeamUser> TeamUsersReserveOne { get; set; }
     public List<TeamUser> TeamUsersReserveTwo { get; set; }
     
-    public LinePlayer() { }
+    public Player() { }
     
     public void Edit(long idGender, long idTeamClass, string name, string image)
     {
@@ -34,7 +34,7 @@ public class LinePlayer : BaseEntity
         Image = image;
     }
     
-    public LinePlayer(long idGender, long idTeamClass, string name, string image)
+    public Player(long idGender, long idTeamClass, string name, string image)
     {
         IdGender = idGender;
         IdTeamClass = idTeamClass;

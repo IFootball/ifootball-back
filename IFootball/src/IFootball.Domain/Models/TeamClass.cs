@@ -10,7 +10,7 @@ public class TeamClass : BaseEntity
     public long IdClass { get; set; }
 
     public List<Goalkeeper> TeamClassGoalkeepers { get; set; } = new List<Goalkeeper>();
-    public List<LinePlayer> TeamClassLinePlayers { get; set; } = new List<LinePlayer>();
+    public List<Player> TeamClassLinePlayers { get; set; } = new List<Player>();
 
     public TeamClass() { }
 

@@ -5,8 +5,8 @@ namespace IFootball.Application.Implementations.Mappers;
 
 public static class RegisterLinePlayerMapper
 {
-    public static LinePlayer ToLinePlayer(this RegisterLinePlayerRequest request)
+    public static Player ToLinePlayer(this RegisterLinePlayerRequest request)
     {
-        return new LinePlayer(request.IdGender, request.IdTeamClass, request.Name, request.Image);
+        return new Player(request.IdGender, request.IdTeamClass, request.Name, request.Image);
     }
 }

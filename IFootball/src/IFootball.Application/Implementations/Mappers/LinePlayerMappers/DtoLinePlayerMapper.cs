@@ -5,7 +5,7 @@ namespace IFootball.Application.Implementations.Mappers;
 
 public static class DtoLinePlayerMapper
 {
-    public static LinePlayerDto ToLinePlayerDto(this LinePlayer linePlayer)
+    public static LinePlayerDto ToLinePlayerDto(this Player linePlayer)
     {
         return new LinePlayerDto
         {

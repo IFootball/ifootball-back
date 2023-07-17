@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace IFootball.Infrastructure.Data.Mappings;
 
-public class LinePlayerMap: IEntityTypeConfiguration<LinePlayer>
+public class LinePlayerMap: IEntityTypeConfiguration<Player>
 {
-    public void Configure(EntityTypeBuilder<LinePlayer> builder)
+    public void Configure(EntityTypeBuilder<Player> builder)
     {
         builder.ToTable("line_player");
 

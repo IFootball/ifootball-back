@@ -14,21 +14,21 @@ public class TeamUser : BaseEntity
     public long IdGoalkeeper { get; private set; }
     
     public long IdLinePlayerFront { get; private set; }
-    public LinePlayer LinePlayerFront { get; private set; }
+    public Player LinePlayerFront { get; private set; }
 
     public long IdLinePlayerMiddle { get; private set; }
-    public LinePlayer LinePlayerMiddle { get; private set; }
+    public Player LinePlayerMiddle { get; private set; }
 
     public long IdLinePlayerBackRight { get; private set; }
-    public LinePlayer LinePlayerBackRight { get; private set; }
+    public Player LinePlayerBackRight { get; private set; }
 
     public long IdLinePlayerBackLeft { get; private set; }
-    public LinePlayer LinePlayerBackLeft { get; private set; }
+    public Player LinePlayerBackLeft { get; private set; }
 
     public long? IdReservePlayerOne { get; private set; }
-    public LinePlayer? ReservePlayerOne { get; private set; }
+    public Player? ReservePlayerOne { get; private set; }
     public long? IdReservePlayerTwo { get; private set; }
-    public LinePlayer? ReservePlayerTwo { get; private set; }
+    public Player? ReservePlayerTwo { get; private set; }
     
     
     public TeamUser() { }

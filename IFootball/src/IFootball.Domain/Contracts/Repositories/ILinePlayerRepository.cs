@@ -4,9 +4,9 @@ namespace IFootball.Domain.Contracts.Repositories;
 
 public interface ILinePlayerRepository
 {
-    Task CreateLinePlayer(LinePlayer linePlayer);
-    Task EditLinePlayer(LinePlayer linePlayer);
-    Task<LinePlayer?> FindById(long idLinePlayer);
-    Task DeleteLinePlayer(LinePlayer linePlayer);
+    Task CreateLinePlayer(Player linePlayer);
+    Task EditLinePlayer(Player linePlayer);
+    Task<Player?> FindById(long idLinePlayer);
+    Task DeleteLinePlayer(Player linePlayer);
     Task<bool> ExistsById(long idLinePlayer);
 }
