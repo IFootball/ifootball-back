@@ -6,6 +6,7 @@ using IFootball.Domain.Contracts.Repositories;
 using System.Net;
 using System.Text.RegularExpressions;
 using IFootball.Application.Contracts.Services.Core;
+using IFootball.Application.Contracts.Documents.Dtos;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -93,6 +94,12 @@ namespace IFootball.Application.Implementations.Services
             user.Edit(editUserRequest.IdClass, editUserRequest.Name, editUserRequest.Email);
             await _userRepository.EditUserAsync(user);
             return new EditUserResponse(user.DtoToUserDto());
+        }
+
+        public async Task<IEnumerable<GenericPlayerDto>> ListAsync()
+        {
+            var players = await _userRepository.ListAllAsync();
+            return players.Select(x => x.ToSimpleTeamClassDto());
         }
     }
 }
