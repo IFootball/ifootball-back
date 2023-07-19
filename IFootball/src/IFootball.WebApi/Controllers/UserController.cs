@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Core.Security;
@@ -71,5 +72,13 @@ namespace IFootball.WebApi.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<GenericPlayerDto>> ListAsync()
+        {
+            var response = await _userService.ListAsync();
+
+            return Ok(response);
+        }
     }
 }
