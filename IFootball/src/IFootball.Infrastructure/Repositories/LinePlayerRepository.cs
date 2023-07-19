@@ -45,4 +45,6 @@ public class LinePlayerRepository : BaseRepository, ILinePlayerRepository
             .FirstOrDefaultAsync();
 
     }
+
+    public async Task<IEnumerable<LinePlayer>> ListAllAsync() => await _context.LinePlayers.ToListAsync();
 }
