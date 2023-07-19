@@ -10,6 +10,6 @@ public interface ILinePlayerService
     Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request);
     Task<GetLinePlayerResponse> GetAsync(long idLinePlayer);
     Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer);
-    Task<IEnumerable<GenericPlayerDto>> ListAsync();
+    Task<IEnumerable<LinePlayerDto>> ListAsync();
 
 }

@@ -1,10 +1,13 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IFootball.Application.Implementations.Services;
 
@@ -84,4 +87,6 @@ public class LinePlayerService : ILinePlayerService
         var players = await _linePlayerRepository.ListAllAsync();
         return players.Select(x => x.ToLinePlayerDto());
     }
+
+ 
 }

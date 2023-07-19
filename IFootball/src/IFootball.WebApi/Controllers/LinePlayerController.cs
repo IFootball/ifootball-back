@@ -67,11 +67,10 @@ public class LinePlayerController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public async Task<ActionResult<IEnumerable<GenericPlayerDto>> ListAsync()
+    public async Task<IEnumerable<GenericPlayerDto>> ListAsync()
     {
         var response = await _linePlayerService.ListAsync();
-
         return Ok(response);
     }
-    
+
 }
