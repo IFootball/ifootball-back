@@ -10,6 +10,5 @@ namespace IFootball.Application.Contracts.Services
         Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest loginUserRequest);
         Task<DeleteUserResponse> DeleteAsync();
         Task<EditUserResponse> EditAsync(EditUserRequest editUserRequest);
-        Task<IEnumerable<GenericPlayerDto>> ListAsync();
     }
 }

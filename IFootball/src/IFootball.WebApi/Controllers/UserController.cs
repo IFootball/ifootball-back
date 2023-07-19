@@ -72,13 +72,6 @@ namespace IFootball.WebApi.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<GenericPlayerDto>> ListAsync()
-        {
-            var response = await _userService.ListAsync();
-
-            return Ok(response);
-        }
+  
     }
 }

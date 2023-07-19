@@ -2,6 +2,7 @@
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Implementations.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +61,15 @@ public class LinePlayerController : ControllerBase
         
         if(response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<GenericPlayerDto>> ListAsync()
+    {
+        var response = await _linePlayerService.ListAsync();
 
         return Ok(response);
     }

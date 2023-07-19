@@ -9,4 +9,5 @@ public interface ILinePlayerRepository
     Task<LinePlayer?> FindById(long idLinePlayer);
     Task DeleteLinePlayer(LinePlayer linePlayer);
     Task<bool> ExistsById(long idLinePlayer);
+    Task<IEnumerable<LinePlayer>> ListAllAsync();
 }

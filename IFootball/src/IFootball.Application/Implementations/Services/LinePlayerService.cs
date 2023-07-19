@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
@@ -77,5 +78,10 @@ public class LinePlayerService : ILinePlayerService
 
         await _linePlayerRepository.DeleteLinePlayer(linePlayer);
         return new DeleteLinePlayerResponse();
+    }
+    public async Task<IEnumerable<LinePlayerDto>> ListAsync()
+    {
+        var players = await _linePlayerRepository.ListAllAsync();
+        return players.Select(x => x.ToLinePlayerDto());
     }
 }

@@ -96,10 +96,6 @@ namespace IFootball.Application.Implementations.Services
             return new EditUserResponse(user.DtoToUserDto());
         }
 
-        public async Task<IEnumerable<GenericPlayerDto>> ListAsync()
-        {
-            var players = await _userRepository.ListAllAsync();
-            return players.Select(x => x.ToSimpleTeamClassDto());
-        }
+ 
     }
 }
