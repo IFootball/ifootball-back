@@ -37,9 +37,11 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         return await _context.Players.FindAsync(idPlayer) is not null;
     }
 
-    public async Task<Player> FindById(long idPlayer) => await _context.Players
-            .Where(x => x.Id == idPlayer)
-            .Include(x => x.Gender)
-            .Include(x => x.Goalkeeper)
-            .FirstOrDefaultAsync();
+    public async Task<Player> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
+    
+    public async Task<Player> FindCompleteById(long idPlayer) => await _context.Players
+        .Where(x => x.Id == idPlayer)
+        .Include(x => x.Gender)
+        .Include(x => x.Goalkeeper)
+        .FirstOrDefaultAsync();
 }

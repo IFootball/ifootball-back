@@ -3,9 +3,9 @@ using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers;
 
-public static class DtoTeamUserMapper
+public static class SimpleDtoTeamUserMapper
 {
-    public static SimpleTeamUserDto ToTeamUserDto(this TeamUser teamUser)
+    public static SimpleTeamUserDto ToSimpleTeamUserDto(this TeamUser teamUser)
     {
         return new SimpleTeamUserDto
         {

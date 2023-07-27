@@ -72,7 +72,7 @@ public class PlayerService : IPlayerService
 
     public async Task<GetPlayerResponse> GetAsync(long idLinePlayer)
     {
-        var player = await _playerRepository.FindById(idLinePlayer);
+        var player = await _playerRepository.FindCompleteById(idLinePlayer);
         if(player is null)
             return new GetPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 

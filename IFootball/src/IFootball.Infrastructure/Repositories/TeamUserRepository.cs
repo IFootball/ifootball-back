@@ -32,5 +32,20 @@ namespace IFootball.Infrastructure.Repositories
             _context.TeamUsers.Update(teamUser);
             await _context.SaveChangesAsync();        
         }
-     }
+
+        public async Task<TeamUser?> FindCompleteTeamUserByIdUserAndIdGender(long idUser, long idGender)
+        {
+            return await _context.TeamUsers
+                .Where(x => x.IdUser == idUser && x.IdGender == idGender)
+                .Include(x => x.Gender)
+                .Include(x => x.Goalkeeper)
+                .Include(x => x.PlayerOne)
+                .Include(x => x.PlayerTwo)
+                .Include(x => x.PlayerThree)
+                .Include(x => x.PlayerFour)
+                .Include(x => x.ReservePlayerOne)
+                .Include(x => x.ReservePlayerTwo)
+                .FirstOrDefaultAsync();
+        }
+    }
 }

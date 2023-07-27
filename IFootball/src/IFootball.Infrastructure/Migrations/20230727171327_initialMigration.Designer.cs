@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFootball.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230727032045_initialMigration")]
+    [Migration("20230727171327_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

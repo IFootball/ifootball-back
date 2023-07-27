@@ -19,14 +19,14 @@ public class Player : BaseEntity
     public int RedCard { get; private set; }
     public int Fouls { get; private set; }
     public int Wins { get; private set; }
-    
-    public List<TeamUser>? TeamUsersFour { get; set; }
-    public List<TeamUser>? TeamUsersThree { get; set; }
-    public List<TeamUser>? TeamUsersTwo { get; set; }
-    public List<TeamUser>? TeamUsersOne { get; set; }
-    public List<TeamUser>? TeamUsersGoalkeeper { get; set; }
-    public List<TeamUser>? TeamUsersReserveOne { get; set; }
-    public List<TeamUser>? TeamUsersReserveTwo { get; set; }
+
+    public List<TeamUser>? TeamUsersFour { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersThree { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersTwo { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersOne { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersGoalkeeper { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersReserveOne { get; set; } = new List<TeamUser>();
+    public List<TeamUser>? TeamUsersReserveTwo { get; set; } = new List<TeamUser>();
     public Goalkeeper? Goalkeeper { get; set; }
     
     
