@@ -4,38 +4,45 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
+using IFootball.Domain.Models.enums;
 
 namespace IFootball.Application.Implementations.Services;
 
-public class LinePlayerService : ILinePlayerService
+public class PlayerService : IPlayerService
 {
-    private readonly ILinePlayerRepository _linePlayerRepository;
+    private readonly IPlayerRepository _linePlayerRepository;
     private readonly ITeamClassRepository _teamClassRepository;
     private readonly IGenderRepository _genderRepository;
 
-    public LinePlayerService(ILinePlayerRepository linePlayerRepository, ITeamClassRepository teamClassRepository, IGenderRepository genderRepository)
+    public PlayerService(IPlayerRepository linePlayerRepository, ITeamClassRepository teamClassRepository, IGenderRepository genderRepository)
     {
         _linePlayerRepository = linePlayerRepository;
         _teamClassRepository = teamClassRepository;
         _genderRepository = genderRepository;
     }
 
-    public async Task<RegisterLinePlayerResponse> RegisterAsync(RegisterLinePlayerRequest request)
+    public async Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request)
     {
         var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
         if (teamClass is null)
-            return new RegisterLinePlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+            return new RegisterPlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
 
         if(teamClass.IdGender != request.IdGender)
-            return new RegisterLinePlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
+            return new RegisterPlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
 
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
-            return new RegisterLinePlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
+            return new RegisterPlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
         
-        var linePlayer = request.ToLinePlayer();
-        await _linePlayerRepository.CreateLinePlayer(linePlayer);
-        return new RegisterLinePlayerResponse(linePlayer.ToLinePlayerDto());    
+        if (request.PlayerType == PlayerType.Goalkeeper)
+        {
+
+        }
+
+
+        var player = request.ToPlayer();
+        await _linePlayerRepository.CreatePlayer(player);
+        return new RegisterPlayerResponse(player.ToPlayerDto());    
     }
 
     public async Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request)
@@ -56,8 +63,8 @@ public class LinePlayerService : ILinePlayerService
             return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
         
         linePlayer.Edit(request.IdGender, request.IdTeamClass, request.Name, request.Image);
-        await _linePlayerRepository.EditLinePlayer(linePlayer);
-        return new EditLinePlayerResponse(linePlayer.ToLinePlayerDto());      
+        await _linePlayerRepository.EditPlayer(linePlayer);
+        return new EditLinePlayerResponse(linePlayer.ToPlayerDto());      
     }
 
     public async Task<GetLinePlayerResponse> GetAsync(long idLinePlayer)
@@ -66,7 +73,7 @@ public class LinePlayerService : ILinePlayerService
         if(linePlayer is null)
             return new GetLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
-        return new GetLinePlayerResponse(linePlayer.ToLinePlayerDto());
+        return new GetLinePlayerResponse(linePlayer.ToPlayerDto());
     }
 
     public async Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer)
@@ -75,7 +82,7 @@ public class LinePlayerService : ILinePlayerService
         if(linePlayer is null)
             return new DeleteLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
-        await _linePlayerRepository.DeleteLinePlayer(linePlayer);
+        await _linePlayerRepository.DeletePlayer(linePlayer);
         return new DeleteLinePlayerResponse();
     }
 }

@@ -3,9 +3,9 @@ using IFootball.Application.Contracts.Documents.Responses;
 
 namespace IFootball.Application.Contracts.Services;
 
-public interface ILinePlayerService
+public interface IPlayerService
 {
-    Task<RegisterLinePlayerResponse> RegisterAsync(RegisterLinePlayerRequest request);
+    Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request);
     Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request);
     Task<GetLinePlayerResponse> GetAsync(long idLinePlayer);
     Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer);

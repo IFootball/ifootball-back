@@ -1,14 +1,9 @@
 ﻿namespace IFootball.Application.Contracts.Documents.Dtos;
 
-public class GoalkeeperDto
+public class PlayerDto
 {
     public long IdGender { get; set; }
     public long IdTeamClass { get; set; }
-    
-    public int TakenGols  { get; set; }
-    public int PenaltySaves  { get; set; }
-    public int Saves  { get; set; }
-
     public string Name { get; set; }
     public string Image { get; set; }
     public int Goals { get; set; }

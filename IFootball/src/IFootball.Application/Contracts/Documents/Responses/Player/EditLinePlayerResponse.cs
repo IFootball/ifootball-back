@@ -5,8 +5,8 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class EditLinePlayerResponse : BaseResponse
 {
-    public LinePlayerDto? LinePlayer { get; set; }
-    public EditLinePlayerResponse(LinePlayerDto linePlayerDto) 
+    public PlayerDto? LinePlayer { get; set; }
+    public EditLinePlayerResponse(PlayerDto linePlayerDto) 
     { 
         LinePlayer = linePlayerDto;
     }

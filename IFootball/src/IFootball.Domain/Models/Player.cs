@@ -23,10 +23,11 @@ public class Player : BaseEntity
     public List<TeamUser>? TeamUsersFront { get; set; }
     public List<TeamUser>? TeamUsersReserveOne { get; set; }
     public List<TeamUser>? TeamUsersReserveTwo { get; set; }
+    public Goalkeeper Goalkeeper { get; set; }
+    
     
     public Player() { }
-    
-    
+        
     public Player(long idGender, long idTeamClass, string name, string image)
     {
         IdGender = idGender;
