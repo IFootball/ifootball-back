@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -62,5 +63,19 @@ public class PlayerController : ControllerBase
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
 
         return NoContent();
+    }
+    
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<SimplePlayerDto>>> GetAll(
+        [FromQuery] long? idGender,
+        [FromQuery] long? playerType,
+        [FromQuery] string? name = "",
+        [FromQuery] int size = 10,
+        [FromQuery] int page = 0
+        )
+    {
+        var response = await _playerService.GetAllAsync(idGender, playerType, name, size, page);
+        return Ok(response);
     }
 }

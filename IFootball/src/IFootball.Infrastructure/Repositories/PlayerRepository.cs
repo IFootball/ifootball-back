@@ -1,5 +1,6 @@
 ﻿using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
+using IFootball.Domain.Models.enums;
 using IFootball.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -37,9 +38,27 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         return await _context.Players.FindAsync(idPlayer) is not null;
     }
 
-    public async Task<Player> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
+    public async Task<IEnumerable<Player>> FindAll(long? idGender, long? playerType, string name, int size, int page)
+    {
+        var offset = size * (page - 1);
+        var query = _context.Players.AsQueryable();
+
+        if (idGender is not null)
+            query = query.Where(x => x.Gender.Id == idGender);
+        
+        if (playerType is not null)
+            query = query.Where(x => x.PlayerType == (PlayerType)playerType);
+        
+        return await query
+            .Where(x => x.Name.Contains(name))
+            .Skip(offset)
+            .Take(size)
+            .ToListAsync();
+    }
     
-    public async Task<Player> FindCompleteById(long idPlayer) => await _context.Players
+    public async Task<Player?> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
+    
+    public async Task<Player?> FindCompleteById(long idPlayer) => await _context.Players
         .Where(x => x.Id == idPlayer)
         .Include(x => x.Gender)
         .Include(x => x.Goalkeeper)

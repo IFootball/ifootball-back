@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
@@ -88,4 +89,12 @@ public class PlayerService : IPlayerService
         await _playerRepository.DeletePlayer(player);
         return new DeletePlayerResponse();
     }
+
+    public async Task<IEnumerable<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, int size, int page)
+    {
+        var players = await _playerRepository.FindAll(idGender, playerType, name, size, page);
+        
+        return players.Select(x => x.ToSimplePlayerDto());
+    }
+
 }

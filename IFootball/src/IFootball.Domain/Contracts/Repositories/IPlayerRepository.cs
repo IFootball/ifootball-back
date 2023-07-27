@@ -11,4 +11,6 @@ public interface IPlayerRepository
 
     Task DeletePlayer(Player player);
     Task<bool> ExistsById(long idPlayer);
+    Task<IEnumerable<Player>> FindAll(long? idGender, long? playerType, string name, int size, int page);
+
 }
