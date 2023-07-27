@@ -10,20 +10,20 @@ public class TeamUser : BaseEntity
     public Gender Gender { get; private set; }
     public long IdGender { get; private set; }
     
-    public Goalkeeper Goalkeeper { get; private set; }
     public long IdGoalkeeper { get; private set; }
+    public Player Goalkeeper { get; private set; }
     
-    public long IdLinePlayerFront { get; private set; }
-    public Player LinePlayerFront { get; private set; }
+    public long IdPlayerOne { get; private set; }
+    public Player PlayerOne { get; private set; }
 
-    public long IdLinePlayerMiddle { get; private set; }
-    public Player LinePlayerMiddle { get; private set; }
+    public long IdPlayerTwo { get; private set; }
+    public Player PlayerTwo { get; private set; }
 
-    public long IdLinePlayerBackRight { get; private set; }
-    public Player LinePlayerBackRight { get; private set; }
+    public long IdPlayerThree { get; private set; }
+    public Player PlayerThree { get; private set; }
 
-    public long IdLinePlayerBackLeft { get; private set; }
-    public Player LinePlayerBackLeft { get; private set; }
+    public long IdPlayerFour { get; private set; }
+    public Player PlayerFour { get; private set; }
 
     public long? IdReservePlayerOne { get; private set; }
     public Player? ReservePlayerOne { get; private set; }
@@ -47,22 +47,22 @@ public class TeamUser : BaseEntity
     {
         IdCaptain = teamUser.IdCaptain;
         IdGoalkeeper = teamUser.IdGoalkeeper;
-        IdLinePlayerFront = teamUser.IdLinePlayerFront;
-        IdLinePlayerMiddle = teamUser.IdLinePlayerMiddle;
-        IdLinePlayerBackRight = teamUser.IdLinePlayerBackRight;
-        IdLinePlayerBackLeft = teamUser.IdLinePlayerBackLeft;
+        IdPlayerOne = teamUser.IdPlayerOne;
+        IdPlayerTwo = teamUser.IdPlayerTwo;
+        IdPlayerThree= teamUser.IdPlayerThree;
+        IdPlayerFour= teamUser.IdPlayerFour;
         IdReservePlayerOne = teamUser.IdReservePlayerOne;
         IdReservePlayerTwo = teamUser.IdReservePlayerTwo;
     }
 
-    public TeamUser(long? idCaptain, long idGoalkeeper, long idLinePlayerFront, long idLinePlayerMiddle, long idLinePlayerBackRight, long idLinePlayerBackLeft, long? idReservePlayerOne, long? idReservePlayerTwo)
+    public TeamUser(long? idCaptain, long idGoalkeeper, long idPlayerOne, long idPlayerTwo, long idPlayerThree, long idPlayerFour, long? idReservePlayerOne, long? idReservePlayerTwo)
     {
         IdCaptain = idCaptain;
         IdGoalkeeper = idGoalkeeper;
-        IdLinePlayerFront = idLinePlayerFront;
-        IdLinePlayerMiddle = idLinePlayerMiddle;
-        IdLinePlayerBackRight = idLinePlayerBackRight;
-        IdLinePlayerBackLeft = idLinePlayerBackLeft;
+        IdPlayerOne = idPlayerOne;
+        IdPlayerTwo = idPlayerTwo;
+        IdPlayerThree= idPlayerThree;
+        IdPlayerFour= idPlayerFour;
         IdReservePlayerOne = idReservePlayerOne;
         IdReservePlayerTwo = idReservePlayerTwo;
     }

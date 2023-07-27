@@ -17,10 +17,11 @@ public class Player : BaseEntity
     public int Fouls { get; private set; }
     public int Wins { get; private set; }
     
-    public List<TeamUser>? TeamUsersBackRight { get; set; }
-    public List<TeamUser>? TeamUsersBackLeft { get; set; }
-    public List<TeamUser>? TeamUsersMiddle { get; set; }
-    public List<TeamUser>? TeamUsersFront { get; set; }
+    public List<TeamUser>? TeamUsersFour { get; set; }
+    public List<TeamUser>? TeamUsersThree { get; set; }
+    public List<TeamUser>? TeamUsersTwo { get; set; }
+    public List<TeamUser>? TeamUsersOne { get; set; }
+    public List<TeamUser>? TeamUsersGoalkeeper { get; set; }
     public List<TeamUser>? TeamUsersReserveOne { get; set; }
     public List<TeamUser>? TeamUsersReserveTwo { get; set; }
     public Goalkeeper Goalkeeper { get; set; }
