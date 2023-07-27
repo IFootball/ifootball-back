@@ -79,13 +79,13 @@ public class PlayerService : IPlayerService
         return new GetLinePlayerResponse(linePlayer.ToPlayerDto());
     }
 
-    public async Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer)
+    public async Task<DeletePlayerResponse> DeleteAsync(long idPlayer)
     {
-        var linePlayer = await _playerRepository.FindById(idLinePlayer);
-        if(linePlayer is null)
-            return new DeleteLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+        var player = await _playerRepository.FindById(idPlayer);
+        if(player is null)
+            return new DeletePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
-        await _playerRepository.DeletePlayer(linePlayer);
-        return new DeleteLinePlayerResponse();
+        await _playerRepository.DeletePlayer(player);
+        return new DeletePlayerResponse();
     }
 }

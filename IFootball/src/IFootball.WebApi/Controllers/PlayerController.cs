@@ -39,17 +39,6 @@ public class PlayerController : ControllerBase
 
         return Ok(response);
     }
-    [HttpDelete("{idPlayer}")]
-    [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<DeleteLinePlayerResponse>> Delete([FromRoute] long idPlayer)
-    {
-        var response = await _playerService.DeleteAsync(idPlayer);
-        
-        if(response.IsErrorStatusCode())
-            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
-
-        return Ok(response);
-    }
     
     [HttpGet("{idPlayer}")]
     [Authorize(Roles = "Administrator")]
@@ -63,4 +52,15 @@ public class PlayerController : ControllerBase
         return Ok(response);
     }
     
+    [HttpDelete("{idPlayer}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<DeletePlayerResponse>> Delete([FromRoute] long idPlayer)
+    {
+        var response = await _playerService.DeleteAsync(idPlayer);
+        
+        if(response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return NoContent();
+    }
 }
