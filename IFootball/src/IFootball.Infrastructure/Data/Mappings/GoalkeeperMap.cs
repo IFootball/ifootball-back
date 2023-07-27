@@ -25,65 +25,16 @@ public class GoalkeeperMap: IEntityTypeConfiguration<Goalkeeper>
             .IsRequired()
             .HasColumnName("penalty_saves")
             .HasColumnType("INT");
-        
+
         builder.Property(x => x.Saves)
             .IsRequired()
             .HasColumnName("saves")
             .HasColumnType("INT");
-        
-        
-        builder.Property(x => x.Name)
-            .IsRequired()
-            .HasColumnName("name")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(128);
-        
-        builder.Property(x => x.Image)
-            .IsRequired()
-            .HasColumnName("image")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(512);
 
-        builder.Property(x => x.Goals)
-            .IsRequired()
-            .HasColumnName("goals")
-            .HasColumnType("INT");
-
-        builder.Property(x => x.Assists)
-            .IsRequired()
-            .HasColumnName("assists")
-            .HasColumnType("INT");
-        
-        builder.Property(x => x.YellowCard)
-            .IsRequired()
-            .HasColumnName("yellow_card")
-            .HasColumnType("INT");
-        
-        builder.Property(x => x.RedCard)
-            .IsRequired()
-            .HasColumnName("red_card")
-            .HasColumnType("INT");
-        
-        builder.Property(x => x.Wins)
-            .IsRequired()
-            .HasColumnName("wins")
-            .HasColumnType("INT");
-        
-        builder.Property(x => x.Fouls)
-            .IsRequired()
-            .HasColumnName("fouls")
-            .HasColumnType("INT");
-        
         builder
-            .HasOne(x => x.TeamClass)
-            .WithMany(x => x.TeamClassGoalkeepers)
-            .HasForeignKey(x => x.IdTeamClass)
-            .HasConstraintName("FK_teamclass_goalkeeper");
-        
-        builder
-            .HasOne(x => x.Gender)
-            .WithMany(x => x.GenderGoalkeepers)
-            .HasForeignKey(x => x.IdGender)
-            .HasConstraintName("FK_gender_goalkepper");
+            .HasOne(x => x.Player)
+            .WithOne(x => x.Goalkeeper)
+            .HasForeignKey<Goalkeeper>(x => x.IdPlayer)
+            .HasConstraintName("FK_player_goalkeeper");
     }
 }

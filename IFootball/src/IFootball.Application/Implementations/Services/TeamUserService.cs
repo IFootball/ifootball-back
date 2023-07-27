@@ -51,7 +51,7 @@ namespace IFootball.Application.Implementations.Services
             var goalkeeper = await _goalkeeperRepository.FindById(teamUserRequest.IdGoalkeeper);
             if (goalkeeper is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não existe!");
-            if (goalkeeper.Gender.Name == GenderName.Male)
+            if (goalkeeper.Player.Gender.Name == GenderName.Male)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro deve ser masculino!");
             
             var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackLeft);
@@ -134,7 +134,7 @@ namespace IFootball.Application.Implementations.Services
             var goalkeeper = await _goalkeeperRepository.FindById(teamUserRequest.IdGoalkeeper);
             if (goalkeeper is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A goleira escolhida não existe!");
-            if (goalkeeper.Gender.Name == GenderName.Female)
+            if (goalkeeper.Player.Gender.Name == GenderName.Female)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A goleira deve ser feminina!");
             
             var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackLeft);

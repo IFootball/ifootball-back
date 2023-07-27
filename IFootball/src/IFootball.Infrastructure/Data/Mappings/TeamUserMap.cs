@@ -22,33 +22,33 @@ public class TeamUserMap : IEntityTypeConfiguration<TeamUser>
         
         builder
             .HasOne(x => x.Goalkeeper)
-            .WithMany(x => x.TeamUsers)
+            .WithMany(x => x.TeamUsersGoalkeeper)
             .HasForeignKey(x => x.IdGoalkeeper)
             .HasConstraintName("FK_goalkeeper_teamuser");
         
         builder
-            .HasOne(x => x.LinePlayerBackLeft)
-            .WithMany(x => x.TeamUsersBackLeft)
-            .HasForeignKey(x => x.IdLinePlayerBackLeft)
-            .HasConstraintName("FK_lineplayerbackleft_teamuser");
+            .HasOne(x => x.PlayerFour)
+            .WithMany(x => x.TeamUsersFour)
+            .HasForeignKey(x => x.IdPlayerFour)
+            .HasConstraintName("FK_playerFour_teamuser");
         
         builder
-            .HasOne(x => x.LinePlayerBackRight)
-            .WithMany(x => x.TeamUsersBackRight)
-            .HasForeignKey(x => x.IdLinePlayerBackRight)
-            .HasConstraintName("FK_lineplayerbackright_teamuser");
+            .HasOne(x => x.PlayerTwo)
+            .WithMany(x => x.TeamUsersTwo)
+            .HasForeignKey(x => x.IdPlayerTwo)
+            .HasConstraintName("FK_playerTwo_teamuser");
         
         builder
-            .HasOne(x => x.LinePlayerFront)
-            .WithMany(x => x.TeamUsersFront)
-            .HasForeignKey(x => x.IdLinePlayerFront)
-            .HasConstraintName("FK_lineplayerfront_teamuser");
+            .HasOne(x => x.PlayerOne)
+            .WithMany(x => x.TeamUsersOne)
+            .HasForeignKey(x => x.IdPlayerOne)
+            .HasConstraintName("FK_playerOne_teamuser");
         
         builder
-            .HasOne(x => x.LinePlayerMiddle)
-            .WithMany(x => x.TeamUsersMiddle)
-            .HasForeignKey(x => x.IdLinePlayerMiddle)
-            .HasConstraintName("FK_lineplayermiddle_teamuser");
+            .HasOne(x => x.PlayerThree)
+            .WithMany(x => x.TeamUsersThree)
+            .HasForeignKey(x => x.IdPlayerThree)
+            .HasConstraintName("FK_playerThree_teamuser");
         
         builder
             .HasOne(x => x.ReservePlayerOne)

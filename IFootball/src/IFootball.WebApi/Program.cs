@@ -74,7 +74,6 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<ITeamUserService, TeamUserService>();
-builder.Services.AddScoped<IGoalkeeperService, GoalkeeperService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<ITeamClassService, TeamClassService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();

@@ -38,11 +38,12 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
         return await _context.Goalkeepers.FindAsync(idGoalkeeper) is not null;
     }
     
-    public async Task<Goalkeeper> FindById(long idGoalkeeper)
+    public async Task<Goalkeeper> FindById(long idPlayer)
     {
         return await _context.Goalkeepers
-            .Where(x => x.Id == idGoalkeeper)
-            .Include(x => x.Gender)
+            .Where(x => x.IdPlayer == idPlayer)
+            .Include(x => x.Player)
+            .Include(x => x.Player.Gender)
             .FirstOrDefaultAsync();
     }
 }

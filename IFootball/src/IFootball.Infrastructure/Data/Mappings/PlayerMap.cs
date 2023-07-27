@@ -60,13 +60,13 @@ public class PlayerMap: IEntityTypeConfiguration<Player>
 
         builder
             .HasOne(x => x.TeamClass)
-            .WithMany(x => x.TeamClassLinePlayers)
+            .WithMany(x => x.TeamClassPlayers)
             .HasForeignKey(x => x.IdTeamClass)
             .HasConstraintName("FK_teamclass_lineplayer");
         
         builder
             .HasOne(x => x.Gender)
-            .WithMany(x => x.GenderLinePlayers)
+            .WithMany(x => x.GenderPlayers)
             .HasForeignKey(x => x.IdGender)
             .HasConstraintName("FK_gender_lineplayer");
     }

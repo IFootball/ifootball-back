@@ -6,10 +6,10 @@ public class SimpleTeamUserDto
     public long? IdCaptain { get; set; }
     public long IdGender { get; set; }
     public long IdGoalkeeper { get; set; }
-    public long IdLinePlayerFront { get; set; }
-    public long IdLinePlayerMiddle { get; set; }
-    public long IdLinePlayerBackRight { get; set; }
-    public long IdLinePlayerBackLeft { get; set; }
+    public long IdPlayerOne { get; set; }
+    public long IdPlayerTwo { get; set; }
+    public long IdPlayerThree { get; set; }
+    public long IdPlayerFour { get; set; }
     public long? IdReservePlayerOne { get; set; }
     public long? IdReservePlayerTwo { get; set; }
 }
