@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFootball.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230716225149_initialMigration")]
+    [Migration("20230727032045_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,43 +57,12 @@ namespace IFootball.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Assists")
-                        .HasColumnType("INT")
-                        .HasColumnName("assists");
-
-                    b.Property<int>("Fouls")
-                        .HasColumnType("INT")
-                        .HasColumnName("fouls");
-
-                    b.Property<int>("Goals")
-                        .HasColumnType("INT")
-                        .HasColumnName("goals");
-
-                    b.Property<long>("IdGender")
+                    b.Property<long>("IdPlayer")
                         .HasColumnType("INTEGER");
-
-                    b.Property<long>("IdTeamClass")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("NVARCHAR")
-                        .HasColumnName("image");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("NVARCHAR")
-                        .HasColumnName("name");
 
                     b.Property<int>("PenaltySaves")
                         .HasColumnType("INT")
                         .HasColumnName("penalty_saves");
-
-                    b.Property<int>("RedCard")
-                        .HasColumnType("INT")
-                        .HasColumnName("red_card");
 
                     b.Property<int>("Saves")
                         .HasColumnType("INT")
@@ -103,24 +72,15 @@ namespace IFootball.Infrastructure.Migrations
                         .HasColumnType("INT")
                         .HasColumnName("taken_gols");
 
-                    b.Property<int>("Wins")
-                        .HasColumnType("INT")
-                        .HasColumnName("wins");
-
-                    b.Property<int>("YellowCard")
-                        .HasColumnType("INT")
-                        .HasColumnName("yellow_card");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("IdGender");
-
-                    b.HasIndex("IdTeamClass");
+                    b.HasIndex("IdPlayer")
+                        .IsUnique();
 
                     b.ToTable("goalkeeper", (string)null);
                 });
 
-            modelBuilder.Entity("IFootball.Domain.Models.LinePlayer", b =>
+            modelBuilder.Entity("IFootball.Domain.Models.Player", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,6 +116,10 @@ namespace IFootball.Infrastructure.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("name");
 
+                    b.Property<int>("PlayerType")
+                        .HasColumnType("INT")
+                        .HasColumnName("player_type");
+
                     b.Property<int>("RedCard")
                         .HasColumnType("INT")
                         .HasColumnName("red_card");
@@ -174,7 +138,7 @@ namespace IFootball.Infrastructure.Migrations
 
                     b.HasIndex("IdTeamClass");
 
-                    b.ToTable("line_player", (string)null);
+                    b.ToTable("player", (string)null);
                 });
 
             modelBuilder.Entity("IFootball.Domain.Models.TeamClass", b =>
@@ -214,16 +178,16 @@ namespace IFootball.Infrastructure.Migrations
                     b.Property<long>("IdGoalkeeper")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("IdLinePlayerBackLeft")
+                    b.Property<long>("IdPlayerFour")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("IdLinePlayerBackRight")
+                    b.Property<long>("IdPlayerOne")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("IdLinePlayerFront")
+                    b.Property<long>("IdPlayerThree")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("IdLinePlayerMiddle")
+                    b.Property<long>("IdPlayerTwo")
                         .HasColumnType("INTEGER");
 
                     b.Property<long?>("IdReservePlayerOne")
@@ -241,13 +205,13 @@ namespace IFootball.Infrastructure.Migrations
 
                     b.HasIndex("IdGoalkeeper");
 
-                    b.HasIndex("IdLinePlayerBackLeft");
+                    b.HasIndex("IdPlayerFour");
 
-                    b.HasIndex("IdLinePlayerBackRight");
+                    b.HasIndex("IdPlayerOne");
 
-                    b.HasIndex("IdLinePlayerFront");
+                    b.HasIndex("IdPlayerThree");
 
-                    b.HasIndex("IdLinePlayerMiddle");
+                    b.HasIndex("IdPlayerTwo");
 
                     b.HasIndex("IdReservePlayerOne");
 
@@ -298,36 +262,27 @@ namespace IFootball.Infrastructure.Migrations
 
             modelBuilder.Entity("IFootball.Domain.Models.Goalkeeper", b =>
                 {
-                    b.HasOne("IFootball.Domain.Models.Gender", "Gender")
-                        .WithMany("GenderGoalkeepers")
-                        .HasForeignKey("IdGender")
+                    b.HasOne("IFootball.Domain.Models.Player", "Player")
+                        .WithOne("Goalkeeper")
+                        .HasForeignKey("IFootball.Domain.Models.Goalkeeper", "IdPlayer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_gender_goalkepper");
+                        .HasConstraintName("FK_player_goalkeeper");
 
-                    b.HasOne("IFootball.Domain.Models.TeamClass", "TeamClass")
-                        .WithMany("TeamClassGoalkeepers")
-                        .HasForeignKey("IdTeamClass")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_teamclass_goalkeeper");
-
-                    b.Navigation("Gender");
-
-                    b.Navigation("TeamClass");
+                    b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("IFootball.Domain.Models.LinePlayer", b =>
+            modelBuilder.Entity("IFootball.Domain.Models.Player", b =>
                 {
                     b.HasOne("IFootball.Domain.Models.Gender", "Gender")
-                        .WithMany("GenderLinePlayers")
+                        .WithMany("GenderPlayers")
                         .HasForeignKey("IdGender")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_gender_lineplayer");
 
                     b.HasOne("IFootball.Domain.Models.TeamClass", "TeamClass")
-                        .WithMany("TeamClassLinePlayers")
+                        .WithMany("TeamClassPlayers")
                         .HasForeignKey("IdTeamClass")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -368,47 +323,47 @@ namespace IFootball.Infrastructure.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_gender_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.Goalkeeper", "Goalkeeper")
-                        .WithMany("TeamUsers")
+                    b.HasOne("IFootball.Domain.Models.Player", "Goalkeeper")
+                        .WithMany("TeamUsersGoalkeeper")
                         .HasForeignKey("IdGoalkeeper")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_goalkeeper_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "LinePlayerBackLeft")
-                        .WithMany("TeamUsersBackLeft")
-                        .HasForeignKey("IdLinePlayerBackLeft")
+                    b.HasOne("IFootball.Domain.Models.Player", "PlayerFour")
+                        .WithMany("TeamUsersFour")
+                        .HasForeignKey("IdPlayerFour")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_lineplayerbackleft_teamuser");
+                        .HasConstraintName("FK_playerFour_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "LinePlayerBackRight")
-                        .WithMany("TeamUsersBackRight")
-                        .HasForeignKey("IdLinePlayerBackRight")
+                    b.HasOne("IFootball.Domain.Models.Player", "PlayerOne")
+                        .WithMany("TeamUsersOne")
+                        .HasForeignKey("IdPlayerOne")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_lineplayerbackright_teamuser");
+                        .HasConstraintName("FK_playerOne_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "LinePlayerFront")
-                        .WithMany("TeamUsersFront")
-                        .HasForeignKey("IdLinePlayerFront")
+                    b.HasOne("IFootball.Domain.Models.Player", "PlayerThree")
+                        .WithMany("TeamUsersThree")
+                        .HasForeignKey("IdPlayerThree")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_lineplayerfront_teamuser");
+                        .HasConstraintName("FK_playerThree_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "LinePlayerMiddle")
-                        .WithMany("TeamUsersMiddle")
-                        .HasForeignKey("IdLinePlayerMiddle")
+                    b.HasOne("IFootball.Domain.Models.Player", "PlayerTwo")
+                        .WithMany("TeamUsersTwo")
+                        .HasForeignKey("IdPlayerTwo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_lineplayermiddle_teamuser");
+                        .HasConstraintName("FK_playerTwo_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "ReservePlayerOne")
+                    b.HasOne("IFootball.Domain.Models.Player", "ReservePlayerOne")
                         .WithMany("TeamUsersReserveOne")
                         .HasForeignKey("IdReservePlayerOne")
                         .HasConstraintName("FK_reserveplayerone_teamuser");
 
-                    b.HasOne("IFootball.Domain.Models.LinePlayer", "ReservePlayerTwo")
+                    b.HasOne("IFootball.Domain.Models.Player", "ReservePlayerTwo")
                         .WithMany("TeamUsersReserveTwo")
                         .HasForeignKey("IdReservePlayerTwo")
                         .HasConstraintName("FK_reserveplayertwo_teamuser");
@@ -424,13 +379,13 @@ namespace IFootball.Infrastructure.Migrations
 
                     b.Navigation("Goalkeeper");
 
-                    b.Navigation("LinePlayerBackLeft");
+                    b.Navigation("PlayerFour");
 
-                    b.Navigation("LinePlayerBackRight");
+                    b.Navigation("PlayerOne");
 
-                    b.Navigation("LinePlayerFront");
+                    b.Navigation("PlayerThree");
 
-                    b.Navigation("LinePlayerMiddle");
+                    b.Navigation("PlayerTwo");
 
                     b.Navigation("ReservePlayerOne");
 
@@ -460,40 +415,35 @@ namespace IFootball.Infrastructure.Migrations
 
             modelBuilder.Entity("IFootball.Domain.Models.Gender", b =>
                 {
-                    b.Navigation("GenderGoalkeepers");
-
-                    b.Navigation("GenderLinePlayers");
+                    b.Navigation("GenderPlayers");
 
                     b.Navigation("GenderTeamClasses");
 
                     b.Navigation("GenderTeamUsers");
                 });
 
-            modelBuilder.Entity("IFootball.Domain.Models.Goalkeeper", b =>
+            modelBuilder.Entity("IFootball.Domain.Models.Player", b =>
                 {
-                    b.Navigation("TeamUsers");
-                });
+                    b.Navigation("Goalkeeper");
 
-            modelBuilder.Entity("IFootball.Domain.Models.LinePlayer", b =>
-                {
-                    b.Navigation("TeamUsersBackLeft");
+                    b.Navigation("TeamUsersFour");
 
-                    b.Navigation("TeamUsersBackRight");
+                    b.Navigation("TeamUsersGoalkeeper");
 
-                    b.Navigation("TeamUsersFront");
-
-                    b.Navigation("TeamUsersMiddle");
+                    b.Navigation("TeamUsersOne");
 
                     b.Navigation("TeamUsersReserveOne");
 
                     b.Navigation("TeamUsersReserveTwo");
+
+                    b.Navigation("TeamUsersThree");
+
+                    b.Navigation("TeamUsersTwo");
                 });
 
             modelBuilder.Entity("IFootball.Domain.Models.TeamClass", b =>
                 {
-                    b.Navigation("TeamClassGoalkeepers");
-
-                    b.Navigation("TeamClassLinePlayers");
+                    b.Navigation("TeamClassPlayers");
                 });
 
             modelBuilder.Entity("IFootball.Domain.Models.User", b =>

@@ -1,7 +1,10 @@
-﻿namespace IFootball.Application.Contracts.Documents.Dtos;
+﻿using IFootball.Domain.Models.enums;
 
-public class PlayerDto
+namespace IFootball.Application.Contracts.Documents.Dtos;
+
+public class CompletePlayerDto
 {
+    public long Id { get; set; }
     public long IdGender { get; set; }
     public long IdTeamClass { get; set; }
     public string Name { get; set; }
@@ -12,4 +15,9 @@ public class PlayerDto
     public int RedCard { get; set; }
     public int Fouls { get; set; }
     public int Wins { get; set; }
+    public PlayerType PlayerType { get; set; }
+    
+    public int? TakenGols { get;  set; }
+    public int? PenaltySaves { get;  set; }
+    public int? Saves { get;  set; }
 }

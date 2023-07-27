@@ -53,7 +53,7 @@ public class PlayerController : ControllerBase
     
     [HttpGet("{idPlayer}")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<GetLinePlayerResponse>> Get([FromRoute] long idPlayer)
+    public async Task<ActionResult<GetPlayerResponse>> Get([FromRoute] long idPlayer)
     {
         var response = await _playerService.GetAsync(idPlayer);
         

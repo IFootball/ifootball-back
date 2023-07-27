@@ -10,10 +10,10 @@ public static class RegisterTeamUserMapper
         return new TeamUser(
             request.IdCaptain,
             request.IdGoalkeeper,
-            request.IdLinePlayerFront,
-            request.IdLinePlayerMiddle,
-            request.IdLinePlayerBackRight,
-            request.IdLinePlayerBackLeft,
+            request.IdLinePlayerOne,
+            request.IdLinePlayerTwo,
+            request.IdLinePlayerThree,
+            request.IdLinePlayerFour,
             request.IdReservePlayerOne,
             request.IdReservePlayerTwo
         );

@@ -5,10 +5,10 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class EditPlayerResponse : BaseResponse
 {
-    public PlayerDto? Player { get; set; }
-    public EditPlayerResponse(PlayerDto playerDto) 
+    public SimplePlayerDto? SimplePlayer { get; set; }
+    public EditPlayerResponse(SimplePlayerDto simplePlayerDto) 
     {
-        Player = playerDto;
+        SimplePlayer = simplePlayerDto;
     }
     public EditPlayerResponse(HttpStatusCode statusCode, string? message) : base(new ErrorResponse(statusCode, message)) { }
 }

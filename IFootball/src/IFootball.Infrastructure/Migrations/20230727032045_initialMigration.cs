@@ -84,16 +84,14 @@ namespace IFootball.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "goalkeeper",
+                name: "player",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     IdGender = table.Column<long>(type: "INTEGER", nullable: false),
                     IdTeamClass = table.Column<long>(type: "INTEGER", nullable: false),
-                    taken_gols = table.Column<int>(type: "INT", nullable: false),
-                    penalty_saves = table.Column<int>(type: "INT", nullable: false),
-                    saves = table.Column<int>(type: "INT", nullable: false),
+                    player_type = table.Column<int>(type: "INT", nullable: false),
                     name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
                     image = table.Column<string>(type: "NVARCHAR", maxLength: 512, nullable: false),
                     goals = table.Column<int>(type: "INT", nullable: false),
@@ -105,41 +103,7 @@ namespace IFootball.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_goalkeeper", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_gender_goalkepper",
-                        column: x => x.IdGender,
-                        principalTable: "gender",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_teamclass_goalkeeper",
-                        column: x => x.IdTeamClass,
-                        principalTable: "team_class",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "line_player",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IdGender = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdTeamClass = table.Column<long>(type: "INTEGER", nullable: false),
-                    name = table.Column<string>(type: "NVARCHAR", maxLength: 128, nullable: false),
-                    image = table.Column<string>(type: "NVARCHAR", maxLength: 512, nullable: false),
-                    goals = table.Column<int>(type: "INT", nullable: false),
-                    assists = table.Column<int>(type: "INT", nullable: false),
-                    yellow_card = table.Column<int>(type: "INT", nullable: false),
-                    red_card = table.Column<int>(type: "INT", nullable: false),
-                    fouls = table.Column<int>(type: "INT", nullable: false),
-                    wins = table.Column<int>(type: "INT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_line_player", x => x.Id);
+                    table.PrimaryKey("PK_player", x => x.Id);
                     table.ForeignKey(
                         name: "FK_gender_lineplayer",
                         column: x => x.IdGender,
@@ -155,6 +119,28 @@ namespace IFootball.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "goalkeeper",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    taken_gols = table.Column<int>(type: "INT", nullable: false),
+                    penalty_saves = table.Column<int>(type: "INT", nullable: false),
+                    saves = table.Column<int>(type: "INT", nullable: false),
+                    IdPlayer = table.Column<long>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_goalkeeper", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_player_goalkeeper",
+                        column: x => x.IdPlayer,
+                        principalTable: "player",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "team_user",
                 columns: table => new
                 {
@@ -164,10 +150,10 @@ namespace IFootball.Infrastructure.Migrations
                     id_captain = table.Column<long>(type: "INT", nullable: true),
                     IdGender = table.Column<long>(type: "INTEGER", nullable: false),
                     IdGoalkeeper = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerFront = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerMiddle = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerBackRight = table.Column<long>(type: "INTEGER", nullable: false),
-                    IdLinePlayerBackLeft = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdPlayerOne = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdPlayerTwo = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdPlayerThree = table.Column<long>(type: "INTEGER", nullable: false),
+                    IdPlayerFour = table.Column<long>(type: "INTEGER", nullable: false),
                     IdReservePlayerOne = table.Column<long>(type: "INTEGER", nullable: true),
                     IdReservePlayerTwo = table.Column<long>(type: "INTEGER", nullable: true)
                 },
@@ -183,42 +169,42 @@ namespace IFootball.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_goalkeeper_teamuser",
                         column: x => x.IdGoalkeeper,
-                        principalTable: "goalkeeper",
+                        principalTable: "player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayerbackleft_teamuser",
-                        column: x => x.IdLinePlayerBackLeft,
-                        principalTable: "line_player",
+                        name: "FK_playerFour_teamuser",
+                        column: x => x.IdPlayerFour,
+                        principalTable: "player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayerbackright_teamuser",
-                        column: x => x.IdLinePlayerBackRight,
-                        principalTable: "line_player",
+                        name: "FK_playerOne_teamuser",
+                        column: x => x.IdPlayerOne,
+                        principalTable: "player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayerfront_teamuser",
-                        column: x => x.IdLinePlayerFront,
-                        principalTable: "line_player",
+                        name: "FK_playerThree_teamuser",
+                        column: x => x.IdPlayerThree,
+                        principalTable: "player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lineplayermiddle_teamuser",
-                        column: x => x.IdLinePlayerMiddle,
-                        principalTable: "line_player",
+                        name: "FK_playerTwo_teamuser",
+                        column: x => x.IdPlayerTwo,
+                        principalTable: "player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_reserveplayerone_teamuser",
                         column: x => x.IdReservePlayerOne,
-                        principalTable: "line_player",
+                        principalTable: "player",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_reserveplayertwo_teamuser",
                         column: x => x.IdReservePlayerTwo,
-                        principalTable: "line_player",
+                        principalTable: "player",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_user_teamuser",
@@ -229,23 +215,19 @@ namespace IFootball.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_goalkeeper_IdGender",
+                name: "IX_goalkeeper_IdPlayer",
                 table: "goalkeeper",
+                column: "IdPlayer",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_player_IdGender",
+                table: "player",
                 column: "IdGender");
 
             migrationBuilder.CreateIndex(
-                name: "IX_goalkeeper_IdTeamClass",
-                table: "goalkeeper",
-                column: "IdTeamClass");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_line_player_IdGender",
-                table: "line_player",
-                column: "IdGender");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_line_player_IdTeamClass",
-                table: "line_player",
+                name: "IX_player_IdTeamClass",
+                table: "player",
                 column: "IdTeamClass");
 
             migrationBuilder.CreateIndex(
@@ -269,24 +251,24 @@ namespace IFootball.Infrastructure.Migrations
                 column: "IdGoalkeeper");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerBackLeft",
+                name: "IX_team_user_IdPlayerFour",
                 table: "team_user",
-                column: "IdLinePlayerBackLeft");
+                column: "IdPlayerFour");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerBackRight",
+                name: "IX_team_user_IdPlayerOne",
                 table: "team_user",
-                column: "IdLinePlayerBackRight");
+                column: "IdPlayerOne");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerFront",
+                name: "IX_team_user_IdPlayerThree",
                 table: "team_user",
-                column: "IdLinePlayerFront");
+                column: "IdPlayerThree");
 
             migrationBuilder.CreateIndex(
-                name: "IX_team_user_IdLinePlayerMiddle",
+                name: "IX_team_user_IdPlayerTwo",
                 table: "team_user",
-                column: "IdLinePlayerMiddle");
+                column: "IdPlayerTwo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_team_user_IdReservePlayerOne",
@@ -312,13 +294,13 @@ namespace IFootball.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "team_user");
-
-            migrationBuilder.DropTable(
                 name: "goalkeeper");
 
             migrationBuilder.DropTable(
-                name: "line_player");
+                name: "team_user");
+
+            migrationBuilder.DropTable(
+                name: "player");
 
             migrationBuilder.DropTable(
                 name: "user");

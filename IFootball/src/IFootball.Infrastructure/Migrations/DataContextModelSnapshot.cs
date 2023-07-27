@@ -114,6 +114,10 @@ namespace IFootball.Infrastructure.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("name");
 
+                    b.Property<int>("PlayerType")
+                        .HasColumnType("INT")
+                        .HasColumnName("player_type");
+
                     b.Property<int>("RedCard")
                         .HasColumnType("INT")
                         .HasColumnName("red_card");
@@ -418,8 +422,7 @@ namespace IFootball.Infrastructure.Migrations
 
             modelBuilder.Entity("IFootball.Domain.Models.Player", b =>
                 {
-                    b.Navigation("Goalkeeper")
-                        .IsRequired();
+                    b.Navigation("Goalkeeper");
 
                     b.Navigation("TeamUsersFour");
 

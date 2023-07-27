@@ -45,7 +45,7 @@ public class PlayerService : IPlayerService
             await _goalkeeperRepository.CreateGoalkeeper(new Goalkeeper(player.Id));
         }
 
-        return new RegisterPlayerResponse(player.ToPlayerDto());    
+        return new RegisterPlayerResponse(player.ToSimplePlayerDto());    
     }
 
     public async Task<EditPlayerResponse> EditAsync(long idPlayer, EditPlayerRequest request)
@@ -67,16 +67,16 @@ public class PlayerService : IPlayerService
 
         player.Edit(request.IdGender, request.IdTeamClass, request.Name, request.Image);
         await _playerRepository.EditPlayer(player);
-        return new EditPlayerResponse(player.ToPlayerDto());      
+        return new EditPlayerResponse(player.ToSimplePlayerDto());      
     }
 
-    public async Task<GetLinePlayerResponse> GetAsync(long idLinePlayer)
+    public async Task<GetPlayerResponse> GetAsync(long idLinePlayer)
     {
-        var linePlayer = await _playerRepository.FindById(idLinePlayer);
-        if(linePlayer is null)
-            return new GetLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+        var player = await _playerRepository.FindById(idLinePlayer);
+        if(player is null)
+            return new GetPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
-        return new GetLinePlayerResponse(linePlayer.ToPlayerDto());
+        return new GetPlayerResponse(player.ToCompletePlayerDto());
     }
 
     public async Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer)

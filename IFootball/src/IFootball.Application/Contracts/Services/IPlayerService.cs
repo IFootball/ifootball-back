@@ -7,7 +7,7 @@ public interface IPlayerService
 {
     Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request);
     Task<EditPlayerResponse> EditAsync(long idLinePlayer, EditPlayerRequest request);
-    Task<GetLinePlayerResponse> GetAsync(long idLinePlayer);
+    Task<GetPlayerResponse> GetAsync(long idLinePlayer);
     Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer);
 
 }

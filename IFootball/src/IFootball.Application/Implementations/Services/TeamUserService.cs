@@ -54,25 +54,25 @@ namespace IFootball.Application.Implementations.Services
             if (goalkeeper.Player.Gender.Name == GenderName.Male)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro deve ser masculino!");
             
-            var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackLeft);
+            var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerTwo);
             if (linePlayerBackLeft is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O zagueiro esquerdo escolhido não existe!");
             if (linePlayerBackLeft.Gender.Name == GenderName.Male)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O zagueiro esquerdo deve ser masculino!");
             
-            var linePlayerBackRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackRight);
+            var linePlayerBackRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerOne);
             if (linePlayerBackRight is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O zagueiro direito escolhido não existe!");
             if (linePlayerBackRight.Gender.Name == GenderName.Male)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O zagueiro direito deve ser masculino!");
             
-            var linePlayerFrontRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerFront);
+            var linePlayerFrontRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerThree);
             if (linePlayerFrontRight is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O volante não existe!");
             if (linePlayerFrontRight.Gender.Name == GenderName.Male)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O volante deve ser masculino!");
             
-            var linePlayerFrontLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerMiddle);
+            var linePlayerFrontLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerFour);
             if (linePlayerFrontLeft is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O atacante não existe!");
             if (linePlayerFrontLeft.Gender.Name == GenderName.Male)
@@ -137,25 +137,25 @@ namespace IFootball.Application.Implementations.Services
             if (goalkeeper.Player.Gender.Name == GenderName.Female)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A goleira deve ser feminina!");
             
-            var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackLeft);
+            var linePlayerBackLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerTwo);
             if (linePlayerBackLeft is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A zagueira esquerda escolhida não existe!");
             if (linePlayerBackLeft.Gender.Name == GenderName.Female)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A zagueira esquerda deve ser feminina!");
             
-            var linePlayerBackRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerBackRight);
+            var linePlayerBackRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerOne);
             if (linePlayerBackRight is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A zagueira direita escolhida não existe!");
             if (linePlayerBackRight.Gender.Name == GenderName.Female)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A zagueira direita deve ser feminina!");
             
-            var linePlayerFrontRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerFront);
+            var linePlayerFrontRight = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerThree);
             if (linePlayerFrontRight is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A volante escolhida não existe!");
             if (linePlayerFrontRight.Gender.Name == GenderName.Female)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A volante deve ser feminina!");
             
-            var linePlayerFrontLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerMiddle);
+            var linePlayerFrontLeft = await _linePlayerRepository.FindById(teamUserRequest.IdLinePlayerFour);
             if (linePlayerFrontLeft is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "A atacante escolhida não existe!");
             if (linePlayerFrontLeft.Gender.Name == GenderName.Female)
@@ -200,10 +200,10 @@ namespace IFootball.Application.Implementations.Services
             var uniqueIds = new HashSet<long>();
 
             uniqueIds.Add(request.IdGoalkeeper);
-            uniqueIds.Add(request.IdLinePlayerFront);
-            uniqueIds.Add(request.IdLinePlayerMiddle);
-            uniqueIds.Add(request.IdLinePlayerBackRight);
-            uniqueIds.Add(request.IdLinePlayerBackLeft);
+            uniqueIds.Add(request.IdLinePlayerOne);
+            uniqueIds.Add(request.IdLinePlayerTwo);
+            uniqueIds.Add(request.IdLinePlayerThree);
+            uniqueIds.Add(request.IdLinePlayerFour);
 
             if (request.IdReservePlayerOne.HasValue)
                 uniqueIds.Add(request.IdReservePlayerOne.Value);

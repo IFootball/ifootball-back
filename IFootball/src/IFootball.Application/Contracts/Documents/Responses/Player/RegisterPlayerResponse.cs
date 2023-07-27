@@ -5,10 +5,10 @@ namespace IFootball.Application.Contracts.Documents.Responses;
 
 public class RegisterPlayerResponse : BaseResponse
 {
-    public PlayerDto? player { get; set; }
-    public RegisterPlayerResponse(PlayerDto playerDto) 
+    public SimplePlayerDto? SimplePlayer { get; set; }
+    public RegisterPlayerResponse(SimplePlayerDto simplePlayerDto) 
     { 
-        player = playerDto;
+        SimplePlayer = simplePlayerDto;
     }
     public RegisterPlayerResponse(HttpStatusCode statusCode, string? message) : base(new ErrorResponse(statusCode, message)) { }
 }

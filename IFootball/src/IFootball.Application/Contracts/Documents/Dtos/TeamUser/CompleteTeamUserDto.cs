@@ -5,11 +5,11 @@ namespace IFootball.Application.Contracts.Documents.Dtos;
 public class CompleteTeamUserDto
 {
     public GenderName Gender { get; set; }
-    public GenericPlayerDto Goalkeeper { get; set; }
-    public GenericPlayerDto LinePlayerFront { get; set; }
-    public GenericPlayerDto LinePlayerMiddle { get; set; }
-    public GenericPlayerDto LinePlayerBackRight { get; set; }
-    public GenericPlayerDto LinePlayerBackLeft { get; set; }
-    public GenericPlayerDto ReservePlayerOne { get; set; }
-    public GenericPlayerDto ReservePlayerTwo { get; set; }
+    public SimplePlayerDto Goalkeeper { get; set; }
+    public SimplePlayerDto LinePlayerOne { get; set; }
+    public SimplePlayerDto LinePlayerTwo { get; set; }
+    public SimplePlayerDto LinePlayerThree { get; set; }
+    public SimplePlayerDto LinePlayerFour { get; set; }
+    public SimplePlayerDto ReservePlayerOne { get; set; }
+    public SimplePlayerDto ReservePlayerTwo { get; set; }
 }

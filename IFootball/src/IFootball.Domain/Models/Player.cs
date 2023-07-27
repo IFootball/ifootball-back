@@ -1,4 +1,6 @@
-﻿namespace IFootball.Domain.Models;
+﻿using IFootball.Domain.Models.enums;
+
+namespace IFootball.Domain.Models;
 
 public class Player : BaseEntity
 {
@@ -8,6 +10,7 @@ public class Player : BaseEntity
     public TeamClass TeamClass  { get; private set; }
     public long IdTeamClass { get; private set; }
 
+    public PlayerType PlayerType { get; set; }
     public string Name { get; private set; }
     public string Image { get; private set; }
     public int Goals { get; private set; }
@@ -29,13 +32,14 @@ public class Player : BaseEntity
     
     public Player() { }
         
-    public Player(long idGender, long idTeamClass, string name, string image)
+    public Player(long idGender, long idTeamClass, string name, string image, PlayerType playerType)
     {
         IdGender = idGender;
         IdTeamClass = idTeamClass;
         Name = name;
         Image = image;
-
+        PlayerType = playerType;
+        
         Goals = 0;
         Assists =0;
         YellowCard = 0;

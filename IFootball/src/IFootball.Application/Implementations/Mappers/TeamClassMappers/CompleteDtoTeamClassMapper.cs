@@ -12,12 +12,12 @@ public static class CompleteDtoTeamClassMapper
         {
             IdGender = teamClass.IdGender,
             IdClass = teamClass.IdClass,
-            TeamClassPlayers = BuilderPlayerDto(teamClass.TeamClassPlayers),
+            TeamClassPlayers = BuilderSimplePlayerDto(teamClass.TeamClassPlayers),
         };
     }
 
-    private static IEnumerable<PlayerDto> BuilderPlayerDto(List<Player> players)
+    private static IEnumerable<SimplePlayerDto> BuilderSimplePlayerDto(List<Player> players)
     {
-        return players.Select(x => x.ToPlayerDto());
+        return players.Select(x => x.ToSimplePlayerDto());
     }
 }

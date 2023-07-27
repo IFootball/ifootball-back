@@ -13,8 +13,13 @@ public class PlayerMap: IEntityTypeConfiguration<Player>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd();  
-        
+            .ValueGeneratedOnAdd();
+
+
+        builder.Property(x => x.PlayerType)
+            .IsRequired()
+            .HasColumnName("player_type")
+            .HasColumnType("INT");
         
         builder.Property(x => x.Name)
             .IsRequired()
