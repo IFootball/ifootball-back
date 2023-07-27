@@ -15,7 +15,6 @@ public class GoalkeeperMap: IEntityTypeConfiguration<Goalkeeper>
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd();  
         
-        
         builder.Property(x => x.TakenGols)
             .IsRequired()
             .HasColumnName("taken_gols")
@@ -35,6 +34,7 @@ public class GoalkeeperMap: IEntityTypeConfiguration<Goalkeeper>
             .HasOne(x => x.Player)
             .WithOne(x => x.Goalkeeper)
             .HasForeignKey<Goalkeeper>(x => x.IdPlayer)
+            .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_player_goalkeeper");
     }
 }
