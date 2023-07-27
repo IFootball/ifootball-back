@@ -40,5 +40,6 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
     public async Task<Player> FindById(long idPlayer) => await _context.Players
             .Where(x => x.Id == idPlayer)
             .Include(x => x.Gender)
+            .Include(x => x.Goalkeeper)
             .FirstOrDefaultAsync();
 }

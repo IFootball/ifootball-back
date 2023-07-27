@@ -30,7 +30,7 @@ public class PlayerController : ControllerBase
     }
     [HttpPut("{idPlayer}")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<EditLinePlayerResponse>> Edit([FromRoute] long idPlayer, [FromBody] EditLinePlayerRequest linePlayerRequest)
+    public async Task<ActionResult<EditPlayerResponse>> Edit([FromRoute] long idPlayer, [FromBody] EditPlayerRequest linePlayerRequest)
     {
         var response = await _playerService.EditAsync(idPlayer, linePlayerRequest);
 

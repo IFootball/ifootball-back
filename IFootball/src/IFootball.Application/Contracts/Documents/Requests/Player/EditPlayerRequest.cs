@@ -1,6 +1,6 @@
 ﻿namespace IFootball.Application.Contracts.Documents.Requests;
 
-public class EditLinePlayerRequest
+public class EditPlayerRequest
 {
     public long IdGender { get; set; }
     public long IdTeamClass { get; set; }

@@ -24,7 +24,7 @@ public class Player : BaseEntity
     public List<TeamUser>? TeamUsersGoalkeeper { get; set; }
     public List<TeamUser>? TeamUsersReserveOne { get; set; }
     public List<TeamUser>? TeamUsersReserveTwo { get; set; }
-    public Goalkeeper Goalkeeper { get; set; }
+    public Goalkeeper? Goalkeeper { get; set; }
     
     
     public Player() { }

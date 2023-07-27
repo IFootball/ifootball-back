@@ -6,7 +6,7 @@ namespace IFootball.Application.Contracts.Services;
 public interface IPlayerService
 {
     Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request);
-    Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request);
+    Task<EditPlayerResponse> EditAsync(long idLinePlayer, EditPlayerRequest request);
     Task<GetLinePlayerResponse> GetAsync(long idLinePlayer);
     Task<DeleteLinePlayerResponse> DeleteAsync(long idLinePlayer);
 

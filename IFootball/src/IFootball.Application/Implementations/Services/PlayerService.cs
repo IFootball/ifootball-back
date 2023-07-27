@@ -48,26 +48,26 @@ public class PlayerService : IPlayerService
         return new RegisterPlayerResponse(player.ToPlayerDto());    
     }
 
-    public async Task<EditLinePlayerResponse> EditAsync(long idLinePlayer, EditLinePlayerRequest request)
+    public async Task<EditPlayerResponse> EditAsync(long idPlayer, EditPlayerRequest request)
     {
-        var linePlayer = await _playerRepository.FindById(idLinePlayer);
-        if(linePlayer is null)
-            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+        var player = await _playerRepository.FindById(idPlayer);
+        if(player is null)
+            return new EditPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
 
         var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
         if (teamClass is null)
-            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
+            return new EditPlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
 
         if(teamClass.IdGender != request.IdGender)
-            return new EditLinePlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
+            return new EditPlayerResponse(HttpStatusCode.UnprocessableEntity, "O jogador deve ser do genêro do time");
 
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
-            return new EditLinePlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
-        
-        linePlayer.Edit(request.IdGender, request.IdTeamClass, request.Name, request.Image);
-        await _playerRepository.EditPlayer(linePlayer);
-        return new EditLinePlayerResponse(linePlayer.ToPlayerDto());      
+            return new EditPlayerResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
+
+        player.Edit(request.IdGender, request.IdTeamClass, request.Name, request.Image);
+        await _playerRepository.EditPlayer(player);
+        return new EditPlayerResponse(player.ToPlayerDto());      
     }
 
     public async Task<GetLinePlayerResponse> GetAsync(long idLinePlayer)
