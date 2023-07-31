@@ -31,8 +31,9 @@ public class TeamClassController : ControllerBase
         return Ok(response);
     }
     
-    [HttpPut("{idTeamClass}")]
+    [HttpPut]
     [Authorize(Roles = "Administrator")]
+    [Route("{idTeamClass}")]
     public async Task<ActionResult<EditTeamClassResponse>> Edit(
         [FromRoute] long idTeamClass,
         [FromBody] EditTeamClassRequest requestTeamClass)
@@ -45,8 +46,9 @@ public class TeamClassController : ControllerBase
         return Ok(response);
     }
     
-    [HttpDelete("{idTeamClass}")]
+    [HttpDelete]
     [Authorize(Roles = "Administrator")]
+    [Route("{idTeamClass}")]
     public async Task<ActionResult<DeleteTeamClassResponse>> Delete(
         [FromRoute] long idTeamClass)
     {
@@ -58,8 +60,9 @@ public class TeamClassController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("{idTeamClass}")]
+    [HttpGet]
     [Authorize(Roles = "Administrator")]
+    [Route("{idTeamClass}")]
     public async Task<ActionResult<GetTeamClassResponse>> Get([FromRoute] long idTeamClass)
     {
         var response = await _teamClassService.GetAsync(idTeamClass);

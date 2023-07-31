@@ -1,12 +1,17 @@
 ﻿using System.Net;
+using System.Reflection;
+using System.Xml.Linq;
 using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
+using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
+using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Domain.Models.enums;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace IFootball.Application.Implementations.Services;
 
@@ -75,7 +80,7 @@ public class PlayerService : IPlayerService
     {
         var player = await _playerRepository.FindCompleteById(idLinePlayer);
         if(player is null)
-            return new GetPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
+            return new GetPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe!");
 
         return new GetPlayerResponse(player.ToCompletePlayerDto());
     }
@@ -96,5 +101,37 @@ public class PlayerService : IPlayerService
         
         return players.Select(x => x.ToSimplePlayerDto());
     }
+
+    public async Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request)
+    {
+        var player = await _playerRepository.FindById(idPlayer);
+
+        if (player is null)
+            return new SetPlayerScoutResponse(HttpStatusCode.NotFound, "O jogador não existe!");
+
+        ChangeProp<Player>(player, request);
+        await _playerRepository.EditPlayer(player);
+
+        var goalkeeper = await _goalkeeperRepository.FindById(idPlayer);
+        if (goalkeeper is not null)
+        {
+            ChangeProp<Goalkeeper>(goalkeeper, request);
+            await _goalkeeperRepository.EditGoalkeeper(goalkeeper);
+        }
+
+        return new SetPlayerScoutResponse(player.ToCompletePlayerDto());
+    }
+
+    public void ChangeProp<T>(T player, SetPlayerScoutRequest playerScout)
+    {
+        foreach (var prop in playerScout.GetType().GetProperties())
+        {
+            PropertyInfo? property = player.GetType().GetProperty(prop.Name);
+
+            if (property != null)
+                property.SetValue(player, prop.GetValue(playerScout));
+        }
+    }
+
 
 }

@@ -35,7 +35,7 @@ public class GoalkeeperRepository : BaseRepository, IGoalkeeperRepository
 
     public async Task<bool> ExistsById(long idGoalkeeper)
     {
-        return await _context.Goalkeepers.FindAsync(idGoalkeeper) is not null;
+        return await _context.Goalkeepers.FirstOrDefaultAsync(x => x.IdPlayer.Equals(idGoalkeeper)) is not null;
     }
     
     public async Task<Goalkeeper> FindById(long idPlayer)
