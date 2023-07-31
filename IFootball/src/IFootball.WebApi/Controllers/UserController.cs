@@ -60,7 +60,7 @@ namespace IFootball.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Authorize]
         public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest editUserRequest)
         {

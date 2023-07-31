@@ -11,5 +11,7 @@ namespace IFootball.Domain.Contracts.Repositories
         Task<bool> UserExistsByEmail(string email);
         Task DeleteUserAsync(User user);
         Task EditUserAsync(User user);
+        Task<bool> ValidatePasswordAsync(string userPassword, string password);
+        Task EditPasswordUserAsync(User user);
     }
 }

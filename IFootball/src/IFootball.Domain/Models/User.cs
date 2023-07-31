@@ -27,11 +27,13 @@ namespace IFootball.Domain.Models
             Password = password;
             IdClass = idClass;
         }
-        public void Edit(long idClass, string name, string email) 
+        public void SetName(string name) 
         {
             Name = name;
-            Email = email;
-            IdClass = idClass;
+        }
+        public void SetPassword(string password)
+        {
+            Password = password;
         }
     }
 }
