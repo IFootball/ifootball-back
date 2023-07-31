@@ -52,5 +52,18 @@ namespace IFootball.Infrastructure.Repositories
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> ValidatePasswordAsync(string userPassword, string password)
+        {
+            if (PasswordHasher.VerifyPassword(password, userPassword)) 
+                return true;
+            return false;
+        }
+
+        public async Task EditPasswordUserAsync(User user)
+        {
+            user.Password = PasswordHasher.HashPassword(user.Password);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();        }
     } 
 }   

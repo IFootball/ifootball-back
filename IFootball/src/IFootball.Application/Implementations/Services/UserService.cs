@@ -70,28 +70,21 @@ namespace IFootball.Application.Implementations.Services
         public async Task<EditUserResponse> EditAsync(EditUserRequest editUserRequest)
         {
             long idUser = _currentUserService.GetCurrentUserId();
-
-            var emailIsTeacher = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
-            var emailIsStudent = Regex.Match(editUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
-            if (!(emailIsTeacher || emailIsStudent))
-                return new EditUserResponse(HttpStatusCode.BadRequest, "O email deve ser dominio do IFRS!");
-
-            var classExists = await _classRepository.ClassExistsById(editUserRequest.IdClass);
-            if (!classExists)
-                return new EditUserResponse(HttpStatusCode.BadRequest, "A turma inserida não existe!");
             
             var user = await _userRepository.FindUserById(idUser);
             if (user is null)
                 return new EditUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
             
-            if (editUserRequest.Email != user.Email)
-            {
-                var userExists = await _userRepository.UserExistsByEmail(editUserRequest.Email);
-                if (userExists)
-                    return new EditUserResponse(HttpStatusCode.BadRequest, "O email já foi cadastrado!");    
+            if(editUserRequest.NewPassword is not null && editUserRequest.OldPassword is not null){
+                var validPassword = await _userRepository.ValidatePasswordAsync(user.Password, editUserRequest.OldPassword);
+                if (!validPassword)
+                    return new EditUserResponse(HttpStatusCode.Unauthorized, "Senha incorreta!");
+                
+                user.SetPassword(editUserRequest.NewPassword);
+                await _userRepository.EditPasswordUserAsync(user);
             }
             
-            user.Edit(editUserRequest.IdClass, editUserRequest.Name, editUserRequest.Email);
+            user.SetName(editUserRequest.Name);
             await _userRepository.EditUserAsync(user);
             return new EditUserResponse(user.DtoToUserDto());
         }
