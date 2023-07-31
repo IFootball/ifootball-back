@@ -8,4 +8,5 @@ public interface ITeamUserRepository
     Task<TeamUser?> FindTeamUserByIdUserAndIdGender(long idUser, long idGender);
     Task EditTeamUserAsync(TeamUser teamUser);
 
+    Task<TeamUser?> FindCompleteTeamUserByIdUserAndIdGender(long idUser, long idGender);
 }

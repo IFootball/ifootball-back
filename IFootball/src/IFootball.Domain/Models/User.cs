@@ -11,7 +11,7 @@ namespace IFootball.Domain.Models
 
         public UserRole Role = UserRole.User;
 
-        public List<TeamUser> UserTeamsUser { get; set; }
+        public List<TeamUser> UserTeamsUser { get; set; } = new List<TeamUser>();
         
         public User() { }
         public User(string name, string email, long idClass) 

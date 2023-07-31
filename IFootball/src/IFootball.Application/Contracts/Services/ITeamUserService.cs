@@ -7,6 +7,7 @@ public interface ITeamUserService
 {
      Task<RegisterTeamUserResponse> RegisterMaleAsync(RegisterTeamUserRequest teamUserRequest);
      Task<RegisterTeamUserResponse> RegisterFemaleAsync(RegisterTeamUserRequest teamUserRequest);
-
+     Task<GetTeamUserResponse> GetMaleAsync();
+     Task<GetTeamUserResponse> GetFemaleAsync();
 
 }

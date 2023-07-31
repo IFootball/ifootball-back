@@ -46,8 +46,7 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
     {
         return await _context.TeamClasses
             .Where(x => x.Id == idTeamClass)
-            .Include(x => x.TeamClassGoalkeepers)
-            .Include(x => x.TeamClassLinePlayers)
+            .Include(x => x.TeamClassPlayers)
             .FirstOrDefaultAsync();
     }
 

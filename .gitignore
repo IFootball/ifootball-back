@@ -684,3 +684,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,dotnetcore,rider,csharp,visualstudiocode
 IFootball/src/IFootball.Infrastructure/database.db-wal
 IFootball/src/IFootball.Infrastructure/database.db-shm
+IFootball/src/IFootball.Infrastructure/database.db

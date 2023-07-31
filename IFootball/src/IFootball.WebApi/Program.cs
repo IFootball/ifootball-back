@@ -74,8 +74,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<ITeamUserService, TeamUserService>();
-builder.Services.AddScoped<IGoalkeeperService, GoalkeeperService>();
-builder.Services.AddScoped<ILinePlayerService, LinePlayerService>();
+builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<ITeamClassService, TeamClassService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
@@ -85,7 +84,7 @@ builder.Services.AddScoped<IClassRepository, ClassRepository>();
 builder.Services.AddScoped<ITeamUserRepository, TeamUserRepository>();
 builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 builder.Services.AddScoped<IGoalkeeperRepository, GoalkeeperRepository>();
-builder.Services.AddScoped<ILinePlayerRepository, LinePlayerRepository>();
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<ITeamClassRepository, TeamClassRepository>();
 
 // JWT
