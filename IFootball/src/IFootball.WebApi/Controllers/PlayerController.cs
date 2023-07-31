@@ -1,6 +1,8 @@
 ﻿using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
+using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
+using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,8 +31,9 @@ public class PlayerController : ControllerBase
 
         return Ok(response);
     }
-    [HttpPut("{idPlayer}")]
+    [HttpPut]
     [Authorize(Roles = "Administrator")]
+    [Route("{idPlayer}")]
     public async Task<ActionResult<EditPlayerResponse>> Edit([FromRoute] long idPlayer, [FromBody] EditPlayerRequest linePlayerRequest)
     {
         var response = await _playerService.EditAsync(idPlayer, linePlayerRequest);
@@ -41,8 +44,9 @@ public class PlayerController : ControllerBase
         return Ok(response);
     }
     
-    [HttpGet("{idPlayer}")]
+    [HttpGet]
     [Authorize(Roles = "Administrator")]
+    [Route("{idPlayer}")]
     public async Task<ActionResult<GetPlayerResponse>> Get([FromRoute] long idPlayer)
     {
         var response = await _playerService.GetAsync(idPlayer);
@@ -53,8 +57,9 @@ public class PlayerController : ControllerBase
         return Ok(response);
     }
     
-    [HttpDelete("{idPlayer}")]
+    [HttpDelete]
     [Authorize(Roles = "Administrator")]
+    [Route("{idPlayer}")]
     public async Task<ActionResult<DeletePlayerResponse>> Delete([FromRoute] long idPlayer)
     {
         var response = await _playerService.DeleteAsync(idPlayer);
@@ -76,6 +81,20 @@ public class PlayerController : ControllerBase
         )
     {
         var response = await _playerService.GetAllAsync(idGender, playerType, name, size, page);
+        return Ok(response);
+    }
+
+
+    [HttpPatch]
+    [Authorize(Roles = "Administrator")]
+    [Route("{idPlayer}")]
+    public async Task<ActionResult<SetPlayerScoutResponse>> SetScout([FromRoute] long idPlayer, [FromBody] SetPlayerScoutRequest request)
+    {
+        var response = await _playerService.SetScoutAsync(idPlayer, request);
+
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
         return Ok(response);
     }
 }
