@@ -2,8 +2,6 @@
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
-using IFootball.Domain.Models;
-using IFootball.Domain.Models.enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
