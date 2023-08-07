@@ -3,6 +3,7 @@ using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
+using IFootball.Core;
 
 namespace IFootball.Application.Contracts.Services;
 
@@ -12,6 +13,6 @@ public interface IPlayerService
     Task<EditPlayerResponse> EditAsync(long idPlayer, EditPlayerRequest request);
     Task<GetPlayerResponse> GetAsync(long idPlayer);
     Task<DeletePlayerResponse> DeleteAsync(long idPlayer);
-    Task<IEnumerable<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, int size, int page);
+    Task<PagedResponse<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, Pageable pageable);
     Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request);
 }

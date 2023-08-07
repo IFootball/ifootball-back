@@ -1,4 +1,5 @@
-﻿using IFootball.Domain.Models;
+﻿using IFootball.Core;
+using IFootball.Domain.Models;
 
 namespace IFootball.Domain.Contracts.Repositories;
 
@@ -11,6 +12,6 @@ public interface IPlayerRepository
 
     Task DeletePlayer(Player player);
     Task<bool> ExistsById(long idPlayer);
-    Task<IEnumerable<Player>> FindAll(long? idGender, long? playerType, string name, int size, int page);
+    Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable);
 
 }
