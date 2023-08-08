@@ -5,5 +5,5 @@ namespace IFootball.Domain.Contracts.Repositories;
 
 public interface IRankingRepository
 {
-    Task<PagedResponse<Player>> ListPlayerGeneral();
+    Task<PagedResponse<Player>> ListPlayerGeneral(long idGender, Pageable pageable);
 }

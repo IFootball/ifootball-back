@@ -20,19 +20,24 @@ namespace IFootball.Application.Implementations.Services
         private const int RED_CARD = -4;
         private const int PENALT_DEFENSE = 8;
         private const int WIN = 1;
-
         
         public RankingService(IRankingRepository rankingRepository)
         {
             _rankingRepository = rankingRepository;
         }
 
-        public async Task<PagedResponse<RankingPlayerDto>> ListPlayerGeneral()
+        public async Task<PagedResponse<RankingPlayerDto>> ListPlayerGeneral(long idGender, Pageable pageable)
         {
-            var players = await _rankingRepository.ListPlayerGeneral();
-            return players.Map(x => x.ToRankingPlayerDto());
+            var players = await _rankingRepository.ListPlayerGeneral(idGender, pageable);
+            return players.Map(player => player.ToRankingPlayerDto(GetScorePlayer(player)));
         }
-        
+
+        private int GetScorePlayer(Player player)
+        {
+            return ((player.Assists * ASSIST_SCORE) + (player.Goals * GOAL_SCORE) + (player.YellowCard * YELLOW_CARD) 
+                    + (player.RedCard * RED_CARD) + (player.Fouls * FAULT) + (player.Wins * WIN));
+        }
+
     }
 }
 

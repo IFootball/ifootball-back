@@ -43,7 +43,7 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
     public async Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable)
     {
         var query = _context.Players.AsQueryable();
-        query = query.Where(x => x.Name.Contains(name));
+        query = query.Where(x => x.Name.ToLower().Contains(name.ToLower()));
 
         if (idGender is not null) 
             query = query.Where(x => x.Gender.Id == idGender);

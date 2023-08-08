@@ -21,10 +21,12 @@ namespace IFootball.WebApi.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("player-general")]
-        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> List()
+        [Route("player-general/{idGender}")]
+        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> List(
+            [FromRoute] int idGender,
+            [FromQuery] Pageable pageable)
         {
-            var response = await _rankingService.ListPlayerGeneral();
+            var response = await _rankingService.ListPlayerGeneral(idGender, pageable);
             return Ok(response);
         }
 

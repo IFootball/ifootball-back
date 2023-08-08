@@ -7,8 +7,7 @@ public static class PagedQuery
 {
     public static async Task<PagedResponse<T>> GetPagedResponse<T>(IQueryable<T> query, Pageable pageable)
     {
-        var players = await query
-            .OrderBy(x => x.GetType().GetProperty(pageable.OrderBy).GetValue(x, null))
+        var data = await query
             .Skip(pageable.Offset())
             .Take(pageable.Take)
             .ToListAsync();
@@ -17,7 +16,7 @@ public static class PagedQuery
         var totalPages = (int)Math.Ceiling(totalCount / (double)pageable.Take);
         var lastPage = pageable.Page >= totalPages;
 
-        return new PagedResponse<T>(players, totalPages, totalCount, lastPage);
+        return new PagedResponse<T>(data, totalPages, totalCount, lastPage);
     }
 
 }
