@@ -18,25 +18,38 @@ public class RankingRepository : BaseRepository, IRankingRepository
         _context = context;
     }
 
-    public async Task<PagedResponse<Player>> ListPlayerGeneral(long idGender, Pageable pageable)
+    public async Task<PagedResponse<ScorePlayer>> ListPlayerGeneral(long idGender, Pageable pageable)
     {
         var query = _context.Players
             .AsQueryable()
             .Where(x => x.Gender.Id == idGender)
-            .OrderByDescending(x => x.GetScore());
+            .Select(x => new ScorePlayer(x))
+            .OrderByDescending(x => x.Score);
         
         return await PagedQuery.GetPagedResponse(query, pageable);
     }
     
-    public async Task<PagedResponse<TeamClass>> ListTeamClassScore(int idGender, Pageable pageable)
+    public async Task<PagedResponse<ScoreTeamClass>> ListTeamClassScore(int idGender, Pageable pageable)
     {
         var query = _context.TeamClasses
-                .AsQueryable()
-                .Where(x => x.Gender.Id == idGender)
-                .Include(x => x.Class)
-                .OrderByDescending(x => x.GetScore());
+            .AsQueryable()
+            .Where(x => x.Gender.Id == idGender)
+            .Include(x => x.Class)
+            .Select(x => new ScoreTeamClass(x))
+            .OrderByDescending(x => x.Score);
 
         return await PagedQuery.GetPagedResponse(query, pageable);      
+    }
+
+    public async Task<PagedResponse<ScoreUser>> ListUserScore(int idGender, Pageable pageable)
+    {
+        var query = _context.Users
+            .AsQueryable()
+            .Include(x => x.Class)
+            .Select(x => new ScoreUser(x, idGender))
+            .OrderByDescending(x => x.Score);
+
+        return await PagedQuery.GetPagedResponse(query, pageable);         
     }
 
     public async Task<PagedResponse<Player>> ListGoalScore(int idGender, Pageable pageable)

@@ -35,5 +35,12 @@ namespace IFootball.Domain.Models
         {
             Password = password;
         }
+        
+        public int GetScore(long idGender)
+        {
+            var team = UserTeamsUser.Find(x => x.IdGender == idGender);
+            if (team is null) return 0;
+            return team.GetScore();
+        }
     }
 }
