@@ -67,4 +67,21 @@ public class TeamUser : BaseEntity
         IdReservePlayerTwo = idReservePlayerTwo;
     }
     
+    public int GetScore()
+    {
+        var scorePlayer = new List<int>();
+        scorePlayer.Add(Goalkeeper.GetScore());
+        scorePlayer.Add(PlayerOne.GetScore());
+        scorePlayer.Add(PlayerTwo.GetScore());
+        scorePlayer.Add(PlayerThree.GetScore());
+        scorePlayer.Add(PlayerFour.GetScore());
+        scorePlayer.Add(ReservePlayerOne!.GetScore());
+        scorePlayer.Add(ReservePlayerTwo!.GetScore());
+
+        
+        return scorePlayer
+            .OrderByDescending(x => x)
+            .Take(5)
+            .Sum();
+    }
 }

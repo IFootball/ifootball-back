@@ -8,6 +8,8 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
+using IFootball.Core;
+using IFootball.Domain.Contracts;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Domain.Models.enums;
@@ -95,11 +97,10 @@ public class PlayerService : IPlayerService
         return new DeletePlayerResponse();
     }
 
-    public async Task<IEnumerable<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, int size, int page)
+    public async Task<PagedResponse<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, Pageable pageable)
     {
-        var players = await _playerRepository.FindAll(idGender, playerType, name, size, page);
-        
-        return players.Select(x => x.ToSimplePlayerDto());
+        var pagedResult = await _playerRepository.FindAll(idGender, playerType, name, pageable);
+        return pagedResult.Map(x => x.ToSimplePlayerDto());
     }
 
     public async Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request)

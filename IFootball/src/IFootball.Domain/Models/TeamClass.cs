@@ -24,4 +24,9 @@ public class TeamClass : BaseEntity
         IdGender = idGender;
         IdClass = idClass;
     }
+    
+    public int GetScore()
+    {
+        return TeamClassPlayers.Select(x => x.GetScore()).Sum();
+    }
 }

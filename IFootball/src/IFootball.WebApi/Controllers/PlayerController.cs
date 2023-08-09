@@ -4,6 +4,8 @@ using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
+using IFootball.Core;
+using IFootball.Domain.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,15 +74,15 @@ public class PlayerController : ControllerBase
     
     [HttpGet]
     [Authorize]
-    public async Task<ActionResult<IEnumerable<SimplePlayerDto>>> GetAll(
+    public async Task<ActionResult<PagedResponse<SimplePlayerDto>>> GetAll(
+        [FromQuery] Pageable pageable,
         [FromQuery] long? idGender,
         [FromQuery] long? playerType,
-        [FromQuery] string? name = "",
-        [FromQuery] int size = 10,
-        [FromQuery] int page = 0
+        [FromQuery] string? name = ""
+
         )
     {
-        var response = await _playerService.GetAllAsync(idGender, playerType, name, size, page);
+        var response = await _playerService.GetAllAsync(idGender, playerType, name, pageable);
         return Ok(response);
     }
 

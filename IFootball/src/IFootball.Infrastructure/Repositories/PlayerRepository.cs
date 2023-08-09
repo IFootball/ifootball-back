@@ -1,7 +1,10 @@
-﻿using IFootball.Domain.Contracts.Repositories;
+﻿using IFootball.Core;
+using IFootball.Domain.Contracts;
+using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Domain.Models.enums;
 using IFootball.Infrastructure.Data;
+using IFootball.Infrastructure.Repositories.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -38,22 +41,18 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         return await _context.Players.FindAsync(idPlayer) is not null;
     }
 
-    public async Task<IEnumerable<Player>> FindAll(long? idGender, long? playerType, string name, int size, int page)
+    public async Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable)
     {
-        var offset = size * (page - 1);
         var query = _context.Players.AsQueryable();
+        query = query.Where(x => x.Name.ToLower().Contains(name.ToLower()));
 
-        if (idGender is not null)
+        if (idGender is not null) 
             query = query.Where(x => x.Gender.Id == idGender);
         
-        if (playerType is not null)
+        if (playerType is not null) 
             query = query.Where(x => x.PlayerType == (PlayerType)playerType);
         
-        return await query
-            .Where(x => x.Name.Contains(name))
-            .Skip(offset)
-            .Take(size)
-            .ToListAsync();
+        return await PagedQuery.GetPagedResponse(query, pageable);
     }
     
     public async Task<Player?> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
