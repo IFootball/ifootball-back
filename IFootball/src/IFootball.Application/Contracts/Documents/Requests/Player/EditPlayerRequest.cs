@@ -6,5 +6,5 @@ public class EditPlayerRequest
     public long IdTeamClass { get; set; }
     
     public string Name { get; set; }
-    public string Image { get; set; }
+    public string? Image { get; set; }
 }
