@@ -13,5 +13,6 @@ namespace IFootball.Application.Contracts.Services
     {
         Task<PagedResponse<RankingPlayerDto>> ListPlayerGeneral(long idGender, Pageable pageable);
         Task<PagedResponse<RankingPlayerDto>> ListGoalScore(int idGender, Pageable pageable);
+        Task<PagedResponse<RankingPlayerDto>> ListAssistsScore(int idGender, Pageable pageable);
     }
 }
