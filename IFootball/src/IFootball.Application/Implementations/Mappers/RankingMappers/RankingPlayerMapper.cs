@@ -1,5 +1,6 @@
 ﻿using IFootball.Application.Contracts.Documents.Dtos.Ranking;
 using IFootball.Core;
+using IFootball.Domain.Contracts;
 using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers.RankingMappers;

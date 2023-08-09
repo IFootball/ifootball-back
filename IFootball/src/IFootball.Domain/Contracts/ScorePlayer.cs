@@ -1,11 +1,11 @@
 ﻿using IFootball.Domain.Models;
 
-namespace IFootball.Core;
+namespace IFootball.Domain.Contracts;
 
 public class ScorePlayer
 {
-    public Player Player { get; set; }
-    public int Score { get; set; }
+    public Player Player { get; private set; }
+    public int Score { get; private set; }
 
     public ScorePlayer(Player player)
     {

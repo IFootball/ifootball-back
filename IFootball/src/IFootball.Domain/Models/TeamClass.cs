@@ -27,7 +27,6 @@ public class TeamClass : BaseEntity
     
     public int GetScore()
     {
-        var scorePlayer = TeamClassPlayers.Select(x => x.GetScore());
-        return scorePlayer.Sum();
+        return TeamClassPlayers.Select(x => x.GetScore()).Sum();
     }
 }

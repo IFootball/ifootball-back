@@ -1,4 +1,5 @@
 ﻿using IFootball.Core;
+using IFootball.Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFootball.Infrastructure.Repositories.Helpers;

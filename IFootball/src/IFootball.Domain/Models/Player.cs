@@ -61,8 +61,9 @@ public class Player : BaseEntity
         var score = (Assists * 5) + (Goals * 8) + (YellowCard * -2) + (RedCard * -4) + (Fouls * -1) + (Wins * 1);
         
         if (PlayerType == PlayerType.Goalkeeper)
-            score += (Goalkeeper.Saves * 2) + (Goalkeeper.PenaltySaves * 8) + (Goalkeeper.TakenGols == 0 ? -8 : 0);
-        
+            score += (Goalkeeper.Saves * 2) + (Goalkeeper.PenaltySaves * 8) + (Goalkeeper.TakenGols == 0 ? 8 : 0);
+
+        if (score < 0) return 0;
         return score;
     }
 }

@@ -3,6 +3,7 @@ using IFootball.Application.Contracts.Documents.Dtos.Ranking;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers.RankingMappers;
 using IFootball.Core;
+using IFootball.Domain.Contracts;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 

@@ -4,8 +4,8 @@ namespace IFootball.Core;
 
 public class ScoreTeamClass
 {
-    public TeamClass TeamClass { get; set; }
-    public int Score { get; set; }
+    public TeamClass TeamClass { get; private set; }
+    public int Score { get; private set; }
 
     public ScoreTeamClass(TeamClass teamClass)
     {

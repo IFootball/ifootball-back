@@ -4,6 +4,7 @@ using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Core;
+using IFootball.Domain.Contracts;
 
 namespace IFootball.Application.Contracts.Services;
 

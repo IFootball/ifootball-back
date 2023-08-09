@@ -3,6 +3,7 @@ using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Services;
 using IFootball.Core;
+using IFootball.Domain.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,8 +22,8 @@ namespace IFootball.WebApi.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("player-general/{idGender}")]
-        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> List(
+        [Route("{idGender}/player-general")]
+        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> ListPlayerGeneral(
             [FromRoute] int idGender,
             [FromQuery] Pageable pageable)
         {

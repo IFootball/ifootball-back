@@ -1,4 +1,4 @@
-﻿namespace IFootball.Core;
+﻿namespace IFootball.Domain.Contracts;
 
 public class PagedResponse<T>
 {
