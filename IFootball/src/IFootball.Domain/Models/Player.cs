@@ -1,4 +1,5 @@
-﻿using IFootball.Domain.Models.enums;
+﻿using System.Net.Sockets;
+using IFootball.Domain.Models.enums;
 
 namespace IFootball.Domain.Models;
 
@@ -53,5 +54,15 @@ public class Player : BaseEntity
         IdTeamClass = idTeamClass;
         Name = name;
         Image = image;
+    }
+
+    public int GetScore()
+    {
+        var score = (Assists * 5) + (Goals * 8) + (YellowCard * -2) + (RedCard * -4) + (Fouls * -1) + (Wins * 1);
+        
+        if (PlayerType == PlayerType.Goalkeeper)
+            score += (Goalkeeper.Saves * 2) + (Goalkeeper.PenaltySaves * 8) + (Goalkeeper.TakenGols == 0 ? -8 : 0);
+        
+        return score;
     }
 }

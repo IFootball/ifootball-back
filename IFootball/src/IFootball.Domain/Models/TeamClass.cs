@@ -24,4 +24,10 @@ public class TeamClass : BaseEntity
         IdGender = idGender;
         IdClass = idClass;
     }
+    
+    public int GetScore()
+    {
+        var scorePlayer = TeamClassPlayers.Select(x => x.GetScore());
+        return scorePlayer.Aggregate(0, (acc, x) => acc + x);
+    }
 }

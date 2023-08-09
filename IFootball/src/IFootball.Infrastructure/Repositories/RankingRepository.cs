@@ -1,4 +1,5 @@
-﻿using IFootball.Core;
+﻿using IFootball.Application.Contracts.Documents.Dtos.Ranking;
+using IFootball.Core;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Domain.Models.enums;
@@ -19,20 +20,23 @@ public class RankingRepository : BaseRepository, IRankingRepository
 
     public async Task<PagedResponse<Player>> ListPlayerGeneral(long idGender, Pageable pageable)
     {
-        var query = _context.Players.AsQueryable();
-
-        query = query
+        var query = _context.Players
+            .AsQueryable()
             .Where(x => x.Gender.Id == idGender)
-            .OrderByDescending(x => 
-                (x.Assists * 5) +
-                (x.Goals * 8) +
-                (x.YellowCard * -2) +
-                (x.RedCard * -4) +
-                (x.Fouls * -1) +
-                (x.Wins * 1)
-            );
+            .OrderByDescending(x => x.GetScore());
         
         return await PagedQuery.GetPagedResponse(query, pageable);
+    }
+    
+    public async Task<PagedResponse<TeamClass>> ListTeamClassScore(int idGender, Pageable pageable)
+    {
+        var query = _context.TeamClasses
+                .AsQueryable()
+                .Where(x => x.Gender.Id == idGender)
+                .Include(x => x.Class)
+                .OrderByDescending(x => x.GetScore());
+
+        return await PagedQuery.GetPagedResponse(query, pageable);      
     }
 
     public async Task<PagedResponse<Player>> ListGoalScore(int idGender, Pageable pageable)
@@ -65,4 +69,5 @@ public class RankingRepository : BaseRepository, IRankingRepository
 
         return await PagedQuery.GetPagedResponse(query, pageable);        
     }
+
 }
