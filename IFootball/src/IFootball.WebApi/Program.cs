@@ -12,6 +12,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using IFootball.Application.Implementations.Services.Core;
 using IFootball.Application.Contracts.Services.Core;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -110,7 +111,7 @@ builder.Services.AddAuthentication(opt =>
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.UseSqlite(b => b.MigrationsAssembly("IFootball.Infrastructure"));
+    //options.UseSqlite(b => b.MigrationsAssembly("IFootball.Infrastructure"));
 });
 
 var app = builder.Build();
@@ -121,6 +122,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 
 app.UseHttpsRedirection();
 

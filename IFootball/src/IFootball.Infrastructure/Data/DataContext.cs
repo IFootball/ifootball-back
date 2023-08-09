@@ -1,6 +1,7 @@
 ﻿using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace IFootball.Infrastructure.Data
 {
@@ -19,7 +20,16 @@ namespace IFootball.Infrastructure.Data
         public DbSet<Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("DataSource=../IFootball.Infrastructure/database.db");
+        {
+            if (!options.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlite(connectionString);
+            }
+        }
+
+        //=> options.UseSqlite("DataSource=../IFootball.Infrastructure/database.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
