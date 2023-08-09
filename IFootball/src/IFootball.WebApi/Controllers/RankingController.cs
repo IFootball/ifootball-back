@@ -29,6 +29,17 @@ namespace IFootball.WebApi.Controllers
             var response = await _rankingService.ListPlayerGeneral(idGender, pageable);
             return Ok(response);
         }
+        
+        [HttpGet]
+        [Authorize]
+        [Route("{idGender}/goal")]
+        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> ListGoalScore(
+            [FromRoute] int idGender,
+            [FromQuery] Pageable pageable)
+        {
+            var response = await _rankingService.ListGoalScore(idGender, pageable);
+            return Ok(response);
+        }
 
     }
 }

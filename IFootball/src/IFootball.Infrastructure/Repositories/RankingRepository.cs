@@ -32,4 +32,15 @@ public class RankingRepository : BaseRepository, IRankingRepository
         
         return await PagedQuery.GetPagedResponse(query, pageable);
     }
+
+    public async Task<PagedResponse<Player>> ListGoalScore(int idGender, Pageable pageable)
+    {
+        var query = _context.Players.AsQueryable();
+
+        query = query
+            .Where(x => x.Gender.Id == idGender)
+            .OrderByDescending(x => x.Goals);
+        
+        return await PagedQuery.GetPagedResponse(query, pageable);    
+    }
 }

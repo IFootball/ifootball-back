@@ -12,5 +12,6 @@ namespace IFootball.Application.Contracts.Services
     public interface IRankingService
     {
         Task<PagedResponse<RankingPlayerDto>> ListPlayerGeneral(long idGender, Pageable pageable);
+        Task<PagedResponse<RankingPlayerDto>> ListGoalScore(int idGender, Pageable pageable);
     }
 }
