@@ -53,10 +53,6 @@ namespace IFootball.Application.Implementations.Services
             var players = await _rankingRepository.ListDefenseScore(idGender, pageable);
             return players.Map(player => player.ToRankingPlayerDto(player.Goalkeeper.Saves));         
         }
-
-
-
- 
     }
 }
 
