@@ -81,7 +81,7 @@ public class TeamUser : BaseEntity
         
         return scorePlayer
             .OrderByDescending(x => x)
-            .Take(4)
+            .Take(5)
             .Sum();
     }
 }
