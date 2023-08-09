@@ -43,12 +43,23 @@ namespace IFootball.WebApi.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("{idGender}/assists")]
-        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> ListAssistsScore(
+        [Route("{idGender}/defenses")]
+        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> ListDefenseScore(
             [FromRoute] int idGender,
             [FromQuery] Pageable pageable)
         {
-            var response = await _rankingService.ListAssistsScore(idGender, pageable);
+            var response = await _rankingService.ListDefenseScore(idGender, pageable);
+            return Ok(response);
+        }
+        
+        [HttpGet]
+        [Authorize]
+        [Route("{idGender}/assists")]
+        public async Task<ActionResult<PagedResponse<RankingPlayerDto>>> ListAssistScore(
+            [FromRoute] int idGender,
+            [FromQuery] Pageable pageable)
+        {
+            var response = await _rankingService.ListAssistScore(idGender, pageable);
             return Ok(response);
         }
     }

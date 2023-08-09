@@ -35,13 +35,19 @@ namespace IFootball.Application.Implementations.Services
         public async Task<PagedResponse<RankingPlayerDto>> ListGoalScore(int idGender, Pageable pageable)
         {
             var players = await _rankingRepository.ListGoalScore(idGender, pageable);
-            return players.Map(player => player.ToRankingPlayerDto(player.Goals * GOAL_SCORE));
+            return players.Map(player => player.ToRankingPlayerDto(player.Goals));
         }
 
-        public async Task<PagedResponse<RankingPlayerDto>> ListAssistsScore(int idGender, Pageable pageable)
+        public async Task<PagedResponse<RankingPlayerDto>> ListAssistScore(int idGender, Pageable pageable)
         {
-            var players = await _rankingRepository.ListAssistsScore(idGender, pageable);
-            return players.Map(player => player.ToRankingPlayerDto(player.Goals * GOAL_SCORE));        
+            var players = await _rankingRepository.ListAssistScore(idGender, pageable);
+            return players.Map(player => player.ToRankingPlayerDto(player.Assists));        
+        }
+
+        public async Task<PagedResponse<RankingPlayerDto>> ListDefenseScore(int idGender, Pageable pageable)
+        {
+            var players = await _rankingRepository.ListDefenseScore(idGender, pageable);
+            return players.Map(player => player.ToRankingPlayerDto(player.Goalkeeper.Saves));         
         }
 
         private int GetScorePlayer(Player player)
