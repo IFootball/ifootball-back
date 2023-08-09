@@ -8,7 +8,7 @@ public class CompletePlayerDto
     public long IdGender { get; set; }
     public long IdTeamClass { get; set; }
     public string Name { get; set; }
-    public string Image { get; set; }
+    public string? Image { get; set; }
     public int Goals { get; set; }
     public int Assists { get; set; }
     public int YellowCard { get; set; }

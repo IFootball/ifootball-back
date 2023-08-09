@@ -14,7 +14,7 @@ public class Player : BaseEntity
 
     public PlayerType PlayerType { get; set; }
     public string Name { get; private set; }
-    public string Image { get; private set; }
+    public string? Image { get; private set; }
     public int Goals { get; private set; }
     public int Assists { get; private set; }
     public int YellowCard { get; private set; }
@@ -34,7 +34,7 @@ public class Player : BaseEntity
 
     public Player() { }
 
-    public Player(long idGender, long idTeamClass, string name, string image, PlayerType playerType)
+    public Player(long idGender, long idTeamClass, string name, string? image, PlayerType playerType)
     {
         IdGender = idGender;
         IdTeamClass = idTeamClass;
@@ -49,7 +49,7 @@ public class Player : BaseEntity
         Fouls = 0;
         Wins = 0;
     }
-    public void Edit(long idGender, long idTeamClass, string name, string image)
+    public void Edit(long idGender, long idTeamClass, string name, string? image)
     {
         IdGender = idGender;
         IdTeamClass = idTeamClass;

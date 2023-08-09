@@ -14,4 +14,8 @@
     <ProjectReference Include="..\IFootball.Domain\IFootball.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Implementations\Validators\" />
+  </ItemGroup>
+
 </Project>
