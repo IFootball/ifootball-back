@@ -1,4 +1,5 @@
 ﻿using System.Net.Sockets;
+using IFootball.Domain.Contracts;
 using IFootball.Domain.Models.enums;
 
 namespace IFootball.Domain.Models;
@@ -8,7 +9,7 @@ public class Player : BaseEntity
     public Gender Gender { get; private set; }
     public long IdGender { get; private set; }
 
-    public TeamClass TeamClass  { get; private set; }
+    public TeamClass TeamClass { get; private set; }
     public long IdTeamClass { get; private set; }
 
     public PlayerType PlayerType { get; set; }
@@ -29,10 +30,10 @@ public class Player : BaseEntity
     public List<TeamUser>? TeamUsersReserveOne { get; set; } = new List<TeamUser>();
     public List<TeamUser>? TeamUsersReserveTwo { get; set; } = new List<TeamUser>();
     public Goalkeeper? Goalkeeper { get; set; }
-    
-    
+
+
     public Player() { }
-        
+
     public Player(long idGender, long idTeamClass, string name, string image, PlayerType playerType)
     {
         IdGender = idGender;
@@ -40,9 +41,9 @@ public class Player : BaseEntity
         Name = name;
         Image = image;
         PlayerType = playerType;
-        
+
         Goals = 0;
-        Assists =0;
+        Assists = 0;
         YellowCard = 0;
         RedCard = 0;
         Fouls = 0;
@@ -58,12 +59,18 @@ public class Player : BaseEntity
 
     public int GetScore()
     {
-        var score = (Assists * 5) + (Goals * 8) + (YellowCard * -2) + (RedCard * -4) + (Fouls * -1) + (Wins * 1);
+        var score = (Assists * ScoreSettings.ASSIST_SCORE ) + 
+            (Goals * ScoreSettings.GOAL_SCORE) + 
+            (YellowCard * ScoreSettings.YELLOW_CARD) + 
+            (RedCard * ScoreSettings.RED_CARD) + 
+            (Fouls * ScoreSettings.FOUL) + 
+            (Wins * ScoreSettings.WIN);
         
         if (PlayerType == PlayerType.Goalkeeper)
-            score += (Goalkeeper.Saves * 2) + (Goalkeeper.PenaltySaves * 8) + (Goalkeeper.TakenGols == 0 ? 8 : 0);
+            score += (Goalkeeper.Saves * ScoreSettings.GOAL_DEFENSE) + 
+                (Goalkeeper.PenaltySaves * ScoreSettings.PENALTY_DEFENSE) + 
+                (Goalkeeper.TakenGols == 0 ? ScoreSettings.GOAL_BALANCE : 0);
 
-        if (score < 0) return 0;
-        return score;
+        return score < 0 ? 0 : score;
     }
 }
