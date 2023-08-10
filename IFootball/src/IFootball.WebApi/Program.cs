@@ -96,20 +96,6 @@ builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<ITeamClassRepository, TeamClassRepository>();
 
 
-// Fluent validation injection 
-builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
-builder.Services.AddScoped<IValidator<EditPlayerRequest>, EditPlayerRequestValidator>();
-builder.Services.AddScoped<IValidator<EditTeamClassRequest>, EditTeamClassRequestValidator>();
-builder.Services.AddScoped<IValidator<EditUserRequest>, EditUserRequestValidator>();
-builder.Services.AddScoped<IValidator<LoginUserRequest>, LoginUserRequestValidator>();
-builder.Services.AddScoped<IValidator<RegisterClassRequest>, RegisterClassRequestValidator>();
-builder.Services.AddScoped<IValidator<RegisterPlayerRequest>, RegisterPlayerRequestValidator>();
-builder.Services.AddScoped<IValidator<RegisterTeamClassRequest>, RegisterTeamClassRequestValidator>();
-builder.Services.AddScoped<IValidator<RegisterTeamUserRequest>, RegisterTeamUserRequestValidator>();
-builder.Services.AddScoped<IValidator<RegisterUserRequest>, RegisterUserRequestValidator>();
-builder.Services.AddScoped<IValidator<SetPlayerScoutRequest>, SetPlayerScoutRequestValidator>();
-
-
 // JWT
 builder.Services.AddAuthentication(opt =>
 {

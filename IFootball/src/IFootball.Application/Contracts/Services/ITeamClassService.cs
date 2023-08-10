@@ -8,7 +8,7 @@ public interface ITeamClassService
 {
     Task<RegisterTeamClassResponse> RegisterAsync(RegisterTeamClassRequest request);
     Task<DeleteTeamClassResponse> DeleteAsync(long idTeamClass);
-    Task<EditTeamClassResponse> EditAsync(long idTeamClass, EditTeamClassRequest requestTeamClass);
+    Task<EditTeamClassResponse> EditAsync(long idTeamClass, EditTeamClassRequest request);
     Task<GetTeamClassResponse> GetAsync(long idTeamClass);
     Task<IEnumerable<SimpleTeamClassDto>> ListAsync();
 }

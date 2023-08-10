@@ -7,7 +7,7 @@ namespace IFootball.Application.Contracts.Services
 {
     public interface IClassService
     {
-        Task<RegisterClassResponse> RegisterAsync(RegisterClassRequest resgiterClassRequest);
+        Task<RegisterClassResponse> RegisterAsync(RegisterClassRequest request);
         Task<IEnumerable<ClassDto>> ListAsync();
     }
 }

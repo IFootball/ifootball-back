@@ -7,6 +7,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using IFootball.Application.Contracts.Services.Core;
 using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Implementations.Validators;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -25,9 +26,13 @@ namespace IFootball.Application.Implementations.Services
             _currentUserService = currentUserService;
         }
 
-        public async Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest loginUserRequest)
+        public async Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest request)
         {
-            var user = await _userRepository.GetUserAuthenticateAsync(loginUserRequest.Email, loginUserRequest.Password);
+            var validationDto = new LoginUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return new LoginUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+            var user = await _userRepository.GetUserAuthenticateAsync(request.Email, request.Password);
 
             if (user is null)
                 return new LoginUserResponse(HttpStatusCode.Unauthorized, "Email ou senha incorretos!");
@@ -35,22 +40,26 @@ namespace IFootball.Application.Implementations.Services
             return new LoginUserResponse(user.ToLoginUserDto());
         }
 
-        public async Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest registerUserRequest)
+        public async Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest request)
         {
-            var emailIsTeacher = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
-            var emailIsStudent = Regex.Match(registerUserRequest.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
+            var validationDto = new RegisterUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return new RegisterUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+            var emailIsTeacher = Regex.Match(request.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
+            var emailIsStudent = Regex.Match(request.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
             if (!(emailIsTeacher || emailIsStudent))
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "O email deve ser dominio do IFRS!");
 
-            var userExists = await _userRepository.UserExistsByEmail(registerUserRequest.Email);
+            var userExists = await _userRepository.UserExistsByEmail(request.Email);
             if (userExists)
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "O email já foi cadastrado!");
 
-            var classExists = await _classRepository.ClassExistsById(registerUserRequest.IdClass);
+            var classExists = await _classRepository.ClassExistsById(request.IdClass);
             if (!classExists)
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "A turma inserida não existe!");
 
-            var user = registerUserRequest.ToUser();
+            var user = request.ToUser();
             await _userRepository.CreateUserAsync(user);
             return new RegisterUserResponse(user.DtoToUserDto());
         }
@@ -67,24 +76,29 @@ namespace IFootball.Application.Implementations.Services
             return new DeleteUserResponse();
         }
 
-        public async Task<EditUserResponse> EditAsync(EditUserRequest editUserRequest)
+        public async Task<EditUserResponse> EditAsync(EditUserRequest request)
         {
+            var validationDto = new EditUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return new EditUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+
             long idUser = _currentUserService.GetCurrentUserId();
             
             var user = await _userRepository.FindUserById(idUser);
             if (user is null)
                 return new EditUserResponse(HttpStatusCode.NotFound, "O usuário não existe!");
             
-            if(editUserRequest.NewPassword is not null && editUserRequest.OldPassword is not null){
-                var validPassword = await _userRepository.ValidatePasswordAsync(user.Password, editUserRequest.OldPassword);
+            if(request.NewPassword is not null && request.OldPassword is not null){
+                var validPassword = await _userRepository.ValidatePasswordAsync(user.Password, request.OldPassword);
                 if (!validPassword)
                     return new EditUserResponse(HttpStatusCode.Unauthorized, "Senha incorreta!");
                 
-                user.SetPassword(editUserRequest.NewPassword);
+                user.SetPassword(request.NewPassword);
                 await _userRepository.EditPasswordUserAsync(user);
             }
             
-            user.SetName(editUserRequest.Name);
+            user.SetName(request.Name);
             await _userRepository.EditUserAsync(user);
             return new EditUserResponse(user.DtoToUserDto());
         }
