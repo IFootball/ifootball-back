@@ -9,9 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using IFootball.Application.Contracts.Documents.Requests;
+using IFootball.Application.Contracts.Documents.Requests.Player;
+using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using Microsoft.OpenApi.Models;
 using IFootball.Application.Implementations.Services.Core;
 using IFootball.Application.Contracts.Services.Core;
+using IFootball.Application.Implementations.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,6 +94,21 @@ builder.Services.AddScoped<IGoalkeeperRepository, GoalkeeperRepository>();
 builder.Services.AddScoped<IRankingRepository, RankingRepository>();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<ITeamClassRepository, TeamClassRepository>();
+
+
+// Fluent validation injection 
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+builder.Services.AddScoped<IValidator<EditPlayerRequest>, EditPlayerRequestValidator>();
+builder.Services.AddScoped<IValidator<EditTeamClassRequest>, EditTeamClassRequestValidator>();
+builder.Services.AddScoped<IValidator<EditUserRequest>, EditUserRequestValidator>();
+builder.Services.AddScoped<IValidator<LoginUserRequest>, LoginUserRequestValidator>();
+builder.Services.AddScoped<IValidator<RegisterClassRequest>, RegisterClassRequestValidator>();
+builder.Services.AddScoped<IValidator<RegisterPlayerRequest>, RegisterPlayerRequestValidator>();
+builder.Services.AddScoped<IValidator<RegisterTeamClassRequest>, RegisterTeamClassRequestValidator>();
+builder.Services.AddScoped<IValidator<RegisterTeamUserRequest>, RegisterTeamUserRequestValidator>();
+builder.Services.AddScoped<IValidator<RegisterUserRequest>, RegisterUserRequestValidator>();
+builder.Services.AddScoped<IValidator<SetPlayerScoutRequest>, SetPlayerScoutRequestValidator>();
+
 
 // JWT
 builder.Services.AddAuthentication(opt =>
