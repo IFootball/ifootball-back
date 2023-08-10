@@ -54,7 +54,7 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         
         return await PagedQuery.GetPagedResponse(query, pageable);
     }
-    
+
     public async Task<Player?> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
     
     public async Task<Player?> FindCompleteById(long idPlayer) => await _context.Players

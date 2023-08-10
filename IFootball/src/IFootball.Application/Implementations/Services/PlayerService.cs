@@ -1,19 +1,16 @@
 ﻿using System.Net;
 using System.Reflection;
-using System.Xml.Linq;
+using IFootball.Application.Contracts.Services;
 using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
-using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
+using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses.Player;
-using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
-using IFootball.Core;
 using IFootball.Domain.Contracts;
 using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Domain.Models.enums;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace IFootball.Application.Implementations.Services;
 

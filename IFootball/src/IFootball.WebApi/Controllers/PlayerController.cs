@@ -79,13 +79,11 @@ public class PlayerController : ControllerBase
         [FromQuery] long? idGender,
         [FromQuery] long? playerType,
         [FromQuery] string? name = ""
-
         )
     {
         var response = await _playerService.GetAllAsync(idGender, playerType, name, pageable);
         return Ok(response);
     }
-
 
     [HttpPatch]
     [Authorize(Roles = "Administrator")]
