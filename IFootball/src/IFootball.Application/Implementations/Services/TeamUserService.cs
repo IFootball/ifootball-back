@@ -35,13 +35,6 @@ namespace IFootball.Application.Implementations.Services
             if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
 
-            
-            if(ValidateUniquePlayers(teamUserRequest))
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O time não pode haver jogadores repetidos!");
-            if(ValidateCaptainPlayer(teamUserRequest))
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O capitão deve estar no time!");
-            
-            
             var userExists = await _userRepository.UserExistsById(idUser);
             if (!userExists)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O usuário autenticado não existe!");
@@ -130,12 +123,6 @@ namespace IFootball.Application.Implementations.Services
 
             if (DateTime.Now > LIMIT_DATE_EDIT_TEAM)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
-
-            
-            if(ValidateUniquePlayers(teamUserRequest))
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O time não pode haver jogadores repetidos!");
-            if(ValidateCaptainPlayer(teamUserRequest))
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O capitão deve estar no time!");
             
             
             var userExists = await _userRepository.UserExistsById(idUser);
@@ -249,40 +236,5 @@ namespace IFootball.Application.Implementations.Services
             
             return new GetTeamUserResponse(teamUser.ToCompleteTeamUserDto());
         }
-        
-        public bool ValidateUniquePlayers(RegisterTeamUserRequest request)
-        {
-            var idsPlayers = new List<long>();
-
-            idsPlayers.Add(request.IdGoalkeeper);
-            idsPlayers.Add(request.IdLinePlayerOne);
-            idsPlayers.Add(request.IdLinePlayerTwo);
-            idsPlayers.Add(request.IdLinePlayerThree);
-            idsPlayers.Add(request.IdLinePlayerFour);
-
-            if (request.IdReservePlayerOne is not null)
-                idsPlayers.Add(request.IdReservePlayerOne.Value);
-            if (request.IdReservePlayerTwo is not null)
-                idsPlayers.Add(request.IdReservePlayerTwo.Value);
-            
-            return idsPlayers.Count != idsPlayers.Distinct().Count();
-        }
-        
-        public bool ValidateCaptainPlayer(RegisterTeamUserRequest request)
-        {
-            var idsPlayers = new List<long>();
-
-            idsPlayers.Add(request.IdGoalkeeper);
-            idsPlayers.Add(request.IdLinePlayerOne);
-            idsPlayers.Add(request.IdLinePlayerTwo);
-            idsPlayers.Add(request.IdLinePlayerThree);
-            idsPlayers.Add(request.IdLinePlayerFour);
-
-            if (request.IdCaptain is null)
-                return false;
-            
-            return !idsPlayers.Contains(request.IdCaptain.GetValueOrDefault());
-        }
-        
     }
 }
