@@ -20,6 +20,7 @@ public class RegisterUserRequestValidator : AbstractValidator<RegisterUserReques
             .MaximumLength(128).WithMessage("A nova deve possuir mais de 128 caracteres");
         
         RuleFor(x => x.IdClass)
-            .NotNull().WithMessage("O turma deve ser preenchida");
+            .NotNull().WithMessage("A turma deve ser preenchida")
+            .GreaterThan(0).WithMessage("A turma deve ser maior que 0.");
     }
 }

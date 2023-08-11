@@ -18,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using IFootball.Application.Implementations.Services.Core;
 using IFootball.Application.Contracts.Services.Core;
 using IFootball.Application.Implementations.Validators;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,12 @@ builder.Services.AddControllers()
 .AddJsonOptions(opt =>
 {
     opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
+
+// Disable automatic validation controler
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

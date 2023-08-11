@@ -69,17 +69,21 @@ public class TeamUser : BaseEntity
     
     public int GetScore()
     {
-        var scorePlayer = new List<int>();
-        scorePlayer.Add(Goalkeeper.GetScore());
-        scorePlayer.Add(PlayerOne.GetScore());
-        scorePlayer.Add(PlayerTwo.GetScore());
-        scorePlayer.Add(PlayerThree.GetScore());
-        scorePlayer.Add(PlayerFour.GetScore());
-        scorePlayer.Add(ReservePlayerOne!.GetScore());
-        scorePlayer.Add(ReservePlayerTwo!.GetScore());
-
+        var scorePlayer = new List<Player>();
+        scorePlayer.Add(Goalkeeper);
+        scorePlayer.Add(PlayerOne);
+        scorePlayer.Add(PlayerTwo);
+        scorePlayer.Add(PlayerThree);
+        scorePlayer.Add(PlayerFour);
         
+        if (ReservePlayerOne is not null)
+            scorePlayer.Add(ReservePlayerOne);
+        if (ReservePlayerTwo is not null)
+            scorePlayer.Add(ReservePlayerTwo);
+
         return scorePlayer
+            .Select(x => x.Id == IdCaptain ? 
+                    x.GetScore() * 2 : x.GetScore())
             .OrderByDescending(x => x)
             .Take(5)
             .Sum();

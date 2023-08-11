@@ -1,7 +1,9 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Implementations.Validators;
 using IFootball.Core.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +25,13 @@ namespace IFootball.WebApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest userRequest)
+        public async Task<ActionResult<RegisterUserResponse>> Register([FromBody] RegisterUserRequest request)
         {
-            var response = await _userService.RegisterAsync(userRequest);
+            var validationDto = new RegisterUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+            
+            var response = await _userService.RegisterAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -36,9 +42,13 @@ namespace IFootball.WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<ActionResult<LoginUserResponse>> Authenticate([FromBody] LoginUserRequest userRequest)
+        public async Task<ActionResult<LoginUserResponse>> Authenticate([FromBody] LoginUserRequest request)
         {
-            var response = await _userService.AuthenticateAsync(userRequest);
+            var validationDto = new LoginUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+            
+            var response = await _userService.AuthenticateAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -62,9 +72,13 @@ namespace IFootball.WebApi.Controllers
 
         [HttpPatch]
         [Authorize]
-        public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest editUserRequest)
+        public async Task<ActionResult<EditUserResponse>> EditAsync(EditUserRequest request)
         {
-            var response = await _userService.EditAsync(editUserRequest);
+            var validationDto = new EditUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+            var response = await _userService.EditAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);

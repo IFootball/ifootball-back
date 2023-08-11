@@ -27,10 +27,6 @@ public class TeamClassService : ITeamClassService
     
     public async Task<RegisterTeamClassResponse> RegisterAsync(RegisterTeamClassRequest request)
     {
-        var validationDto = new RegisterTeamClassRequestValidator().Validate(request);
-        if (!validationDto.IsValid)
-            return new RegisterTeamClassResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
         if(!genderExists)
             return new RegisterTeamClassResponse(HttpStatusCode.NotFound, "O genêro inserido não existe");
@@ -56,10 +52,6 @@ public class TeamClassService : ITeamClassService
 
     public async Task<EditTeamClassResponse> EditAsync(long idTeamClass, EditTeamClassRequest request)
     {
-        var validationDto = new EditTeamClassRequestValidator().Validate(request);
-        if (!validationDto.IsValid)
-            return new EditTeamClassResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
         var teamClass = await _teamClassRepository.FindById(idTeamClass);
         if(teamClass is null)
             return new EditTeamClassResponse(HttpStatusCode.NotFound, "O time  inserido não existe");

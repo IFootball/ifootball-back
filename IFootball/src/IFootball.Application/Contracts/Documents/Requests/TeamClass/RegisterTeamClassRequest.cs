@@ -2,6 +2,6 @@
 
 public class RegisterTeamClassRequest
 {
-    public long? IdClass { get; set; }
-    public long? IdGender { get; set; }
+    public long IdClass { get; set; }
+    public long IdGender { get; set; }
 }

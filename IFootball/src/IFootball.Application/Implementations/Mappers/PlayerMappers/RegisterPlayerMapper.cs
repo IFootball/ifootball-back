@@ -7,6 +7,6 @@ public static class RegisterPlayerMapper
 {
     public static Player ToPlayer(this RegisterPlayerRequest request)
     {
-        return new Player(request.IdGender.GetValueOrDefault(), request.IdTeamClass.GetValueOrDefault(), request.Name, request.Image, request.PlayerType.GetValueOrDefault());
+        return new Player(request.IdGender, request.IdTeamClass, request.Name, request.Image, request.PlayerType);
     }
 }

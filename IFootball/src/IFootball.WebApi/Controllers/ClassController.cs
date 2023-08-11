@@ -1,7 +1,9 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Implementations.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +22,13 @@ namespace IFootball.WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<ActionResult<RegisterClassResponse>> Register([FromBody] RegisterClassRequest classRequest)
+        public async Task<ActionResult<RegisterClassResponse>> Register([FromBody] RegisterClassRequest request)
         {
-            var response = await _classService.RegisterAsync(classRequest);
+            var validationDto = new RegisterClassRequestValidator().Validate(request);
+            if(!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+            var response = await _classService.RegisterAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);

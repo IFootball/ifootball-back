@@ -1,9 +1,11 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Requests.Player;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Implementations.Validators;
 using IFootball.Core;
 using IFootball.Domain.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -24,9 +26,13 @@ public class PlayerController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<RegisterPlayerResponse>> Register([FromBody] RegisterPlayerRequest playerRequest)
+    public async Task<ActionResult<RegisterPlayerResponse>> Register([FromBody] RegisterPlayerRequest request)
     {
-        var response = await _playerService.RegisterAsync(playerRequest);
+        var validationDto = new RegisterPlayerRequestValidator().Validate(request);
+        if (!validationDto.IsValid)
+            return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+        var response = await _playerService.RegisterAsync(request);
 
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -36,9 +42,13 @@ public class PlayerController : ControllerBase
     [HttpPut]
     [Authorize(Roles = "Administrator")]
     [Route("{idPlayer}")]
-    public async Task<ActionResult<EditPlayerResponse>> Edit([FromRoute] long idPlayer, [FromBody] EditPlayerRequest linePlayerRequest)
+    public async Task<ActionResult<EditPlayerResponse>> Edit([FromRoute] long idPlayer, [FromBody] EditPlayerRequest request)
     {
-        var response = await _playerService.EditAsync(idPlayer, linePlayerRequest);
+        var validationDto = new EditPlayerRequestValidator().Validate(request);
+        if (!validationDto.IsValid)
+            return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+        var response = await _playerService.EditAsync(idPlayer, request);
 
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -92,6 +102,10 @@ public class PlayerController : ControllerBase
     [Route("{idPlayer}")]
     public async Task<ActionResult<SetPlayerScoutResponse>> SetScout([FromRoute] long idPlayer, [FromBody] SetPlayerScoutRequest request)
     {
+        var validationDto = new SetPlayerScoutRequestValidator().Validate(request);
+        if (!validationDto.IsValid)
+            return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
         var response = await _playerService.SetScoutAsync(idPlayer, request);
 
         if (response.IsErrorStatusCode())

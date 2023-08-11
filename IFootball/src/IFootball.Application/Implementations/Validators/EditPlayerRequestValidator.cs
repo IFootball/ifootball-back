@@ -16,10 +16,13 @@ public class EditPlayerRequestValidator : AbstractValidator<EditPlayerRequest>
             .MaximumLength(512).WithMessage("A imagem deve possuir mais de 512 caracteres");
 
         RuleFor(x => x.IdGender)
-            .NotNull().WithMessage("O gênero deve ser preenchido");
-
+            .NotNull().WithMessage("O gênero deve ser preenchido")
+            .GreaterThan(0).WithMessage("O gênero deve ser maior que 0.");
+        
         RuleFor(x => x.IdTeamClass)
-            .NotNull().WithMessage("O time deve ser preenchido");
+            .NotNull().WithMessage("O time deve ser preenchido")
+            .GreaterThan(0).WithMessage("O time deve ser maior que 0.");
+
     }
     
 }

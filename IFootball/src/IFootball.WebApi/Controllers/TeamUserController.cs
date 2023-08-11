@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Core.Security;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using IFootball.Application.Implementations.Validators;
 
 namespace IFootball.WebApi.Controllers
 {
@@ -23,10 +25,13 @@ namespace IFootball.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [Route("male")]
-        public async Task<ActionResult<RegisterTeamUserResponse>> RegisterMale([FromBody] RegisterTeamUserRequest teamUserRequest)
+        public async Task<ActionResult<RegisterTeamUserResponse>> RegisterMale([FromBody] RegisterTeamUserRequest request)
         {
-
-            var response = await _teamUserService.RegisterMaleAsync(teamUserRequest);
+            var validationDto = new RegisterTeamUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+            
+            var response = await _teamUserService.RegisterMaleAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -37,9 +42,13 @@ namespace IFootball.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [Route("famale")]
-        public async Task<ActionResult<RegisterTeamUserResponse>> RegisterFamale([FromBody] RegisterTeamUserRequest teamUserRequest)
+        public async Task<ActionResult<RegisterTeamUserResponse>> RegisterFamale([FromBody] RegisterTeamUserRequest request)
         {
-            var response = await _teamUserService.RegisterFemaleAsync(teamUserRequest);
+            var validationDto = new RegisterTeamUserRequestValidator().Validate(request);
+            if (!validationDto.IsValid)
+                return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+            var response = await _teamUserService.RegisterFemaleAsync(request);
 
             if (response.IsErrorStatusCode())
                 return StatusCode((int)response.Error.StatusCode, response.Error.Message);

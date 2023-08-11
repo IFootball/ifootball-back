@@ -28,10 +28,6 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest request)
         {
-            var validationDto = new LoginUserRequestValidator().Validate(request);
-            if (!validationDto.IsValid)
-                return new LoginUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
             var user = await _userRepository.GetUserAuthenticateAsync(request.Email, request.Password);
 
             if (user is null)
@@ -42,10 +38,6 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<RegisterUserResponse> RegisterAsync(RegisterUserRequest request)
         {
-            var validationDto = new RegisterUserRequestValidator().Validate(request);
-            if (!validationDto.IsValid)
-                return new RegisterUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
             var emailIsTeacher = Regex.Match(request.Email, PATTERN_EMAIL_TECHER_DOMAIN).Success;
             var emailIsStudent = Regex.Match(request.Email, PATTERN_EMAIL_STUDENT_DOMAIN).Success;
             if (!(emailIsTeacher || emailIsStudent))
@@ -78,11 +70,6 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<EditUserResponse> EditAsync(EditUserRequest request)
         {
-            var validationDto = new EditUserRequestValidator().Validate(request);
-            if (!validationDto.IsValid)
-                return new EditUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
-
             long idUser = _currentUserService.GetCurrentUserId();
             
             var user = await _userRepository.FindUserById(idUser);

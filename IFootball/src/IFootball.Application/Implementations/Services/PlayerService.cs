@@ -36,10 +36,6 @@ public class PlayerService : IPlayerService
 
     public async Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request)
     {
-        var validationDto = new RegisterPlayerRequestValidator().Validate(request);
-        if (!validationDto.IsValid)
-            return new RegisterPlayerResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
         var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
         if (teamClass is null)
             return new RegisterPlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
@@ -64,10 +60,6 @@ public class PlayerService : IPlayerService
 
     public async Task<EditPlayerResponse> EditAsync(long idPlayer, EditPlayerRequest request)
     {
-        var validationDto = new EditPlayerRequestValidator().Validate(request);
-        if (!validationDto.IsValid)
-            return new EditPlayerResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
         var player = await _playerRepository.FindById(idPlayer);
         if(player is null)
             return new EditPlayerResponse(HttpStatusCode.NotFound, "O jogador inserido não existe");
@@ -115,10 +107,6 @@ public class PlayerService : IPlayerService
 
     public async Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request)
     {
-        var validationDto = new SetScotu().Validate(request);
-        if (!validationDto.IsValid)
-            return new SetPlayerScoutResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
         var player = await _playerRepository.FindById(idPlayer);
 
         if (player is null)

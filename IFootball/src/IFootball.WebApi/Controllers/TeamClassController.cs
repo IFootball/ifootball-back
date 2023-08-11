@@ -1,7 +1,9 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
+using IFootball.Application.Implementations.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,9 +23,13 @@ public class TeamClassController : ControllerBase
     [HttpPost]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<RegisterTeamClassResponse>> Register(
-        [FromBody] RegisterTeamClassRequest requestTeamClass)
+        [FromBody] RegisterTeamClassRequest request)
     {
-        var response = await _teamClassService.RegisterAsync(requestTeamClass);
+        var validationDto = new RegisterTeamClassRequestValidator().Validate(request);
+        if (!validationDto.IsValid)
+            return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+        var response = await _teamClassService.RegisterAsync(request);
         
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
@@ -36,9 +42,13 @@ public class TeamClassController : ControllerBase
     [Route("{idTeamClass}")]
     public async Task<ActionResult<EditTeamClassResponse>> Edit(
         [FromRoute] long idTeamClass,
-        [FromBody] EditTeamClassRequest requestTeamClass)
+        [FromBody] EditTeamClassRequest request)
     {
-        var response = await _teamClassService.EditAsync(idTeamClass, requestTeamClass);
+        var validationDto = new EditTeamClassRequestValidator().Validate(request);
+        if (!validationDto.IsValid)
+            return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+
+        var response = await _teamClassService.EditAsync(idTeamClass, request);
         
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);

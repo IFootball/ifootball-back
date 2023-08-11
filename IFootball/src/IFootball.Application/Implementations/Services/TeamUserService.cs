@@ -30,10 +30,6 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<RegisterTeamUserResponse> RegisterMaleAsync(RegisterTeamUserRequest request)
         {
-            var validationDto = new RegisterTeamUserRequestValidator().Validate(request);
-            if (!validationDto.IsValid)
-                return new RegisterTeamUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
             long idUser = _currentUserService.GetCurrentUserId();
 
             if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
@@ -123,10 +119,6 @@ namespace IFootball.Application.Implementations.Services
         
         public async Task<RegisterTeamUserResponse> RegisterFemaleAsync(RegisterTeamUserRequest request)
         {
-            var validationDto = new RegisterTeamUserRequestValidator().Validate(request);
-            if (!validationDto.IsValid)
-                return new RegisterTeamUserResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
             long idUser = _currentUserService.GetCurrentUserId();
 
             if (DateTime.Now > LIMIT_DATE_EDIT_TEAM)

@@ -21,10 +21,6 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<RegisterClassResponse> RegisterAsync(RegisterClassRequest request)
         {
-            var validationDto = new RegisterClassRequestValidator().Validate(request);
-            if(!validationDto.IsValid)
-                return new RegisterClassResponse(HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
-
             var found = await _classRepository.ClassExistsByName(request.Name);
 
             if (found)
