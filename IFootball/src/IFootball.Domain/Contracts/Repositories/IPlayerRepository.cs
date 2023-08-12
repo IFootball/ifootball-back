@@ -14,4 +14,5 @@ public interface IPlayerRepository
     Task<bool> ExistsById(long idPlayer);
     Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable);
 
+    Task<IEnumerable<long>> FindAllId(long? idGender, long? playerType, string? name);
 }

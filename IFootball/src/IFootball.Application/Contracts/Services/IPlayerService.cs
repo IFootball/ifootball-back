@@ -16,4 +16,5 @@ public interface IPlayerService
     Task<DeletePlayerResponse> DeleteAsync(long idPlayer);
     Task<PagedResponse<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, Pageable pageable);
     Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request);
+    Task<IEnumerable<IdResponse>> GetAllIdAsync(long? idGender, long? playerType, string? name);
 }

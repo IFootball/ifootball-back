@@ -96,7 +96,20 @@ public class PlayerController : ControllerBase
         var response = await _playerService.GetAllAsync(idGender, playerType, name, pageable);
         return Ok(response);
     }
+    
+    [HttpGet]
+    [Route("all-ids")]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<IdResponse>>> GetAllIds(
+        [FromQuery] long? idGender,
+        [FromQuery] long? playerType,
+        [FromQuery] string? name = ""
 
+    )
+    {
+        var response = await _playerService.GetAllIdAsync(idGender, playerType, name);
+        return Ok(response);
+    }
 
     [HttpPatch]
     [Authorize(Roles = "Administrator")]

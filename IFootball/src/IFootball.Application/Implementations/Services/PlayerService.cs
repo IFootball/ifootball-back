@@ -9,6 +9,7 @@ using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Documents.Responses.Player;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
+using IFootball.Application.Implementations.Mappers.IdMappers;
 using IFootball.Application.Implementations.Validators;
 using IFootball.Core;
 using IFootball.Domain.Contracts;
@@ -123,6 +124,12 @@ public class PlayerService : IPlayerService
         }
 
         return new SetPlayerScoutResponse(player.ToCompletePlayerDto());
+    }
+
+    public async Task<IEnumerable<IdResponse>> GetAllIdAsync(long? idGender, long? playerType, string? name)
+    {
+        var playersIds = await _playerRepository.FindAllId(idGender, playerType, name);
+        return playersIds.Select(x => x.ToIdResponse());    
     }
 
     public static void ChangeProp<T>(T player, SetPlayerScoutRequest playerScout)

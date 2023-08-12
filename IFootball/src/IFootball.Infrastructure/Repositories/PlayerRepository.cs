@@ -54,7 +54,21 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         
         return await PagedQuery.GetPagedResponse(query, pageable);
     }
-    
+
+    public async Task<IEnumerable<long>> FindAllId(long? idGender, long? playerType, string? name)
+    {
+        var query = _context.Players.AsQueryable();
+        query = query.Where(x => x.Name.ToLower().Contains(name.ToLower()));
+
+        if (idGender is not null) 
+            query = query.Where(x => x.Gender.Id == idGender);
+        
+        if (playerType is not null) 
+            query = query.Where(x => x.PlayerType == (PlayerType)playerType);
+        
+        return await query.Select(x => x.Id).ToListAsync();    
+    }
+
     public async Task<Player?> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
     
     public async Task<Player?> FindCompleteById(long idPlayer) => await _context.Players
