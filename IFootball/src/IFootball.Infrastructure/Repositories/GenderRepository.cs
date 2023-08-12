@@ -20,10 +20,10 @@ namespace IFootball.Infrastructure.Repositories
             var gender = await _context.Genders.FindAsync(idGender);
             return gender is not null;
         }
-        
-        public async Task<Gender> FindByName(GenderName name)
+
+        public async Task<Gender?> FindById(long idGender)
         {
-            return await _context.Genders.FirstOrDefaultAsync(x => x.Name == name);
+            return await _context.Genders.FindAsync(idGender);
         }
     }
 }

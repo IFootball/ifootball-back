@@ -23,7 +23,9 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task<TeamUser?> FindTeamUserByIdUserAndIdGender(long idUser, long idGender)
         {
-            return await _context.TeamUsers.FirstOrDefaultAsync(x => x.IdUser == idUser && x.IdGender == idGender);
+            return await _context.TeamUsers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.IdUser == idUser && x.IdGender == idGender);
 
         }
 
@@ -36,6 +38,7 @@ namespace IFootball.Infrastructure.Repositories
         public async Task<TeamUser?> FindCompleteTeamUserByIdUserAndIdGender(long idUser, long idGender)
         {
             return await _context.TeamUsers
+                .AsNoTracking()
                 .Where(x => x.IdUser == idUser && x.IdGender == idGender)
                 .Include(x => x.Gender)
                 .Include(x => x.Goalkeeper)

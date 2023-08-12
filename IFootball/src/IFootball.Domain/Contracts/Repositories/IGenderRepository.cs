@@ -6,6 +6,5 @@ namespace IFootball.Domain.Contracts.Repositories;
 public interface IGenderRepository
 {
     Task<bool> ExistsGenderById(long idGender);
-    Task<Gender> FindByName(GenderName name);
-
+    Task<Gender?> FindById(long idGender);
 }

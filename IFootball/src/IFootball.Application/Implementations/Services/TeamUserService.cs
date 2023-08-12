@@ -28,17 +28,17 @@ namespace IFootball.Application.Implementations.Services
             _currentUserService = currentUserService; 
         }
 
-        public async Task<RegisterTeamUserResponse> RegisterMaleAsync(RegisterTeamUserRequest request)
+        public async Task<RegisterTeamUserResponse> RegisterAsync(RegisterTeamUserRequest request, long idGender)
         {
-            long idUser = _currentUserService.GetCurrentUserId();
-
             if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
+
+            var idUser = _currentUserService.GetCurrentUserId();
 
             var userExists = await _userRepository.UserExistsById(idUser);
             if (!userExists)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O usuário autenticado não existe!");
-            var gender = await _genderRepository.FindByName(GenderName.Male);
+            var gender = await _genderRepository.FindById(idGender);
             if(gender is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O genêro escolhido não existe!");
 
@@ -46,58 +46,58 @@ namespace IFootball.Application.Implementations.Services
             var goalkeeper = await _playerRepository.FindCompleteById(request.IdGoalkeeper);
             if (goalkeeper is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não existe!");
-            if (goalkeeper.PlayerType == PlayerType.Goalkeeper)
+            if (goalkeeper.PlayerType != PlayerType.Goalkeeper)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não é um goleiro!");
-            if (goalkeeper.Gender.Name == GenderName.Male)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro deve ser masculino!");
+            if (goalkeeper.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro deve ser do gênero do time!");
             
             var playerTwo = await  _playerRepository.FindCompleteById(request.IdLinePlayerTwo);
             if (playerTwo is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois não existe!");
-            if (playerTwo.PlayerType == PlayerType.LinePlayer)
+            if (playerTwo.PlayerType != PlayerType.LinePlayer)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois não é um jogador linha!");
-            if (playerTwo.Gender.Name == GenderName.Male)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois deve ser masculino!");
+            if (playerTwo.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois deve ser do gênero do time!");
             
             var playerOne = await  _playerRepository.FindCompleteById(request.IdLinePlayerOne);
             if (playerOne is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um não existe!");
-            if (playerOne.PlayerType == PlayerType.LinePlayer)
+            if (playerOne.PlayerType != PlayerType.LinePlayer)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um não é um jogador linha!");
-            if (playerOne.Gender.Name == GenderName.Male)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um deve ser masculino!");
+            if (playerOne.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um deve ser do gênero do time!");
             
             var playerThree = await  _playerRepository.FindCompleteById(request.IdLinePlayerThree);
             if (playerThree is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três não existe!");
-            if (playerThree.PlayerType == PlayerType.LinePlayer)
+            if (playerThree.PlayerType != PlayerType.LinePlayer)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três não é um jogador linha!");
-            if (playerThree.Gender.Name == GenderName.Male)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três deve ser masculino!");
+            if (playerThree.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três deve ser do gênero do time!");
             
             var playerFour = await  _playerRepository.FindCompleteById(request.IdLinePlayerFour);
             if (playerFour is null)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro não existe!");
-            if (playerFour.PlayerType == PlayerType.LinePlayer)
+            if (playerFour.PlayerType != PlayerType.LinePlayer)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro não é um jogador linha!");
-            if (playerFour.Gender.Name == GenderName.Male)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro deve ser masculino!");
+            if (playerFour.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro deve ser do gênero do time!");
             
             if (request.IdReservePlayerOne is not null)
             {
                 var reservePlayerOne = await  _playerRepository.FindCompleteById(request.IdReservePlayerOne.GetValueOrDefault());
                 if (reservePlayerOne is null)
                     return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva não existe!");
-                if (reservePlayerOne.Gender.Name == GenderName.Male)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva deve ser masculino!");
+                if (reservePlayerOne.Gender.Name != gender.Name)
+                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva deve ser do gênero do time!");
             }
             if (request.IdReservePlayerTwo is not null)
             {
                 var reservePlayerTwo = await  _playerRepository.FindCompleteById(request.IdReservePlayerTwo.GetValueOrDefault());
                 if (reservePlayerTwo is null)
                     return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva não existe!");
-                if (reservePlayerTwo.Gender.Name == GenderName.Male)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva deve ser masculino!");
+                if (reservePlayerTwo.Gender.Name != gender.Name)
+                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva deve ser do gênero do time!");
             }
             
             var teamUser = await _teamUserRepository.FindTeamUserByIdUserAndIdGender(idUser, gender.Id);
@@ -117,120 +117,15 @@ namespace IFootball.Application.Implementations.Services
             return new RegisterTeamUserResponse(teamUser.ToSimpleTeamUserDto());
         }
         
-        public async Task<RegisterTeamUserResponse> RegisterFemaleAsync(RegisterTeamUserRequest request)
+        public async Task<GetTeamUserResponse> GetAsync(long idGender)
         {
-            long idUser = _currentUserService.GetCurrentUserId();
-
-            if (DateTime.Now > LIMIT_DATE_EDIT_TEAM)
-                return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
+            var idUser = _currentUserService.GetCurrentUserId();
             
-            
-            var userExists = await _userRepository.UserExistsById(idUser);
-            if (!userExists)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O usuário autenticado não existe!");
-            var gender = await _genderRepository.FindByName(GenderName.Female);
-            if(gender is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O genêro escolhido não existe!");
-
-            
-            var goalkeeper = await _playerRepository.FindCompleteById(request.IdGoalkeeper);
-            if (goalkeeper is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não existe!");
-            if (goalkeeper.PlayerType == PlayerType.Goalkeeper)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro escolhido não é um goleiro!");
-            if (goalkeeper.Gender.Name == GenderName.Female)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O goleiro deve ser masculino!");
-            
-            var playerTwo = await  _playerRepository.FindCompleteById(request.IdLinePlayerTwo);
-            if (playerTwo is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois não existe!");
-            if (playerTwo.PlayerType == PlayerType.LinePlayer)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois não é um jogador linha!");
-            if (playerTwo.Gender.Name == GenderName.Female)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador dois deve ser masculino!");
-            
-            var playerOne = await  _playerRepository.FindCompleteById(request.IdLinePlayerOne);
-            if (playerOne is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um não existe!");
-            if (playerOne.PlayerType == PlayerType.LinePlayer)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um não é um jogador linha!");
-            if (playerOne.Gender.Name == GenderName.Female)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador um deve ser masculino!");
-            
-            var playerThree = await  _playerRepository.FindCompleteById(request.IdLinePlayerThree);
-            if (playerThree is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três não existe!");
-            if (playerThree.PlayerType == PlayerType.LinePlayer)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três não é um jogador linha!");
-            if (playerThree.Gender.Name == GenderName.Female)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador três deve ser masculino!");
-            
-            var playerFour = await  _playerRepository.FindCompleteById(request.IdLinePlayerFour);
-            if (playerFour is null)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro não existe!");
-            if (playerFour.PlayerType == PlayerType.LinePlayer)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro não é um jogador linha!");
-            if (playerFour.Gender.Name == GenderName.Female)
-                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro deve ser masculino!");
-            
-            if (request.IdReservePlayerOne is not null)
-            {
-                var reservePlayerOne = await  _playerRepository.FindCompleteById(request.IdReservePlayerOne.GetValueOrDefault());
-                if (reservePlayerOne is null)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva não existe!");
-                if (reservePlayerOne.Gender.Name == GenderName.Female)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva deve ser masculino!");
-            }
-            if (request.IdReservePlayerTwo is not null)
-            {
-                var reservePlayerTwo = await  _playerRepository.FindCompleteById(request.IdReservePlayerTwo.GetValueOrDefault());
-                if (reservePlayerTwo is null)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva não existe!");
-                if (reservePlayerTwo.Gender.Name == GenderName.Female)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva deve ser masculino!");
-            }
-            
-            var teamUser = await _teamUserRepository.FindTeamUserByIdUserAndIdGender(idUser, gender.Id);
-            if (teamUser is null)
-            {
-                teamUser = request.ToTeamUser();
-                teamUser.EditUser(idUser);
-                teamUser.EditGender(gender.Id);
-                await _teamUserRepository.CreateTeamUserAsync(teamUser);    
-            }
-            else
-            {
-                teamUser.EditReplaceTeam(request.ToTeamUser());
-                await _teamUserRepository.EditTeamUserAsync(teamUser);
-            }
-            
-            return new RegisterTeamUserResponse(teamUser.ToSimpleTeamUserDto());
-        }
-
-        public async Task<GetTeamUserResponse> GetMaleAsync()
-        {
-            long idUser = _currentUserService.GetCurrentUserId();
-            
-            var gender = await _genderRepository.FindByName(GenderName.Male);
-            if(gender is null)
+            var gender = await _genderRepository.ExistsGenderById(idGender);
+            if(!gender)
                 return new GetTeamUserResponse(HttpStatusCode.NotFound, "O genêro escolhido não existe!");
             
-            var teamUser = await _teamUserRepository.FindCompleteTeamUserByIdUserAndIdGender(idUser, gender.Id);
-            if(teamUser is null)
-                return new GetTeamUserResponse(HttpStatusCode.NotFound, "Não possui um time criado!");
-            
-            return new GetTeamUserResponse(teamUser.ToCompleteTeamUserDto());
-        }
-
-        public async Task<GetTeamUserResponse> GetFemaleAsync()
-        {
-            long idUser = _currentUserService.GetCurrentUserId();
-            
-            var gender = await _genderRepository.FindByName(GenderName.Female);
-            if(gender is null)
-                return new GetTeamUserResponse(HttpStatusCode.NotFound, "O genêro escolhido não existe!");
-            
-            var teamUser = await _teamUserRepository.FindTeamUserByIdUserAndIdGender(idUser, gender.Id);
+            var teamUser = await _teamUserRepository.FindCompleteTeamUserByIdUserAndIdGender(idUser, idGender);
             if(teamUser is null)
                 return new GetTeamUserResponse(HttpStatusCode.NotFound, "Não possui um time criado!");
             

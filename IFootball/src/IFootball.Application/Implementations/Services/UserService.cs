@@ -58,7 +58,7 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<DeleteUserResponse> DeleteAsync()
         {
-            long idUser = _currentUserService.GetCurrentUserId();
+            var idUser = _currentUserService.GetCurrentUserId();
 
             var user = await _userRepository.FindUserById(idUser);
             if (user is null)
@@ -70,7 +70,7 @@ namespace IFootball.Application.Implementations.Services
 
         public async Task<EditUserResponse> EditAsync(EditUserRequest request)
         {
-            long idUser = _currentUserService.GetCurrentUserId();
+            var idUser = _currentUserService.GetCurrentUserId();
             
             var user = await _userRepository.FindUserById(idUser);
             if (user is null)

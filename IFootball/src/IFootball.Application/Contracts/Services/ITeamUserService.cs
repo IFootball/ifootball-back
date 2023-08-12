@@ -5,9 +5,6 @@ namespace IFootball.Application.Contracts.Services;
 
 public interface ITeamUserService
 {
-     Task<RegisterTeamUserResponse> RegisterMaleAsync(RegisterTeamUserRequest teamUserRequest);
-     Task<RegisterTeamUserResponse> RegisterFemaleAsync(RegisterTeamUserRequest teamUserRequest);
-     Task<GetTeamUserResponse> GetMaleAsync();
-     Task<GetTeamUserResponse> GetFemaleAsync();
-
+     Task<RegisterTeamUserResponse> RegisterAsync(RegisterTeamUserRequest teamUserRequest, long idGender);
+     Task<GetTeamUserResponse> GetAsync(long idGender);
 }

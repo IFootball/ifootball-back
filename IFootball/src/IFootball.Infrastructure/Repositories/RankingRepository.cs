@@ -49,11 +49,26 @@ public class RankingRepository : BaseRepository, IRankingRepository
     {
         var query = _context.Users
             .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.Goalkeeper.Goalkeeper)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerOne)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerTwo)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerThree)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerFour)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.ReservePlayerOne)
+            .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.ReservePlayerTwo);
+
+        var scoreUsers = query
             .AsEnumerable()
             .Select(x => new ScoreUser(x, idGender))
             .OrderByDescending(x => x.Score);
 
-        return await PagedQuery.GetPagedResponse(query, pageable);         
+        return await PagedQuery.GetPagedResponse(scoreUsers, pageable);
     }
 
     public async Task<PagedResponse<Player>> ListGoalScore(int idGender, Pageable pageable)

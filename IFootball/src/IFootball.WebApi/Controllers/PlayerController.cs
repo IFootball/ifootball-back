@@ -39,6 +39,7 @@ public class PlayerController : ControllerBase
 
         return Ok(response);
     }
+    
     [HttpPut]
     [Authorize(Roles = "Administrator")]
     [Route("{idPlayer}")]

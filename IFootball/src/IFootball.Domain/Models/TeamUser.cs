@@ -80,10 +80,10 @@ public class TeamUser : BaseEntity
             scorePlayer.Add(ReservePlayerOne);
         if (ReservePlayerTwo is not null)
             scorePlayer.Add(ReservePlayerTwo);
-
+        
         return scorePlayer
             .Select(x => x.Id == IdCaptain ? 
-                    x.GetScore() * 2 : x.GetScore())
+                    (x.GetScore() * 2) : x.GetScore())
             .OrderByDescending(x => x)
             .Take(5)
             .Sum();
