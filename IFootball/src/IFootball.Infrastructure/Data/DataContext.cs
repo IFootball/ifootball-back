@@ -17,6 +17,7 @@ namespace IFootball.Infrastructure.Data
         public DbSet<TeamClass> TeamClasses { get; set; }
         public DbSet<Goalkeeper> Goalkeepers { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<StartDate> StartDates { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("DataSource=../IFootball.Infrastructure/database.db");
@@ -30,6 +31,7 @@ namespace IFootball.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TeamClassMap());
             modelBuilder.ApplyConfiguration(new GoalkeeperMap());
             modelBuilder.ApplyConfiguration(new PlayerMap());
+            modelBuilder.ApplyConfiguration(new StartDateMap());
         }
     }
 }

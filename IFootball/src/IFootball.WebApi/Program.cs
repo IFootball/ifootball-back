@@ -91,6 +91,7 @@ builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<ITeamClassService, TeamClassService>();
 builder.Services.AddScoped<IRankingService, RankingService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IStartDateService, StartDateService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -101,6 +102,7 @@ builder.Services.AddScoped<IGoalkeeperRepository, GoalkeeperRepository>();
 builder.Services.AddScoped<IRankingRepository, RankingRepository>();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<ITeamClassRepository, TeamClassRepository>();
+builder.Services.AddScoped<IStartDateRepository, StartDateRepository>();
 
 
 // JWT

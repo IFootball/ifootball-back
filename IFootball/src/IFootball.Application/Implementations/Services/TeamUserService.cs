@@ -14,23 +14,28 @@ namespace IFootball.Application.Implementations.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IPlayerRepository _playerRepository;
+        private readonly IStartDateRepository _startDateRepository;
         private readonly ITeamUserRepository _teamUserRepository;
         private readonly IGenderRepository _genderRepository;
         private readonly ICurrentUserService _currentUserService;
-        private static readonly DateTime LIMIT_DATE_EDIT_TEAM = new DateTime(2023, 9, 13, 12, 0, 0);
 
-        public TeamUserService(IUserRepository userRepository, IPlayerRepository playerRepository, ITeamUserRepository teamUserRepository, IGenderRepository genderRepository, ICurrentUserService currentUserService)
+        public TeamUserService(IUserRepository userRepository, IPlayerRepository playerRepository, IStartDateRepository startDateRepository, ITeamUserRepository teamUserRepository, IGenderRepository genderRepository, ICurrentUserService currentUserService)
         {
             _userRepository = userRepository;
             _playerRepository = playerRepository;
+            _startDateRepository = startDateRepository;
             _teamUserRepository = teamUserRepository;
             _genderRepository = genderRepository;
-            _currentUserService = currentUserService; 
+            _currentUserService = currentUserService;
         }
 
         public async Task<RegisterTeamUserResponse> RegisterAsync(RegisterTeamUserRequest request, long idGender)
         {
-            if(DateTime.Now > LIMIT_DATE_EDIT_TEAM)
+            var startDate = await _startDateRepository.FindStarDate();
+
+            if(startDate is null)
+                return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição ainda não foi liberado!");
+            if(DateTime.Now > startDate.StartDateOfMatches)
                 return new RegisterTeamUserResponse(HttpStatusCode.UnprocessableEntity, "O tempo de edição do time já passou!");
 
             var idUser = _currentUserService.GetCurrentUserId();
