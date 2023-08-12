@@ -12,6 +12,7 @@ public static class CompleteDtoPlayerMapper
         {
             Id = player.Id,
             IdGender = player.IdGender,
+            ClassName = player.TeamClass.Class.Name,
             IdTeamClass = player.IdTeamClass,
             Name = player.Name,
             Image = player.Image,

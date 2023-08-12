@@ -12,6 +12,7 @@ public static class SimpleDtoPlayerMapper
         {
             Id = player.Id,
             Name = player.Name,
+            ClassName = player.TeamClass.Class.Name,
             Image = player.Image,
             PlayerType = player.PlayerType,
             IdTeamClass = player.IdTeamClass,

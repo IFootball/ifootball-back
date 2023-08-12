@@ -6,6 +6,7 @@ public class CompletePlayerDto
 {
     public long Id { get; set; }
     public long IdGender { get; set; }
+    public string ClassName { get; set; }
     public long IdTeamClass { get; set; }
     public string Name { get; set; }
     public string? Image { get; set; }

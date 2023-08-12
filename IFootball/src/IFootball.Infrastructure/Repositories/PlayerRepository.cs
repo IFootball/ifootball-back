@@ -43,7 +43,7 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
 
     public async Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable)
     {
-        var query = _context.Players.AsQueryable();
+        var query = _context.Players.Include(x => x.TeamClass.Class).AsQueryable();
         query = query.Where(x => x.Name.ToLower().Contains(name.ToLower()));
 
         if (idGender is not null) 
@@ -59,6 +59,7 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
     
     public async Task<Player?> FindCompleteById(long idPlayer) => await _context.Players
         .Where(x => x.Id == idPlayer)
+        .Include(x => x.TeamClass.Class)
         .Include(x => x.Gender)
         .Include(x => x.Goalkeeper)
         .FirstOrDefaultAsync();
