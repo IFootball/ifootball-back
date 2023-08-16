@@ -6,5 +6,6 @@ namespace IFootball.Application.Contracts.Services;
 public interface IStartDateService
 {
     Task<EditStartDateResponse> EditStartDate(EditStartDateRequest request);
-    
+
+    Task<GetStartDateResponse> GetStartDate();
 }

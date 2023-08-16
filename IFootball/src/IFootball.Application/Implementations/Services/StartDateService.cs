@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Requests.StartDate;
+﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Requests.StartDate;
 using IFootball.Application.Contracts.Documents.Responses.StartDate;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers.StartDateMappers;
@@ -31,5 +32,14 @@ public class StartDateService : IStartDateService
         }
         
         return new EditStartDateResponse(startDate.ToStartDateDto());
+    }
+
+    public async Task<GetStartDateResponse> GetStartDate()
+    {
+        var startDate = await _startDateRepository.FindStarDate();
+        if(startDate is null)
+            return new GetStartDateResponse(HttpStatusCode.NotFound, "O tempo de edição ainda não foi liberado!");
+
+        return new GetStartDateResponse(startDate.ToStartDateDto());
     }
 }

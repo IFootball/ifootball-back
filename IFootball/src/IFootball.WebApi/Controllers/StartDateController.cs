@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using IFootball.Application.Contracts.Documents.Requests.StartDate;
+using IFootball.Application.Contracts.Documents.Responses.StartDate;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Validators;
 using Microsoft.AspNetCore.Authorization;
@@ -27,6 +28,18 @@ public class StartDateController : ControllerBase
             return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
         
         var response = await _startDateService.EditStartDate(request);
+                
+        if (response.IsErrorStatusCode())
+            return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    } 
+    
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<GetStartDateResponse>> GetStartDate()
+    {
+        var response = await _startDateService.GetStartDate();
                 
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
