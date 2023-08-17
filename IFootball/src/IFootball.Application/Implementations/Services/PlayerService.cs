@@ -100,9 +100,9 @@ public class PlayerService : IPlayerService
         return new DeletePlayerResponse();
     }
 
-    public async Task<PagedResponse<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, string name, Pageable pageable)
+    public async Task<PagedResponse<SimplePlayerDto>> GetAllAsync(long? idGender, long? playerType, long? idTeamClass, string name, Pageable pageable)
     {
-        var pagedResult = await _playerRepository.FindAll(idGender, playerType, name, pageable);
+        var pagedResult = await _playerRepository.FindAll(idGender, playerType, idTeamClass, name, pageable);
         return pagedResult.Map(x => x.ToSimplePlayerDto());
     }
 

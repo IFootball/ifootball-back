@@ -12,7 +12,7 @@ public interface IPlayerRepository
 
     Task DeletePlayer(Player player);
     Task<bool> ExistsById(long idPlayer);
-    Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, string name, Pageable pageable);
+    Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, long? idTeamClass, string name, Pageable pageable);
 
     Task<IEnumerable<long>> FindAllId(long? idGender, long? playerType, string? name);
 }

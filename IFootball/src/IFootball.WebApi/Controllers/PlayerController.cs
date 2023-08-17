@@ -89,11 +89,12 @@ public class PlayerController : ControllerBase
         [FromQuery] Pageable pageable,
         [FromQuery] long? idGender,
         [FromQuery] long? playerType,
+        [FromQuery] long? idTeamClass,
         [FromQuery] string? name = ""
 
         )
     {
-        var response = await _playerService.GetAllAsync(idGender, playerType, name, pageable);
+        var response = await _playerService.GetAllAsync(idGender, playerType, idTeamClass, name, pageable);
         return Ok(response);
     }
     
