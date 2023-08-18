@@ -25,8 +25,7 @@ namespace IFootball.Infrastructure.Repositories
 
         public async Task<User?> GetUserAuthenticateAsync(string email, string password)
         {
-            
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email));
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email.ToLower());
 
             if (user is not null && PasswordHasher.VerifyPassword(password, user.Password)) return user;
 

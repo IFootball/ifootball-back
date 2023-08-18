@@ -50,7 +50,7 @@ namespace IFootball.Application.Implementations.Services
             var classExists = await _classRepository.ClassExistsById(request.IdClass);
             if (!classExists)
                 return new RegisterUserResponse(HttpStatusCode.BadRequest, "A turma inserida não existe!");
-
+            
             var user = request.ToUser();
             await _userRepository.CreateUserAsync(user);
             return new RegisterUserResponse(user.DtoToUserDto());

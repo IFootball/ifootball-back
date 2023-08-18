@@ -23,7 +23,7 @@ namespace IFootball.Domain.Models
         public User(string name, string email, string password, long idClass) 
         {
             Name = name;
-            Email = email;
+            Email = email.ToLower();
             Password = password;
             IdClass = idClass;
         }
