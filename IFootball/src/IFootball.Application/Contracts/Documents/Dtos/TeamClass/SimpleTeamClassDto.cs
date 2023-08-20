@@ -4,5 +4,6 @@ public class SimpleTeamClassDto
 {
     public long IdGender { get; set; }
     public long IdClass { get; set; }
+    public string ClassName { get; set; }
     
 }

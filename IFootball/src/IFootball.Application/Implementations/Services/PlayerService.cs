@@ -108,7 +108,7 @@ public class PlayerService : IPlayerService
 
     public async Task<SetPlayerScoutResponse> SetScoutAsync(long idPlayer, SetPlayerScoutRequest request)
     {
-        var player = await _playerRepository.FindById(idPlayer);
+        var player = await _playerRepository.FindCompleteById(idPlayer);
 
         if (player is null)
             return new SetPlayerScoutResponse(HttpStatusCode.NotFound, "O jogador não existe!");

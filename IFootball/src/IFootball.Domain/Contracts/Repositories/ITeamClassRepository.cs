@@ -10,5 +10,5 @@ public interface ITeamClassRepository
     Task Register(TeamClass teamClass);
     Task Edit(TeamClass teamClass);
     Task<TeamClass?> FindCompleteById(long idTeamClass);
-    Task<IEnumerable<TeamClass>> ListAsync();
+    Task<PagedResponse<TeamClass>> ListAsync(Pageable pageable);
 }

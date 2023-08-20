@@ -13,6 +13,7 @@ public static class CompleteDtoTeamClassMapper
             IdGender = teamClass.IdGender,
             IdClass = teamClass.IdClass,
             TeamClassPlayers = BuilderSimplePlayerDto(teamClass.TeamClassPlayers),
+            ClassName = teamClass.Class.Name
         };
     }
 

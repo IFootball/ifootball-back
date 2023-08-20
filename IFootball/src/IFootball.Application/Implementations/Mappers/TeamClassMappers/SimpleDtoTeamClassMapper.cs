@@ -12,6 +12,7 @@ public static class SimpleDtoTeamClassMapper
         {
             IdGender = teamClass.IdGender,
             IdClass = teamClass.IdClass,
+            ClassName = teamClass.Class.Name
         };
     }
 }

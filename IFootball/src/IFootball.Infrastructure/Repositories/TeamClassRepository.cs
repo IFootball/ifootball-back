@@ -1,6 +1,8 @@
-﻿using IFootball.Domain.Contracts.Repositories;
+﻿using IFootball.Domain.Contracts;
+using IFootball.Domain.Contracts.Repositories;
 using IFootball.Domain.Models;
 using IFootball.Infrastructure.Data;
+using IFootball.Infrastructure.Repositories.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -47,11 +49,17 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
         return await _context.TeamClasses
             .Where(x => x.Id == idTeamClass)
             .Include(x => x.TeamClassPlayers)
+            .Include(x => x.Class)
             .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<TeamClass>> ListAsync()
+    public async Task<PagedResponse<TeamClass>> ListAsync(Pageable pageable)
     {
-        return await _context.TeamClasses.ToListAsync();
+        var query = _context.TeamClasses
+            .Include(x => x.Class)
+            .AsEnumerable();
+        
+        return await PagedQuery.GetPagedResponse(query, pageable);
+
     }
 }

@@ -4,6 +4,7 @@ using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Validators;
+using IFootball.Domain.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -85,8 +86,8 @@ public class TeamClassController : ControllerBase
     
     [HttpGet]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<IEnumerable<SimpleTeamClassDto>>> List() {
-        var response = await _teamClassService.ListAsync();
+    public async Task<ActionResult<PagedResponse<SimpleTeamClassDto>>> List([FromQuery] Pageable pageable) {
+        var response = await _teamClassService.ListAsync(pageable);
         return Ok(response);
     }
 

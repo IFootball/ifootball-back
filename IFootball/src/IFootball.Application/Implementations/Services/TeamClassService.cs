@@ -8,6 +8,7 @@ using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Mappers;
 using IFootball.Application.Implementations.Mappers.TeamClassMappers;
 using IFootball.Application.Implementations.Validators;
+using IFootball.Domain.Contracts;
 using IFootball.Domain.Contracts.Repositories;
 
 namespace IFootball.Application.Implementations.Services;
@@ -78,9 +79,9 @@ public class TeamClassService : ITeamClassService
         return new GetTeamClassResponse(teamClass.ToCompleteTeamClassDto());
     }
 
-    public async Task<IEnumerable<SimpleTeamClassDto>> ListAsync()
+    public async Task<PagedResponse<SimpleTeamClassDto>> ListAsync(Pageable pageable)
     {
-        var teamClasses = await _teamClassRepository.ListAsync();
-        return teamClasses.Select(x => x.ToSimpleTeamClassDto());
+        var teamClasses = await _teamClassRepository.ListAsync(pageable);
+        return teamClasses.Map(x => x.ToSimpleTeamClassDto());
     }
 }
