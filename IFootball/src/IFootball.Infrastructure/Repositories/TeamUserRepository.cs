@@ -41,13 +41,13 @@ namespace IFootball.Infrastructure.Repositories
                 .AsNoTracking()
                 .Where(x => x.IdUser == idUser && x.IdGender == idGender)
                 .Include(x => x.Gender)
-                .Include(x => x.Goalkeeper)
-                .Include(x => x.PlayerOne)
-                .Include(x => x.PlayerTwo)
-                .Include(x => x.PlayerThree)
-                .Include(x => x.PlayerFour)
-                .Include(x => x.ReservePlayerOne)
-                .Include(x => x.ReservePlayerTwo)
+                .Include(x => x.Goalkeeper.TeamClass.Class)
+                .Include(x => x.PlayerOne.TeamClass.Class)
+                .Include(x => x.PlayerTwo.TeamClass.Class)
+                .Include(x => x.PlayerThree.TeamClass.Class)
+                .Include(x => x.PlayerFour.TeamClass.Class)
+                .Include(x => x.ReservePlayerOne!.TeamClass.Class)
+                .Include(x => x.ReservePlayerTwo!.TeamClass.Class)
                 .FirstOrDefaultAsync();
         }
     }
