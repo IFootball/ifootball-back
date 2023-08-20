@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using FluentValidation;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
@@ -18,14 +19,16 @@ public class TeamClassService : ITeamClassService
     private readonly ITeamClassRepository _teamClassRepository;
     private readonly IClassRepository _classRepository;
     private readonly IGenderRepository _genderRepository;
+    private readonly IPlayerRepository _playerRepository;
 
-    public TeamClassService(ITeamClassRepository teamClassRepository, IClassRepository classRepository, IGenderRepository genderRepository)
+    public TeamClassService(ITeamClassRepository teamClassRepository, IClassRepository classRepository, IGenderRepository genderRepository, IPlayerRepository playerRepository)
     {
         _teamClassRepository = teamClassRepository;
         _classRepository = classRepository;
         _genderRepository = genderRepository;
+        _playerRepository = playerRepository;
     }
-    
+
     public async Task<RegisterTeamClassResponse> RegisterAsync(RegisterTeamClassRequest request)
     {
         var genderExists = await _genderRepository.ExistsGenderById(request.IdGender);
@@ -83,5 +86,12 @@ public class TeamClassService : ITeamClassService
     {
         var teamClasses = await _teamClassRepository.ListAsync(pageable);
         return teamClasses.Map(x => x.ToSimpleTeamClassDto());
+    }
+
+    public async Task<PagedResponse<TeamClassPlayerDto>> ListPlayersAsync(long idTeamClass, Pageable pageable)
+    {
+        var players = await _playerRepository.ListTeamClass(idTeamClass, pageable);
+        return players.Map(x => x.ToTeamClassPlayerDto());
+        
     }
 }

@@ -15,4 +15,5 @@ public interface IPlayerRepository
     Task<PagedResponse<Player>> FindAll(long? idGender, long? playerType, long? idTeamClass, string name, Pageable pageable);
 
     Task<IEnumerable<long>> FindAllId(long? idGender, long? playerType, string? name);
+    Task<PagedResponse<ScorePlayer>> ListTeamClass(long idTeamClass, Pageable pageable);
 }

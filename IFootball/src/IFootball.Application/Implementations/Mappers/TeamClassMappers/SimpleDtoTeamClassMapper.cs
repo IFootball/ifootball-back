@@ -10,6 +10,7 @@ public static class SimpleDtoTeamClassMapper
     {
         return new SimpleTeamClassDto
         {
+            Id = teamClass.Id,
             IdGender = teamClass.IdGender,
             IdClass = teamClass.IdClass,
             ClassName = teamClass.Class.Name

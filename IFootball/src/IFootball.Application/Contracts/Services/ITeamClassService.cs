@@ -1,4 +1,5 @@
-﻿using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
+﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
 using IFootball.Domain.Contracts;
@@ -12,4 +13,5 @@ public interface ITeamClassService
     Task<EditTeamClassResponse> EditAsync(long idTeamClass, EditTeamClassRequest request);
     Task<GetTeamClassResponse> GetAsync(long idTeamClass);
     Task<PagedResponse<SimpleTeamClassDto>> ListAsync(Pageable pageable);
+    Task<PagedResponse<TeamClassPlayerDto>> ListPlayersAsync(long idTeamClass, Pageable pageable);
 }

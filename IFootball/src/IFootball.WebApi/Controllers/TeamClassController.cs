@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Dtos.TeamClass;
 using IFootball.Application.Contracts.Documents.Requests.TeamClass;
 using IFootball.Application.Contracts.Documents.Responses;
@@ -80,6 +81,18 @@ public class TeamClassController : ControllerBase
         
         if (response.IsErrorStatusCode())
             return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+        return Ok(response);
+    }
+    
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    [Route("list-player/{idTeamClass}")]
+    public async Task<ActionResult<PagedResponse<TeamClassPlayerDto>>> ListPlayer(
+        [FromRoute] long idTeamClass, 
+        [FromQuery] Pageable pageable)
+    {
+        var response = await _teamClassService.ListPlayersAsync(idTeamClass, pageable);
 
         return Ok(response);
     }

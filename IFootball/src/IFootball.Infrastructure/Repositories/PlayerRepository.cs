@@ -72,6 +72,18 @@ public class PlayerRepository : BaseRepository, IPlayerRepository
         return await query.Select(x => x.Id).ToListAsync();    
     }
 
+    public async Task<PagedResponse<ScorePlayer>> ListTeamClass(long idTeamClass, Pageable pageable)
+    {
+        var query = _context.Players
+            .Include(x => x.Goalkeeper)
+            .AsEnumerable()
+            .Where(x => x.IdTeamClass == idTeamClass)
+            .Select(x => new ScorePlayer(x))
+            .OrderByDescending(x => x.Score);
+        
+        return await PagedQuery.GetPagedResponse(query, pageable);
+    }
+
     public async Task<Player?> FindById(long idPlayer) => await _context.Players.FindAsync(idPlayer);
     
     public async Task<Player?> FindCompleteById(long idPlayer) => await _context.Players
