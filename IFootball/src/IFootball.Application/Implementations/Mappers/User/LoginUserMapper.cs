@@ -12,6 +12,7 @@ namespace IFootball.Application.Implementations.Mappers
             {
                 Id = user.Id,
                 Role = user.Role,
+                Name = user.Name,
             };
         }
     }
