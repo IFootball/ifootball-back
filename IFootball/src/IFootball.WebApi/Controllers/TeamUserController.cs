@@ -28,6 +28,7 @@ namespace IFootball.WebApi.Controllers
         public async Task<ActionResult<RegisterTeamUserResponse>> Register(
             [FromRoute] long idGender, [FromBody] RegisterTeamUserRequest request)
         {
+
             var validationDto = new RegisterTeamUserRequestValidator().Validate(request);
             if (!validationDto.IsValid)
                 return StatusCode((int)HttpStatusCode.BadRequest, validationDto.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
