@@ -7,7 +7,7 @@ public class RegisterTeamUserRequest
     public long IdLinePlayerThree { get; set; }
     public long IdLinePlayerOne { get; set; }
     public long IdLinePlayerTwo { get; set; }
-    public long? IdReservePlayerOne { get; set; }
-    public long? IdReservePlayerTwo { get; set; }
-    public long? IdCaptain { get; set; }
+    public long IdReservePlayerOne { get; set; }
+    public long IdReservePlayerTwo { get; set; }
+    public long IdCaptain { get; set; }
 }

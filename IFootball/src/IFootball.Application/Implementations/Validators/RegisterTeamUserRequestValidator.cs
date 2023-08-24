@@ -28,15 +28,16 @@ public class RegisterTeamUserRequestValidator : AbstractValidator<RegisterTeamUs
             .GreaterThan(0).WithMessage("O goleiro deve ser maior que 0.");
         
         RuleFor(x => x.IdReservePlayerTwo)
-            .NotNull().When(x => x.IdReservePlayerTwo != null)
+            .NotNull().WithMessage("O segundo reserva deve ser preenchido")
             .GreaterThan(0).WithMessage("O segundo jogador reserva deve ser maior que 0.");
 
         RuleFor(x => x.IdLinePlayerOne)
-            .NotNull().When(x => x.IdLinePlayerOne != null)
+            .NotNull().WithMessage("O primeiro reserva deve ser preenchido")
             .GreaterThan(0).WithMessage("O primeiro jogador reserva deve ser maior que 0.");
         
         RuleFor(x => x.IdCaptain)
-            .Must((team, idCaptain) => idCaptain == null || IsCaptainValid(team, idCaptain.GetValueOrDefault()))
+            .NotNull().WithMessage("O capitão deve ser preenchido")
+            .Must((team, idCaptain) => IsCaptainValid(team, idCaptain))
             .WithMessage("O capitão deve estar no time");
         
         RuleFor(x => x)
@@ -52,14 +53,10 @@ public class RegisterTeamUserRequestValidator : AbstractValidator<RegisterTeamUs
             team.IdLinePlayerTwo,
             team.IdLinePlayerThree,
             team.IdLinePlayerFour,
-            team.IdGoalkeeper
+            team.IdGoalkeeper,
+            team.IdReservePlayerTwo,
+            team.IdReservePlayerOne
         };
-
-        if (team.IdReservePlayerOne is not null)
-            ids.Add(team.IdReservePlayerOne.Value);
-    
-        if (team.IdReservePlayerTwo is not null)
-            ids.Add(team.IdReservePlayerTwo.Value);
 
         return ids.Distinct().Count() == ids.Count;
     }
@@ -72,14 +69,10 @@ public class RegisterTeamUserRequestValidator : AbstractValidator<RegisterTeamUs
             team.IdLinePlayerTwo,
             team.IdLinePlayerThree,
             team.IdLinePlayerFour,
-            team.IdGoalkeeper
+            team.IdGoalkeeper,
+            team.IdReservePlayerOne,
+            team.IdReservePlayerTwo,
         };
-
-        if (team.IdReservePlayerOne is not null)
-            ids.Add(team.IdReservePlayerOne.Value);
-    
-        if (team.IdReservePlayerTwo is not null)
-            ids.Add(team.IdReservePlayerTwo.Value);
         
         return ids.Contains(idCaptain);
     }

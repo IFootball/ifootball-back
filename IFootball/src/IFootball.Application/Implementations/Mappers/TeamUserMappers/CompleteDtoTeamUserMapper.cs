@@ -16,8 +16,8 @@ public static class CompleteDtoTeamUserMapper
           LinePlayerTwo = teamUser.PlayerTwo.ToSimplePlayerDto(),
           LinePlayerThree = teamUser.PlayerThree.ToSimplePlayerDto(),
           LinePlayerFour = teamUser.PlayerFour.ToSimplePlayerDto(),
-          ReservePlayerOne = teamUser.ReservePlayerOne?.ToSimplePlayerDto(),
-          ReservePlayerTwo = teamUser.ReservePlayerTwo?.ToSimplePlayerDto(),
+          ReservePlayerOne = teamUser.ReservePlayerOne.ToSimplePlayerDto(),
+          ReservePlayerTwo = teamUser.ReservePlayerTwo.ToSimplePlayerDto(),
         };
     }
 }     

@@ -46,8 +46,8 @@ namespace IFootball.Infrastructure.Repositories
                 .Include(x => x.PlayerTwo.TeamClass.Class)
                 .Include(x => x.PlayerThree.TeamClass.Class)
                 .Include(x => x.PlayerFour.TeamClass.Class)
-                .Include(x => x.ReservePlayerOne!.TeamClass.Class)
-                .Include(x => x.ReservePlayerTwo!.TeamClass.Class)
+                .Include(x => x.ReservePlayerOne.TeamClass.Class)
+                .Include(x => x.ReservePlayerTwo.TeamClass.Class)
                 .FirstOrDefaultAsync();
         }
     }

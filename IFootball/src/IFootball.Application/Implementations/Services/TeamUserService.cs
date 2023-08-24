@@ -88,22 +88,19 @@ namespace IFootball.Application.Implementations.Services
             if (playerFour.Gender.Name != gender.Name)
                 return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O jogador quatro deve ser do gênero do time!");
             
-            if (request.IdReservePlayerOne is not null)
-            {
-                var reservePlayerOne = await  _playerRepository.FindCompleteById(request.IdReservePlayerOne.GetValueOrDefault());
-                if (reservePlayerOne is null)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva não existe!");
-                if (reservePlayerOne.Gender.Name != gender.Name)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva deve ser do gênero do time!");
-            }
-            if (request.IdReservePlayerTwo is not null)
-            {
-                var reservePlayerTwo = await  _playerRepository.FindCompleteById(request.IdReservePlayerTwo.GetValueOrDefault());
-                if (reservePlayerTwo is null)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva não existe!");
-                if (reservePlayerTwo.Gender.Name != gender.Name)
-                    return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva deve ser do gênero do time!");
-            }
+   
+            var reservePlayerOne = await  _playerRepository.FindCompleteById(request.IdReservePlayerOne);
+            if (reservePlayerOne is null)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva não existe!");
+            if (reservePlayerOne.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O primeiro reserva deve ser do gênero do time!");
+       
+            var reservePlayerTwo = await  _playerRepository.FindCompleteById(request.IdReservePlayerTwo);
+            if (reservePlayerTwo is null)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva não existe!");
+            if (reservePlayerTwo.Gender.Name != gender.Name)
+                return new RegisterTeamUserResponse(HttpStatusCode.NotFound, "O segundo reserva deve ser do gênero do time!");
+            
             
             var teamUser = await _teamUserRepository.FindTeamUserByIdUserAndIdGender(idUser, gender.Id);
             if (teamUser is null)

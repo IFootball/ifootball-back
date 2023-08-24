@@ -16,7 +16,7 @@ public class TeamUserMap : IEntityTypeConfiguration<TeamUser>
             .ValueGeneratedOnAdd();  
         
         builder.Property(x => x.IdCaptain)
-            .IsRequired(false)
+            .IsRequired()
             .HasColumnName("id_captain")
             .HasColumnType("INT");
         
@@ -49,19 +49,17 @@ public class TeamUserMap : IEntityTypeConfiguration<TeamUser>
             .WithMany(x => x.TeamUsersThree)
             .HasForeignKey(x => x.IdPlayerThree)
             .HasConstraintName("FK_playerThree_teamuser");
-        
+
         builder
             .HasOne(x => x.ReservePlayerOne)
             .WithMany(x => x.TeamUsersReserveOne)
             .HasForeignKey(x => x.IdReservePlayerOne)
-            .HasConstraintName("FK_reserveplayerone_teamuser")
-            .IsRequired(false);
+            .HasConstraintName("FK_reserveplayerone_teamuser");
         builder
             .HasOne(x => x.ReservePlayerTwo)
             .WithMany(x => x.TeamUsersReserveTwo)
             .HasForeignKey(x => x.IdReservePlayerTwo)
-            .HasConstraintName("FK_reserveplayertwo_teamuser")
-            .IsRequired(false);
+            .HasConstraintName("FK_reserveplayertwo_teamuser");
         
         
         

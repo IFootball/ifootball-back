@@ -5,7 +5,7 @@ public class TeamUser : BaseEntity
     public User User { get; private set; }
     public long IdUser { get; private set; }
     
-    public long? IdCaptain { get; private set; }
+    public long IdCaptain { get; private set; }
     
     public Gender Gender { get; private set; }
     public long IdGender { get; private set; }
@@ -25,10 +25,10 @@ public class TeamUser : BaseEntity
     public long IdPlayerFour { get; private set; }
     public Player PlayerFour { get; private set; }
 
-    public long? IdReservePlayerOne { get; private set; }
-    public Player? ReservePlayerOne { get; private set; }
-    public long? IdReservePlayerTwo { get; private set; }
-    public Player? ReservePlayerTwo { get; private set; }
+    public long IdReservePlayerOne { get; private set; }
+    public Player ReservePlayerOne { get; private set; }
+    public long IdReservePlayerTwo { get; private set; }
+    public Player ReservePlayerTwo { get; private set; }
     
     
     public TeamUser() { }
@@ -55,7 +55,7 @@ public class TeamUser : BaseEntity
         IdReservePlayerTwo = teamUser.IdReservePlayerTwo;
     }
 
-    public TeamUser(long? idCaptain, long idGoalkeeper, long idPlayerOne, long idPlayerTwo, long idPlayerThree, long idPlayerFour, long? idReservePlayerOne, long? idReservePlayerTwo)
+    public TeamUser(long idCaptain, long idGoalkeeper, long idPlayerOne, long idPlayerTwo, long idPlayerThree, long idPlayerFour, long idReservePlayerOne, long idReservePlayerTwo)
     {
         IdCaptain = idCaptain;
         IdGoalkeeper = idGoalkeeper;
@@ -76,10 +76,8 @@ public class TeamUser : BaseEntity
         scorePlayer.Add(PlayerThree);
         scorePlayer.Add(PlayerFour);
         
-        if (ReservePlayerOne is not null)
-            scorePlayer.Add(ReservePlayerOne);
-        if (ReservePlayerTwo is not null)
-            scorePlayer.Add(ReservePlayerTwo);
+        scorePlayer.Add(ReservePlayerOne);
+        scorePlayer.Add(ReservePlayerTwo);
         
         return scorePlayer
             .Select(x => x.Id == IdCaptain ? 
