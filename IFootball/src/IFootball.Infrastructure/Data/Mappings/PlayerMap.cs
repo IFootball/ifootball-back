@@ -28,7 +28,7 @@ public class PlayerMap: IEntityTypeConfiguration<Player>
             .HasMaxLength(128);
         
         builder.Property(x => x.Image)
-            .IsRequired()
+            .IsRequired(false)
             .HasColumnName("image")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(512);

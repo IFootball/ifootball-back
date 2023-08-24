@@ -23,7 +23,9 @@ public class TeamClassRepository : BaseRepository, ITeamClassRepository
 
     public async Task<TeamClass?> FindById(long id)
     {
-        return await _context.TeamClasses.FindAsync(id);
+        return await _context.TeamClasses
+            .Include(x => x.Class)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task Delete(TeamClass teamClass)

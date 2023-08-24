@@ -37,7 +37,7 @@ public class PlayerService : IPlayerService
 
     public async Task<RegisterPlayerResponse> RegisterAsync(RegisterPlayerRequest request)
     {
-        var teamClass = await _teamClassRepository.FindById(request.IdTeamClass);
+        var teamClass = await _teamClassRepository.FindCompleteById(request.IdTeamClass);
         if (teamClass is null)
             return new RegisterPlayerResponse(HttpStatusCode.NotFound, "O time inserido não existe");
 
