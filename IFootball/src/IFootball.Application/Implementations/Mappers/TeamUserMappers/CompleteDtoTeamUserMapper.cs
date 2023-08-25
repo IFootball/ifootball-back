@@ -1,4 +1,5 @@
 ﻿using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Implementations.Mappers.RankingMappers;
 using IFootball.Domain.Models;
 
 namespace IFootball.Application.Implementations.Mappers;
@@ -11,13 +12,13 @@ public static class CompleteDtoTeamUserMapper
         {
           Gender = teamUser.Gender.Name,
           IdCaptain = teamUser.IdCaptain,
-          Goalkeeper = teamUser.Goalkeeper.ToSimplePlayerDto(),
-          LinePlayerOne = teamUser.PlayerOne.ToSimplePlayerDto(),
-          LinePlayerTwo = teamUser.PlayerTwo.ToSimplePlayerDto(),
-          LinePlayerThree = teamUser.PlayerThree.ToSimplePlayerDto(),
-          LinePlayerFour = teamUser.PlayerFour.ToSimplePlayerDto(),
-          ReservePlayerOne = teamUser.ReservePlayerOne.ToSimplePlayerDto(),
-          ReservePlayerTwo = teamUser.ReservePlayerTwo.ToSimplePlayerDto(),
+          Goalkeeper = teamUser.Goalkeeper.ToTeamUserPlayerDto(),
+          LinePlayerOne = teamUser.PlayerOne.ToTeamUserPlayerDto(),
+          LinePlayerTwo = teamUser.PlayerTwo.ToTeamUserPlayerDto(),
+          LinePlayerThree = teamUser.PlayerThree.ToTeamUserPlayerDto(),
+          LinePlayerFour = teamUser.PlayerFour.ToTeamUserPlayerDto(),
+          ReservePlayerOne = teamUser.ReservePlayerOne.ToTeamUserPlayerDto(),
+          ReservePlayerTwo = teamUser.ReservePlayerTwo.ToTeamUserPlayerDto(),
         };
     }
 }     

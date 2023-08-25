@@ -11,6 +11,7 @@ public static class RankingPlayerMapper
         return new RankingPlayerDto
         {
             Name = player.Player.Name,
+            Image = player.Player.Image,
             Score = player.Score,
         };
     }
@@ -19,6 +20,7 @@ public static class RankingPlayerMapper
         return new RankingPlayerDto
         {
             Name = player.Name,
+            Image = player.Image,
             Score = score
         };
     }

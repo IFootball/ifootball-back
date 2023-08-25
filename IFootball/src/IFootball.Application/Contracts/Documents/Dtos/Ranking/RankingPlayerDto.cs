@@ -9,6 +9,7 @@ namespace IFootball.Application.Contracts.Documents.Dtos.Ranking
     public class RankingPlayerDto
     {
         public string Name { get; set; }
+        public string? Image { get; set; }
         public int Score { get; set; }
     }
 }

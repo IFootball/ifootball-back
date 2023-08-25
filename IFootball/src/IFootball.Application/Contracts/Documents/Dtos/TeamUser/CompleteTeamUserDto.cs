@@ -6,11 +6,11 @@ public class CompleteTeamUserDto
 {
     public GenderName Gender { get; set; }
     public long IdCaptain { get; set; }
-    public SimplePlayerDto Goalkeeper { get; set; }
-    public SimplePlayerDto LinePlayerOne { get; set; }
-    public SimplePlayerDto LinePlayerTwo { get; set; }
-    public SimplePlayerDto LinePlayerThree { get; set; }
-    public SimplePlayerDto LinePlayerFour { get; set; }
-    public SimplePlayerDto ReservePlayerOne { get; set; }
-    public SimplePlayerDto ReservePlayerTwo { get; set; }
+    public TeamUserPlayerDto Goalkeeper { get; set; }
+    public TeamUserPlayerDto LinePlayerOne { get; set; }
+    public TeamUserPlayerDto LinePlayerTwo { get; set; }
+    public TeamUserPlayerDto LinePlayerThree { get; set; }
+    public TeamUserPlayerDto LinePlayerFour { get; set; }
+    public TeamUserPlayerDto ReservePlayerOne { get; set; }
+    public TeamUserPlayerDto ReservePlayerTwo { get; set; }
 }
