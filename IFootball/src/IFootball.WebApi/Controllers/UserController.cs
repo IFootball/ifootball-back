@@ -2,6 +2,7 @@
 using IFootball.Application.Contracts.Documents.Dtos;
 using IFootball.Application.Contracts.Documents.Requests;
 using IFootball.Application.Contracts.Documents.Responses;
+using IFootball.Application.Contracts.Documents.Responses.User;
 using IFootball.Application.Contracts.Services;
 using IFootball.Application.Implementations.Validators;
 using IFootball.Core.Security;
@@ -85,7 +86,18 @@ namespace IFootball.WebApi.Controllers
 
             return Ok();
         }
+        
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<GetScoreUserLogedResponse>> GetScoreUserLogedAsync()
+        {
+            var response = await _userService.GetScoreUserLogedAsync();
 
+            if (response.IsErrorStatusCode())
+                return StatusCode((int)response.Error.StatusCode, response.Error.Message);
+
+            return Ok(response);
+        }
   
     }
 }

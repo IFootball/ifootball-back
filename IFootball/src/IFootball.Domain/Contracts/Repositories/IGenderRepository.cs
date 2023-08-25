@@ -7,4 +7,5 @@ public interface IGenderRepository
 {
     Task<bool> ExistsGenderById(long idGender);
     Task<Gender?> FindById(long idGender);
+    Task<Gender?> FindByName(GenderName name);
 }

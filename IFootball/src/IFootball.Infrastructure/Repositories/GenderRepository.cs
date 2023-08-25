@@ -25,5 +25,10 @@ namespace IFootball.Infrastructure.Repositories
         {
             return await _context.Genders.FindAsync(idGender);
         }
+
+        public async Task<Gender?> FindByName(GenderName name)
+        {
+            return await _context.Genders.FirstOrDefaultAsync(x => x.Name == name);
+        }
     }
 }

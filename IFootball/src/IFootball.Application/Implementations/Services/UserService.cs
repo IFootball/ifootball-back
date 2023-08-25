@@ -7,7 +7,9 @@ using System.Net;
 using System.Text.RegularExpressions;
 using IFootball.Application.Contracts.Services.Core;
 using IFootball.Application.Contracts.Documents.Dtos;
+using IFootball.Application.Contracts.Documents.Responses.User;
 using IFootball.Application.Implementations.Validators;
+using IFootball.Domain.Models.enums;
 
 namespace IFootball.Application.Implementations.Services
 {
@@ -16,14 +18,16 @@ namespace IFootball.Application.Implementations.Services
         private readonly IUserRepository _userRepository;
         private readonly IClassRepository _classRepository;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IGenderRepository _genderRepository;
         private const string PATTERN_EMAIL_STUDENT_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@aluno\\.feliz\\.ifrs\\.edu\\.br)$";
         private const string PATTERN_EMAIL_TECHER_DOMAIN = "^(([a-z]+)\\.([a-z]+))(@feliz\\.ifrs\\.edu\\.br)$";
 
-        public UserService(IUserRepository userRepository, IClassRepository classRepository, ICurrentUserService currentUserService)
+        public UserService(IUserRepository userRepository, IClassRepository classRepository, ICurrentUserService currentUserService, IGenderRepository genderRepository)
         {
             _userRepository = userRepository;
             _classRepository = classRepository;
             _currentUserService = currentUserService;
+            _genderRepository = genderRepository;
         }
 
         public async Task<LoginUserResponse> AuthenticateAsync(LoginUserRequest request)
@@ -90,6 +94,22 @@ namespace IFootball.Application.Implementations.Services
             return new EditUserResponse(user.DtoToUserDto());
         }
 
- 
+        public async Task<GetScoreUserLogedResponse> GetScoreUserLogedAsync()
+        {
+            var idUser = _currentUserService.GetCurrentUserId();
+            
+            var scoreUser = await _userRepository.GetUserScore(idUser);
+            if (scoreUser is null)
+                return new GetScoreUserLogedResponse(HttpStatusCode.NotFound, "O usuário logado não existe!");
+
+            var genderMale = await _genderRepository.FindByName(GenderName.Male);
+            if (genderMale is null)
+                return new GetScoreUserLogedResponse(HttpStatusCode.NotFound, "O gênero masculino não foi cadastrado!");
+            var genderFemale = await _genderRepository.FindByName(GenderName.Female);
+            if (genderFemale is null)
+                return new GetScoreUserLogedResponse(HttpStatusCode.NotFound, "O gênero feminino não foi cadastrado!");
+            
+            return new GetScoreUserLogedResponse(scoreUser.ToScoreUserDto(genderMale.Id, genderFemale.Id));
+        }
     }
 }

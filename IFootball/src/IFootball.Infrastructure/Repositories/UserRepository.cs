@@ -63,6 +63,27 @@ namespace IFootball.Infrastructure.Repositories
         {
             user.Password = PasswordHasher.HashPassword(user.Password);
             _context.Users.Update(user);
-            await _context.SaveChangesAsync();        }
+            await _context.SaveChangesAsync();        
+        }
+
+        public async Task<User?> GetUserScore(long idUser)
+        {
+                return await _context.Users
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.Goalkeeper.Goalkeeper)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerOne)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerTwo)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerThree)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.PlayerFour)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.ReservePlayerOne)
+                .Include(x => x.UserTeamsUser)
+                .ThenInclude(x => x.ReservePlayerTwo)
+                .FirstOrDefaultAsync(x => x.Id == idUser);
+        }
     } 
 }   
